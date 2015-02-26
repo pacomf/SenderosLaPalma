@@ -1,20 +1,24 @@
-package com.jelcaf.pacomf.patealapalma;
+package com.jelcaf.pacomf.patealapalma.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-import com.jelcaf.pacomf.patealapalma.dummy.DummyContent;
+import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Select;
+import com.jelcaf.pacomf.patealapalma.adapter.SenderoAdapter;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+
+import java.util.List;
 
 /**
  * A list fragment representing a list of Senderos. This fragment
  * also supports tablet devices by allowing list items to be given an
  * 'activated' state upon selection. This helps indicate which item is
- * currently being viewed in a {@link SenderoDetailFragment}.
+ * currently being viewed in a {@link com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment}.
  * <p/>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
@@ -38,6 +42,12 @@ public class SenderoListFragment extends ListFragment {
     */
    private int mActivatedPosition = ListView.INVALID_POSITION;
 
+
+   /**
+    * Senderos adapter
+    */
+   private SenderoAdapter adapter;
+
    /**
     * A callback interface that all activities containing this fragment must
     * implement. This mechanism allows activities to be notified of item
@@ -47,7 +57,7 @@ public class SenderoListFragment extends ListFragment {
       /**
        * Callback for when an item has been selected.
        */
-      public void onItemSelected(String id);
+      public void onItemSelected(Long id);
    }
 
    /**
@@ -56,7 +66,7 @@ public class SenderoListFragment extends ListFragment {
     */
    private static Callbacks sDummyCallbacks = new Callbacks() {
       @Override
-      public void onItemSelected(String id) {
+      public void onItemSelected(Long id) {
       }
    };
 
@@ -67,16 +77,41 @@ public class SenderoListFragment extends ListFragment {
    public SenderoListFragment() {
    }
 
+   public static List<Sendero> getAllSenderos() {
+      createSenderosIfNotExists();
+      return new Select()
+            .from(Sendero.class)
+            .execute();
+   }
+
+   private static void createSenderosIfNotExists() {
+
+      List<Sendero> senderos = new Select()
+            .from(Sendero.class)
+            .execute();
+
+      if (senderos.size() != 0) {
+         return;
+      }
+
+      for (int i = 1; i < 10; i++) {
+         Sendero sendero = new Sendero();
+         sendero.setServerId(i);
+         sendero.setName("Sendero " + i);
+         sendero.save();
+      }
+
+
+   }
+
    @Override
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
 
-      // TODO: replace with a real list adapter.
-      setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
-            getActivity(),
-            android.R.layout.simple_list_item_activated_1,
-            android.R.id.text1,
-            DummyContent.ITEMS));
+      ActiveAndroid.initialize(getActivity());
+
+      adapter = new SenderoAdapter(getActivity(), getAllSenderos());
+      setListAdapter(adapter);
    }
 
    @Override
@@ -114,9 +149,7 @@ public class SenderoListFragment extends ListFragment {
    public void onListItemClick(ListView listView, View view, int position, long id) {
       super.onListItemClick(listView, view, position, id);
 
-      // Notify the active callbacks interface (the activity, if the
-      // fragment is attached to one) that an item has been selected.
-      mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+      mCallbacks.onItemSelected(((Sendero)getListAdapter().getItem(position)).getId());
    }
 
    @Override

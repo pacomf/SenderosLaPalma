@@ -6,15 +6,6 @@
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/my_sendero_detail"
-              style="?android:attr/textAppearanceLarge"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:padding="16dp"
-              tools:context=".SenderoDetailFragment"/>
-
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
               android:id="@+id/my_sendero_name"
               style="?android:attr/textAppearanceLarge"
               android:layout_width="match_parent"

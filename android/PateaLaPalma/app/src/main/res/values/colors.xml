@@ -9,6 +9,7 @@
     <color name="textColorPrimary">#FFFFFFFF</color>
 
     <color name="primary">#4CAF50</color>
+    <color name="secondary">#4CAF50</color>
     <color name="primaryDark">#388E3C</color>
     <color name="accent">#69F0AE</color>
     <color name="accentLight">#00E676</color>

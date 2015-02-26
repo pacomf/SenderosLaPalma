@@ -1,10 +1,18 @@
-package com.jelcaf.pacomf.patealapalma;
+package com.jelcaf.pacomf.patealapalma.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+
+import com.activeandroid.query.Select;
+import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.adapter.SenderoAdapter;
+import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
+import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+
+import java.util.List;
 
 
 /**
@@ -16,11 +24,11 @@ import android.support.v7.widget.Toolbar;
  * item details side-by-side using two vertical panes.
  * <p/>
  * The activity makes heavy use of fragments. The list of items is a
- * {@link SenderoListFragment} and the item details
- * (if present) is a {@link SenderoDetailFragment}.
+ * {@link com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment} and the item details
+ * (if present) is a {@link com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment}.
  * <p/>
  * This activity also implements the required
- * {@link SenderoListFragment.Callbacks} interface
+ * {@link com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment.Callbacks} interface
  * to listen for item selections.
  */
 public class SenderoListActivity extends ActionBarActivity
@@ -31,6 +39,8 @@ public class SenderoListActivity extends ActionBarActivity
     * device.
     */
    private boolean mTwoPane;
+
+   private SenderoListFragment senderoListFragment;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +68,20 @@ public class SenderoListActivity extends ActionBarActivity
       // TODO: If exposing deep links into your app, handle intents here.
    }
 
+
+
    /**
     * Callback method from {@link SenderoListFragment.Callbacks}
     * indicating that the item with the given ID was selected.
     */
    @Override
-   public void onItemSelected(String id) {
+   public void onItemSelected(Long id) {
       if (mTwoPane) {
          // In two-pane mode, show the detail view in this activity by
          // adding or replacing the detail fragment using a
          // fragment transaction.
          Bundle arguments = new Bundle();
-         arguments.putString(SenderoDetailFragment.ARG_ITEM_ID, id);
+         arguments.putLong(SenderoDetailFragment.ARG_ITEM_ID, id);
          SenderoDetailFragment fragment = new SenderoDetailFragment();
          fragment.setArguments(arguments);
          getSupportFragmentManager().beginTransaction()
