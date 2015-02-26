@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#4CAF50</color>
+    <color name="colorPrimaryDark" type="color">#388E3C</color>
+
+    <color name="imageBorderColor">#388E3C</color>
+
+    <color name="textColorPrimary">#FFFFFFFF</color>
+
+    <color name="primary">#4CAF50</color>
+    <color name="primaryDark">#388E3C</color>
+    <color name="accent">#69F0AE</color>
+    <color name="accentLight">#00E676</color>
+
+</resources>
