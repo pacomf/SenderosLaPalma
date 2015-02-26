@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
+import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.adapter.SenderoAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 
@@ -48,6 +49,8 @@ public class SenderoListFragment extends ListFragment {
     */
    private SenderoAdapter adapter;
 
+   private boolean recommended;
+
    /**
     * A callback interface that all activities containing this fragment must
     * implement. This mechanism allows activities to be notified of item
@@ -77,15 +80,21 @@ public class SenderoListFragment extends ListFragment {
    public SenderoListFragment() {
    }
 
-   public static List<Sendero> getAllSenderos() {
+   public List<Sendero> getRecommendedSenderos() {
       createSenderosIfNotExists();
+
+      if (this.recommended) {
+         return new Select()
+               .from(Sendero.class)
+               .where("server_id < 5")
+               .execute();
+      }
       return new Select()
             .from(Sendero.class)
             .execute();
    }
 
-   private static void createSenderosIfNotExists() {
-
+   private void createSenderosIfNotExists() {
       List<Sendero> senderos = new Select()
             .from(Sendero.class)
             .execute();
@@ -101,7 +110,6 @@ public class SenderoListFragment extends ListFragment {
          sendero.save();
       }
 
-
    }
 
    @Override
@@ -110,7 +118,12 @@ public class SenderoListFragment extends ListFragment {
 
       ActiveAndroid.initialize(getActivity());
 
-      adapter = new SenderoAdapter(getActivity(), getAllSenderos());
+      Bundle args = getArguments();
+      if (args != null && args.getBoolean(SenderosConstants.Arguments.RECOMMENDED, false)) {
+         this.recommended = true;
+      }
+
+      adapter = new SenderoAdapter(getActivity(), getRecommendedSenderos());
       setListAdapter(adapter);
    }
 

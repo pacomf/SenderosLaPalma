@@ -10,6 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
 
@@ -138,7 +139,14 @@ public class SenderosSwipeActivity extends ActionBarActivity
       }
 
       public Fragment getItem(int num) {
-         return new SenderoListFragment();
+         SenderoListFragment senderoListFragment = new SenderoListFragment();
+         if (num == 0) {
+            Bundle args = new Bundle();
+            args.putBoolean(SenderosConstants.Arguments.RECOMMENDED, true);
+
+            senderoListFragment.setArguments(args);
+         }
+         return senderoListFragment;
       }
 
       @Override
