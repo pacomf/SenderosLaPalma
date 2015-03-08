@@ -10,3 +10,13 @@ exports.addRating = function (req, res){
 	newRating.save();
 	console.log("Added Rating "+newRating._id);
 }
+
+exports.getRatings = function (req, res) {
+	ratingModel.find({id_sendero: res.params.idsendero}).exec(function (err, ratings) {
+		if (!err){
+			res.send(ratings);
+		} else {
+			res.send(resErr);
+		}
+	});
+};
