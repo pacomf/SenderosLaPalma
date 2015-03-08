@@ -5,22 +5,28 @@ var mongoose = require('mongoose'),
 var resOk = {"res" : "ok"};
 var resErr = {"res" : "err"};
 
-exports.addSendero = function(name, regular_name, version, length, type, geometry_type, likes, geoStartLatitude, geoStartLongitude, geoEndLatitude, geoEndLongitude, coordinatesStr, water_pointsStr){
+exports.addSendero = function(name, regular_name, version, length, type, difficulty, geometry_type, likes, geoStartLatitude, geoStartLongitude, geoEndLatitude, geoEndLongitude, coordinates, water_points){
 	var newSendero = new senderoModel({
 		name: name,
 		regular_name: regular_name,
 		version: version,
 		length: parseFloat(length),
 		type: type,
+		difficulty: difficulty,
 		geometry_type: geometry_type,
 		likes: parseInt(likes),
 		geoStart: utils.toGeo(geoStartLatitude, geoStartLongitude),
 		geoEnd: utils.toGeo(geoEndLatitude, geoEndLongitude),
-		coordinates: utils.Array2DToArrayGeoLoc(coordinatesStr),
-		water_points: utils.Array2DToArrayGeoLoc(water_pointsStr)
+		coordinates: utils.Array2DToArrayGeoLoc(coordinates),
+		water_points: utils.Array2DToArrayGeoLoc(water_points)
 	});
 	newSendero.save();
 	console.log("Added Sendero "+newSendero._id);
+}
+
+exports.deleteAllSenderos = function(){
+	senderoModel.remove().exec();
+	console.log("All Senderos Remove!");
 }
 
 function checkEmpty(object){

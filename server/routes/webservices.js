@@ -27,7 +27,7 @@ module.exports = function (app) {
 	        ---
 	        | minLength | FLOAT | Minimum Length Sendero
 	        ---
-	        | difficulty | Extrema, Alta, Media, Baja| Difficulty of Sendero
+	        | difficulty | Extrema, Alta, Media, Baja | Difficulty of Sendero
 	        ---
 	        | noCoordinates | BOOLEAN | Return or not the 'coordinates'
 	        ---
