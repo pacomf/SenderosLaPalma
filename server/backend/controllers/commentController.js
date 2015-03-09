@@ -13,7 +13,7 @@ exports.addComment = function (req, res){
 }
 
 exports.getComments = function (req, res) {
-	commentModel.find({id_sendero: res.params.idsendero}).exec(function (err, comments) {
+	commentModel.find({id_sendero: req.params.idsendero}).exec(function (err, comments) {
 		if (!err){
 			res.send(comments);
 		} else {

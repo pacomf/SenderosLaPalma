@@ -32,9 +32,22 @@ module.exports = function (app) {
 	        | noCoordinates | BOOLEAN | Return or not the 'coordinates'
 	        ---
 	        | noWaterPoints | BOOLEAN | Return or not the 'water_points'
+	        ---
 	*/
 	app.get('/api/senderos', senderoController.getSenderos);
 	
+	/*
+	  Query String Example: /api/senderos/1234?comments=10&ratings=20&photos=5
+	  Query Parameters:
+	        |  key   | values | meaning 
+	        ----------------------------
+	        | comments | INT |  Amount of comments
+	        ---
+	        | ratings | INT | Amount of ratings
+	        ---
+	        | photos | INT | Amount of photos
+	        ---
+	*/
 	app.get('/api/senderos/:idsendero', senderoController.getSendero);
 
 	app.get('/api/senderos/:idsendero/comments', commentController.getComments);

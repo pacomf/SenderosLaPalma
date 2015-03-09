@@ -14,7 +14,7 @@ exports.addPhoto = function (req, res){
 }
 
 exports.getPhotos = function (req, res) {
-	photoModel.find({id_sendero: res.params.idsendero}).exec(function (err, photos) {
+	photoModel.find({id_sendero: req.params.idsendero}).exec(function (err, photos) {
 		if (!err){
 			res.send(photos);
 		} else {

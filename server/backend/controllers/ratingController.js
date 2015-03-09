@@ -12,7 +12,7 @@ exports.addRating = function (req, res){
 }
 
 exports.getRatings = function (req, res) {
-	ratingModel.find({id_sendero: res.params.idsendero}).exec(function (err, ratings) {
+	ratingModel.find({id_sendero: req.params.idsendero}).exec(function (err, ratings) {
 		if (!err){
 			res.send(ratings);
 		} else {

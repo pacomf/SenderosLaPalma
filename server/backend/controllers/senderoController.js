@@ -1,6 +1,9 @@
 var mongoose = require('mongoose'),
-	utils = require('./utilities/conversionDataModel');
-    senderoModel = require('../models/senderoModel');
+	utils = require('./utilities/conversionDataModel'),
+    senderoModel = require('../models/senderoModel'),
+    photoModel = require('../models/photoModel'),
+    ratingModel = require('../models/ratingModel'),
+    commentModel = require('../models/commentModel');
 
 var resOk = {"res" : "ok"};
 var resErr = {"res" : "err"};
@@ -111,9 +114,35 @@ exports.getSenderos = function (req, res) {
 
 
 exports.getSendero = function (req, res) {
-	senderoModel.findById(res.params.idsendero, function (err, sendero) {
+	var comments = req.query.comments ? (!checkEmpty(req.query) && !checkEmpty(req.query.comments)): 10;
+	var ratings = req.query.ratings ? (!checkEmpty(req.query) && !checkEmpty(req.query.ratings)): 10;
+	var photos = req.query.photos ? (!checkEmpty(req.query) && !checkEmpty(req.query.photos)): 10;
+	var ret = [];
+	senderoModel.findById(req.params.idsendero, function (err, sendero) {
 		if (!err){
-			res.send(sendero);
+			ret.push(sendero);
+			commentModel.find({id_sendero: req.params.idsendero}).limit(comments).exec(function (err, comments) {
+				if (!err){
+					ret.push(comments);
+					ratingModel.find({id_sendero: req.params.idsendero}).limit(ratings).exec(function (err, ratings) {
+						if (!err){
+							ret.push(ratings);
+							photoModel.find({id_sendero: req.params.idsendero}).limit(photos).exec(function (err, photos) {
+								if (!err){
+									ret.push(photos)
+									res.send(ret);
+								} else {
+									res.send(resErr);
+								}
+							});
+						} else {
+							res.send(resErr);
+						}
+					});
+				} else {
+					res.send(resErr);
+				}
+			});
 		} else {
 			res.send(resErr);
 		}
