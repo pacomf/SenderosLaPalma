@@ -2,15 +2,19 @@ var mongoose = require('mongoose'),
 	utils = require('./utilities/conversionDataModel'),
     photoModel = require('../models/photoModel');
 
+var resOk = {"res" : "ok"};
+var resErr = {"res" : "err"};
+
 exports.addPhoto = function (req, res){
-	var newPhoto= new commentModel({
+	var newPhoto= new photoModel({
 		id_sendero: req.params.idsendero,
     	id_owner: req.params.idowner,
-    	url: req.params.url,
-    	geo: utils.toGeo(req.params.latitude, req.params.longitude)
+    	url: req.body.url,
+    	geo: utils.toGeo(req.body.latitude, req.body.longitude)
 	});
 	newPhoto.save();
 	console.log("Added Photo "+newPhoto._id);
+	res.send(resOk);
 }
 
 exports.getPhotos = function (req, res) {

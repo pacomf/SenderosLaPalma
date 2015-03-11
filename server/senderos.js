@@ -1,8 +1,13 @@
 var express = require('express');
 var http = require('http');
 var mongoose = require('mongoose');
-
+var bodyParser = require('body-parser')
 var app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+// parse application/json
+app.use(bodyParser.json())
 
 routes = require('./routes/webservices')(app);  
 

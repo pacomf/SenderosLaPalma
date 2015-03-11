@@ -6,7 +6,8 @@ var commentSchema = new Schema({
     id_sendero: String,
     id_owner: String,
     geo: {type: [Number], index: '2d'},
-    likes: {type: Number, default: 0}
+    likes: {type: Number, default: 0},
+    description: String
 });
 
 

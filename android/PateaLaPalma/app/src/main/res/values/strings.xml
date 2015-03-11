@@ -4,4 +4,11 @@
     <string name="app_name">Patea La Palma</string>
     <string name="title_sendero_detail">Sendero Detail</string>
 
+    <!-- Config String -->
+    <string name="server_ip">http://192.168.0.196</string>
+    <string name="server_port">7200</string>
+    <string name="clientid_imgur">e29cd388bb8b764</string>
+    <string name="clientsecret_imgur">4e46a425b115cae945d7f0f5d3944660599d764c</string>
+
+
 </resources>

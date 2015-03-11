@@ -33,6 +33,13 @@ android {
             "http://dl.bintray.com/amulyakhare/maven"
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 dependencies {
@@ -40,10 +47,17 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.android.support:support-v4:21.0.3'
 
+    // Http for Imgur API
+    compile ('org.apache.httpcomponents:httpmime:4.3.+'){
+        exclude(group: 'org.apache.httpcomponents', module: 'httpclient')
+    }
+
     // ActiveAndroid
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
     // Android Bind: https://github.com/txusballesteros/android-bind
     compile 'com.mobandme:android-bind:1.0+'
+    // Volley, REST request
+    compile 'com.mcxiaoke.volley:library:1.0.+@aar'
 
     compile 'it.neokree:MaterialTabs:0.11'
 }

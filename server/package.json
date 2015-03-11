@@ -6,7 +6,8 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "~4.11.1",
+    "express": "*",
+    "body-parser": "*",
     "mongoose": "*",
     "request": "*"
   }

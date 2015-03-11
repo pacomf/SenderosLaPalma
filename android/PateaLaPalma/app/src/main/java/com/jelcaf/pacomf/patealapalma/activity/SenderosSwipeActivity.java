@@ -1,5 +1,6 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
+import com.jelcaf.pacomf.patealapalma.network.Request;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
@@ -83,6 +85,7 @@ public class SenderosSwipeActivity extends ActionBarActivity
          );
 
       }
+
    }
 
 

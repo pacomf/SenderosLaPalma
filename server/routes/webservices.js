@@ -57,9 +57,9 @@ module.exports = function (app) {
 	// POST
 	// ----
 
-	app.post('/api/senderos/:idsendero/rating/:idowner,:rating', ratingController.addRating);
-	app.post('/api/senderos/:idsendero/comment/:idowner,:latitude,:longitude', commentController.addComment);
-	app.post('/api/senderos/:idsendero/photo/:idowner,:latitude,:longitude,:url', photoController.addPhoto);
+	app.post('/api/senderos/:idsendero/rating/:idowner', ratingController.addRating);
+	app.post('/api/senderos/:idsendero/comment/:idowner', commentController.addComment);
+	app.post('/api/senderos/:idsendero/photo/:idowner', photoController.addPhoto);
 
 
 }
