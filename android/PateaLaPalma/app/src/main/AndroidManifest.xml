@@ -40,13 +40,23 @@
         <activity
             android:name=".activity.SenderoDetailActivity"
             android:label="@string/title_sendero_detail"
-            android:parentActivityName=".activity.SenderoListActivity" >
+            android:parentActivityName=".activity.SenderosSwipeActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.SenderoListActivity" />
+                android:value=".activity.SenderosSwipeActivity" />
         </activity>
         <activity android:name=".activity.SenderoListActivity" />
-        <activity android:name=".activity.SenderoDetailWithImageActivity" />
+        <activity android:name=".activity.SenderoDetailWithImageActivity" >
+            android:label="@string/title_sendero_detail"
+            android:parentActivityName=".activity.SenderosSwipeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SenderosSwipeActivity" />
+        </activity>
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

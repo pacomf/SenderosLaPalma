@@ -1,6 +1,5 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,13 +8,15 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
-import com.jelcaf.pacomf.patealapalma.network.Request;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
@@ -89,6 +90,29 @@ public class SenderosSwipeActivity extends ActionBarActivity
 
    }
 
+   @Override
+   public boolean onCreateOptionsMenu(Menu menu) {
+      MenuInflater inflater = getMenuInflater();
+      inflater.inflate(R.menu.principal_menu, menu);
+      return true;
+   }
+
+   @Override
+   public boolean onOptionsItemSelected(MenuItem item) {
+      // Handle item selection
+      switch (item.getItemId()) {
+         case R.id.setting:
+            callSettingsActivity();
+            return true;
+         default:
+            return super.onOptionsItemSelected(item);
+      }
+   }
+
+   private void callSettingsActivity() {
+      Intent intent = new Intent(this, SettingsActivity.class);
+      startActivity(intent);
+   }
 
 
    /**

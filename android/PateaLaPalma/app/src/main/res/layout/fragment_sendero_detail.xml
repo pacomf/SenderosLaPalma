@@ -76,6 +76,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="280dp"
+            android:id="@+id/reemplazarMapa"
             android:src="@drawable/sample_map"
             android:padding="6sp"/>
 

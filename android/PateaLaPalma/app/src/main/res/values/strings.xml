@@ -4,6 +4,9 @@
     <string name="app_name">Patea La Palma</string>
     <string name="title_sendero_detail">Sendero Detail</string>
 
+    <!-- Settings -->
+    <string name="action_settings">Settings</string>
+
     <!-- Config String -->
     <string name="server_ip">http://192.168.0.196</string>
     <string name="server_port">7200</string>
