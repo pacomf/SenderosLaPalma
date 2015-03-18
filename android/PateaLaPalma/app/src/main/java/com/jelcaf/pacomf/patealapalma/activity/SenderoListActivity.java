@@ -86,7 +86,7 @@ public class SenderoListActivity extends ActionBarActivity
       } else {
          // In single-pane mode, simply start the detail activity
          // for the selected item ID.
-         Intent detailIntent = new Intent(this, SenderoDetailActivity.class);
+         Intent detailIntent = new Intent(this, SenderoDetailWithImageActivity.class);
          detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, id);
          startActivity(detailIntent);
       }

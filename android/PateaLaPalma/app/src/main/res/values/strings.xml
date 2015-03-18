@@ -10,5 +10,9 @@
     <string name="clientid_imgur">e29cd388bb8b764</string>
     <string name="clientsecret_imgur">4e46a425b115cae945d7f0f5d3944660599d764c</string>
 
+    <!-- Title Tabs -->
+    <string name="group_recommend_senderos">Recomendar Sendero</string>
+    <string name="recommend_senderos">Senderos Recomendados</string>
+    <string name="all_senderos">Todos Los Senderos</string>
 
 </resources>

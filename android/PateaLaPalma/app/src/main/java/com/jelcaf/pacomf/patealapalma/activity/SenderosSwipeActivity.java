@@ -112,7 +112,7 @@ public class SenderosSwipeActivity extends ActionBarActivity
       } else {
          // In single-pane mode, simply start the detail activity
          // for the selected item ID.
-         Intent detailIntent = new Intent(this, SenderoDetailActivity.class);
+         Intent detailIntent = new Intent(this, SenderoDetailWithImageActivity.class);
          detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, id);
          startActivity(detailIntent);
       }
@@ -165,9 +165,10 @@ public class SenderosSwipeActivity extends ActionBarActivity
       @Override
       public CharSequence getPageTitle(int position) {
          switch (position) {
-            case 0: return "Recomendar Sendero";
-            case 1: return "Senderos Recomendados";
-            case 2: return "Todos Los Senderos";
+            case SenderosConstants.Tabs.GROUP_RECOMMEND_SENDEROS: return getResources().getString(R.string.group_recommend_senderos);
+            case SenderosConstants.Tabs.RECOMMENDED_SENDEROS: return getResources().getString(R.string.recommend_senderos);
+            case SenderosConstants.Tabs.ALL_SENDEROS: return getResources().getString(R.string
+                  .all_senderos);
          }
          return "undefined";
       }

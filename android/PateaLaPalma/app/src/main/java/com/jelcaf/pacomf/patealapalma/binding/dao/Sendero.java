@@ -15,7 +15,7 @@ import com.mobandme.android.bind.annotations.BindTo;
 public class Sendero extends Model {
 
    @Column(name = "server_id")
-   @BindTo(viewId = R.id.my_sendero_detail, parser = IntegerParse.class)
+//   @BindTo(viewId = R.id.my_sendero_detail, parser = IntegerParse.class)
    private Integer serverId;
 
    @Column(name = "name")

@@ -14,4 +14,7 @@
     <color name="accent">#69F0AE</color>
     <color name="accentLight">#00E676</color>
 
+    <color name="floatButton">#FFFFFFFF</color>
+    <color name="floatButtonPressed">#CCCCCCCC</color>
+
 </resources>

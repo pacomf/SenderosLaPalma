@@ -1,25 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
+              android:background="@android:color/white"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/my_sendero_detail"
-              style="?android:attr/textAppearanceLarge"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:padding="16dp"
-              tools:context=".SenderoDetailFragment"/>
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/my_sendero_name"
-              style="?android:attr/textAppearanceLarge"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:padding="16dp"
-              tools:context=".SenderoDetailFragment"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8sp">
+
+        <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendero_distance_view"
+            custom:mytitle="Distancia"
+            custom:myvalue="3 km"
+            custom:image="@drawable/markers"
+            android:padding="4sp"
+            android:layout_weight="2"/>
+
+        <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendero_difficulty_view"
+            custom:mytitle="Dificultad"
+            custom:myvalue="Máxima"
+            custom:image="@drawable/bar_chart"
+            android:padding="4sp"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8sp">
+
+        <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendero_water_view"
+            custom:mytitle="Agua Recomendada"
+            custom:myvalue="1,5 L"
+            android:padding="4sp"
+            android:layout_weight="2"/>
+
+        <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendero_rating_view"
+            custom:mytitle="Rating"
+            custom:myvalue="5,6"
+            custom:image="@drawable/rating"
+            android:padding="4sp"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="top">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:src="@drawable/sample_map"
+            android:padding="6sp"/>
+
+    </android.support.v7.widget.CardView>
+
 
 </LinearLayout>
