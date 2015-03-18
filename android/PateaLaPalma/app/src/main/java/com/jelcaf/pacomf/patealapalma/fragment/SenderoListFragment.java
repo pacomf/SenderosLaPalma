@@ -6,7 +6,6 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 
-
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;

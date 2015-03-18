@@ -5,14 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.activeandroid.query.Select;
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.adapter.SenderoAdapter;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
-import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
-
-import java.util.List;
 
 
 /**

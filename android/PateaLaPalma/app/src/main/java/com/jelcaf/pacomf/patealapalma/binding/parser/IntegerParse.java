@@ -1,6 +1,5 @@
 package com.jelcaf.pacomf.patealapalma.binding.parser;
 
-import com.mobandme.android.bind.compiler.*;
 import com.mobandme.android.bind.compiler.Compiler;
 import com.mobandme.android.bind.parser.DataParser;
 

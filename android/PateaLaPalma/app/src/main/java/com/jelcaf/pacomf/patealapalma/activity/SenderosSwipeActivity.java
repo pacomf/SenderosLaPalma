@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
+import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
 import com.jelcaf.pacomf.patealapalma.network.Request;
@@ -134,7 +135,7 @@ public class SenderosSwipeActivity extends ActionBarActivity
 
    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
-      public static final int NUM_TABS = 2;
+      public static final int NUM_TABS = 3;
 
       public ViewPagerAdapter(FragmentManager fm) {
          super(fm);
@@ -142,8 +143,12 @@ public class SenderosSwipeActivity extends ActionBarActivity
       }
 
       public Fragment getItem(int num) {
-         SenderoListFragment senderoListFragment = new SenderoListFragment();
          if (num == 0) {
+            RecommendSenderoFragment recommendSenderoFragment = new RecommendSenderoFragment();
+            return recommendSenderoFragment;
+         }
+         SenderoListFragment senderoListFragment = new SenderoListFragment();
+         if (num == 1) {
             Bundle args = new Bundle();
             args.putBoolean(SenderosConstants.Arguments.RECOMMENDED, true);
 
@@ -160,8 +165,9 @@ public class SenderosSwipeActivity extends ActionBarActivity
       @Override
       public CharSequence getPageTitle(int position) {
          switch (position) {
-            case 0: return "Senderos Recomendados";
-            case 1: return "Todos Los Senderos";
+            case 0: return "Recomendar Sendero";
+            case 1: return "Senderos Recomendados";
+            case 2: return "Todos Los Senderos";
          }
          return "undefined";
       }
