@@ -154,6 +154,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          titleTranslationY = Math.max(0, titleTranslationY);
       }
       ViewHelper.setTranslationY(mTitleView, titleTranslationY);
+      ViewHelper.setTranslationX(mTitleView, 70);
 
       // Translate FAB
       int maxFabTranslationY = mFlexibleSpaceImageHeight - mFab.getHeight() / 2;
