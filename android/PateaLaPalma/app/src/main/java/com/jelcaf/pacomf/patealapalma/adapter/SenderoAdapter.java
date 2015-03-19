@@ -5,10 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.colors.RandomColors;
 
 import java.util.List;
 
@@ -33,7 +36,11 @@ public class SenderoAdapter extends BaseAdapter {
     * Senderos Data ViewHolder
     */
    static class ViewHolder {
+      ImageView imageName;
       TextView name;
+      TextView distance;
+      TextView time;
+      TextView difficulty;
    }
 
    @Override
@@ -59,6 +66,7 @@ public class SenderoAdapter extends BaseAdapter {
          convertView = inflater.inflate(R.layout.fragment_sendero_list_detail, null);
          holder = new ViewHolder();
          holder.name = (TextView) convertView.findViewById(R.id.my_sendero_name);
+         holder.imageName = (ImageView) convertView.findViewById(R.id.sendero_image);
 
          convertView.setTag(holder);
       } else {
@@ -68,6 +76,9 @@ public class SenderoAdapter extends BaseAdapter {
       Sendero sendero = senderos.get(position);
 
       holder.name.setText(sendero.getName());
+
+      TextDrawable drawable = TextDrawable.builder().buildRound(sendero.getName().substring(0, 1), RandomColors.generator.getColor(sendero.getName()));
+      holder.imageName.setImageDrawable(drawable);
 
       return convertView;
    }

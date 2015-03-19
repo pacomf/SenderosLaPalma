@@ -69,4 +69,7 @@ dependencies {
     compile 'com.melnykov:floatingactionbutton:1.1.0'
 
     compile 'com.nineoldandroids:library:2.4.0'
+
+    // https://github.com/amulyakhare/TextDrawable
+    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
 }
