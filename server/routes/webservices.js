@@ -51,7 +51,7 @@ module.exports = function (app) {
 	app.get('/api/senderos/:idsendero', senderoController.getSendero);
 
 	app.get('/api/senderos/:idsendero/comments', commentController.getComments);
-	app.get('/api/senderos/:idsendero/rating', ratingController.getRatings);
+	app.get('/api/senderos/:idsendero/ratings', ratingController.getRatings);
 	app.get('/api/senderos/:idsendero/photos', photoController.getPhotos);
 
 	// POST

@@ -88,7 +88,7 @@ function getAllSenderos(res) {
 		if (!err){
 			res.send(senderos);
 		} else {
-			res.send(resErr);
+			res.send([]);
 		}
 	});
 };
@@ -99,7 +99,7 @@ function getSenderosByQuery (req, res){
 		if (!err){
 			res.send(senderos);
 		} else {
-			res.send(resErr);
+			res.send([]);
 		}
 	});
 }
@@ -113,23 +113,23 @@ exports.getSenderos = function (req, res) {
 };
 
 
-exports.getSendero = function (req, res) {
+exports.getSendero = function (req, res) { 
 	var comments = req.query.comments ? (!checkEmpty(req.query) && !checkEmpty(req.query.comments)): 10;
 	var ratings = req.query.ratings ? (!checkEmpty(req.query) && !checkEmpty(req.query.ratings)): 10;
 	var photos = req.query.photos ? (!checkEmpty(req.query) && !checkEmpty(req.query.photos)): 10;
-	var ret = [];
+	var ret = {};
 	senderoModel.findById(req.params.idsendero, function (err, sendero) {
 		if (!err){
-			ret.push(sendero);
+			ret.sendero = sendero;
 			commentModel.find({id_sendero: req.params.idsendero}).limit(comments).exec(function (err, comments) {
 				if (!err){
-					ret.push(comments);
+					ret.comments = comments;
 					ratingModel.find({id_sendero: req.params.idsendero}).limit(ratings).exec(function (err, ratings) {
 						if (!err){
-							ret.push(ratings);
+							ret.ratings = ratings;
 							photoModel.find({id_sendero: req.params.idsendero}).limit(photos).exec(function (err, photos) {
 								if (!err){
-									ret.push(photos)
+									ret.photos = photos;
 									res.send(ret);
 								} else {
 									res.send(resErr);

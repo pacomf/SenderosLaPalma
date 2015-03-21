@@ -74,4 +74,38 @@ public class Utilities {
          return false;
       }
    }
+
+    public static String getQueryParamsByGeo(Double latitude, Double longitude, Integer amount, Double maxDistance, Double maxLength, Double minLength, String difficulty, Boolean noCoordinates, Boolean noWaterPoints){
+        String ret = "";
+        if ((latitude != null) && (longitude != null)){
+            ret+="search=byGeo&latitude="+latitude+"&longitude="+longitude;
+            if (maxDistance != null){
+                ret+="&maxDistance="+maxDistance;
+            }
+        } else {
+            return ret;
+        }
+        if (amount != null){
+            ret+="&amount="+amount;
+        }
+        if (maxLength != null){
+            ret+="&maxLength="+maxLength;
+        }
+        if (minLength != null){
+            ret+="&minLength="+minLength;
+        }
+        if (difficulty != null){
+            ret+="&difficulty="+difficulty;
+        }
+        if (noCoordinates != null){
+            ret+="&noCoordinates="+noCoordinates;
+        }
+        if (noWaterPoints != null){
+            ret+="&noWaterPoints="+noWaterPoints;
+        }
+        if (ret.charAt(0) == '&'){
+            ret = ret.substring(1);
+        }
+        return ret;
+    }
 }

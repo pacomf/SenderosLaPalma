@@ -87,7 +87,6 @@ public class SenderosSwipeActivity extends ActionBarActivity
          );
 
       }
-
    }
 
    @Override
