@@ -72,4 +72,8 @@ dependencies {
 
     // https://github.com/amulyakhare/TextDrawable
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
+
+    // Open Street Map
+    compile 'org.osmdroid:osmdroid-android:4.3+'
+    compile 'org.slf4j:slf4j-simple:1.6.1+'
 }

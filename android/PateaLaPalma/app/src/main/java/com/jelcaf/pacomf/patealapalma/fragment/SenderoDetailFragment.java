@@ -6,9 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.views.CustomMapView;
 import com.mobandme.android.bind.Binder;
+
+import org.osmdroid.api.IMapController;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
 
 /**
  * A fragment representing a single Sendero detail screen.
@@ -30,12 +37,19 @@ public class SenderoDetailFragment extends Fragment {
 
    View rootView;
    Binder myModelBinder;
+   CustomMapView map;
+   ObservableScrollView scrollViewParent;
+
+    public SenderoDetailFragment() {
+    }
+
 
    /**
     * Mandatory empty constructor for the fragment manager to instantiate the
     * fragment (e.g. upon screen orientation changes).
     */
-   public SenderoDetailFragment() {
+   public void setArguments(ObservableScrollView parentScroll) {
+       scrollViewParent = parentScroll;
    }
 
    @Override
@@ -65,11 +79,28 @@ public class SenderoDetailFragment extends Fragment {
                             Bundle savedInstanceState) {
       rootView = inflater.inflate(R.layout.fragment_sendero_detail, container, false);
 
-      myModelBinder = new Binder.Builder()
+       initializeViews(rootView);
+       initMap();
+
+       myModelBinder = new Binder.Builder()
             .setSource(mSendero)
             .setDestination(rootView)
             .build();
 
       return rootView;
    }
+
+    protected void initializeViews(View rootView){
+        map = (CustomMapView) rootView.findViewById(R.id.map);
+    }
+
+    protected void initMap(){
+        map.setArguments(scrollViewParent);
+        map.setTileSource(TileSourceFactory.MAPNIK);
+        map.setMultiTouchControls(true);
+        GeoPoint startPoint = new GeoPoint(28.712428, -17.859723);
+        IMapController mapController = map.getController();
+        mapController.setZoom(11);
+        mapController.setCenter(startPoint);
+    }
 }

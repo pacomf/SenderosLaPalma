@@ -36,7 +36,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
    private View mToolbar;
    private View mImageView;
    private View mOverlayView;
-   private ObservableScrollView mScrollView;
+   public static ObservableScrollView mScrollView;
    private TextView mTitleView;
    private View mFab;
    private int mActionBarSize;
@@ -122,6 +122,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          arguments.putLong(SenderoDetailFragment.ARG_ITEM_ID,
                getIntent().getLongExtra(SenderoDetailFragment.ARG_ITEM_ID, -1));
          SenderoDetailFragment fragment = new SenderoDetailFragment();
+         fragment.setArguments(mScrollView);
          fragment.setArguments(arguments);
          getSupportFragmentManager().beginTransaction()
                .add(R.id.sendero_detail_container, fragment)
