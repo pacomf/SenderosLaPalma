@@ -41,4 +41,5 @@ var ratingModel = require('./backend/models/ratingModel');
 //senderoController.addSendero("Sendero 3", "S3", "2", "6", "A4", "GLineal", "3", 28.421780, -16.499477, "16.45", "23.64", geom, geom);
 
 /*var odController = require('./backend/controllers/openDataController');
-odController.loadData(null);*/
+odController.loadData(null);
+odController.loadExtraInfo('./senderosInfo.json');*/

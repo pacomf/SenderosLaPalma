@@ -27,6 +27,24 @@ exports.addSendero = function(name, regular_name, version, length, type, difficu
 	console.log("Added Sendero "+newSendero._id);
 }
 
+exports.updateSendero = function(name, regular_name, img_url){
+	senderoModel.find({regular_name: regular_name}).exec(function (err, senderos) {
+		if (senderos.length == 0){
+			console.log("No encontrada el sendero: "+regular_name);
+			return;
+		}
+		senderos[0].name = name;
+		var newPhoto= new photoModel({
+			id_sendero: senderos[0]._id,
+    		id_owner: "root",
+    		url: img_url
+		});
+		newPhoto.save();
+		senderos[0].save();
+		console.log("Update Sendero "+senderos[0]._id);
+	});
+}
+
 exports.deleteAllSenderos = function(){
 	senderoModel.remove().exec();
 	console.log("All Senderos Remove!");

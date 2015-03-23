@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
 	utils = require('./utilities/utilsOpenData'),
 	request = require("request"),
+	fs = require('fs');
     senderoController = require('./senderoController');
 
 
@@ -26,7 +27,7 @@ exports.loadData = function(urlParam){
 	        senderoController.deleteAllSenderos();
 	        for (var i=0; i<senderos.length; i++){
 	        	senderoController.addSendero("", // name
-	        								 "", // regular_name
+	        								 senderos[i].properties.ID, // regular_name
 	        								 senderos[i].properties.FECHA, // version
 	        								 senderos[i].properties.LONGITUD, // length
 	        		                         senderos[i].properties.TIPO,  // type
@@ -45,4 +46,11 @@ exports.loadData = function(urlParam){
 	    }
 	});
 
+}
+
+exports.loadExtraInfo = function(file){
+	var info = JSON.parse(fs.readFileSync(file, 'utf8')).senderos;
+	for (var i=0; i<info.length; i++){
+		senderoController.updateSendero(info[i].name, info[i].id, info[i].url);
+	}
 }
