@@ -17,4 +17,5 @@
     <color name="floatButton">#FFFFFFFF</color>
     <color name="floatButtonPressed">#CCCCCCCC</color>
 
+    <color name="white">#FFFFFFFF</color>
 </resources>

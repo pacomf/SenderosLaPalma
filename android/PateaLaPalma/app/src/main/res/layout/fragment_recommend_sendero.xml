@@ -1,7 +1,43 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment">
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment"
+    android:background="@drawable/sendero_fondo">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/empty"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recomendador de Senderos para Grupos"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_above="@id/empty"
+            android:textColor="@color/white"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"/>
+
+        <com.gc.materialdesign.views.ButtonRectangle
+            android:id="@+id/startRecommendButton"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/empty"
+            android:background="@color/colorPrimary"
+            android:text="Iniciar"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="55dp"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
 
 </FrameLayout>

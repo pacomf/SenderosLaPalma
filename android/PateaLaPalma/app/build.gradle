@@ -28,6 +28,7 @@ android {
     }
     repositories {
         mavenCentral()
+        jcenter()
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
             "http://dl.bintray.com/amulyakhare/maven"
@@ -76,4 +77,5 @@ dependencies {
     // Open Street Map
     compile 'org.osmdroid:osmdroid-android:4.3+'
     compile 'org.slf4j:slf4j-simple:1.6.1+'
+    compile 'com.github.navasmdc:MaterialDesign:1.+@aar'
 }
