@@ -9,11 +9,13 @@ exports.addComment = function (req, res){
 	var newComment= new commentModel({
 		id_sendero: req.params.idsendero,
     	id_owner: req.params.idowner,
+    	date: new Date();
     	geo: utils.toGeo(req.body.latitude, req.body.longitude), 
     	description: req.body.description
 	});
 	newComment.save();
 	console.log("Added Comment "+newComment._id);
+	resOk.date = newComment.date;
 	res.send(resOk);
 }
 

@@ -8,10 +8,12 @@ exports.addRating = function (req, res){
 	var newRating= new ratingModel({
 		id_sendero: req.params.idsendero,
     	id_owner: req.params.idowner,
+    	date: new Date(),
     	rating: req.body.rating
 	});
 	newRating.save();
 	console.log("Added Rating "+newRating._id);
+	resOk.date = newRating.date;
 	res.send(resOk);
 }
 

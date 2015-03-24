@@ -6,14 +6,16 @@ var resOk = {"res" : "ok"};
 var resErr = {"res" : "err"};
 
 exports.addPhoto = function (req, res){
-	var newPhoto= new photoModel({
+	var newPhoto = new photoModel({
 		id_sendero: req.params.idsendero,
     	id_owner: req.params.idowner,
     	url: req.body.url,
+    	date: new Date(),
     	geo: utils.toGeo(req.body.latitude, req.body.longitude)
 	});
 	newPhoto.save();
 	console.log("Added Photo "+newPhoto._id);
+	resOk.date = newPhoto.date; 
 	res.send(resOk);
 }
 
