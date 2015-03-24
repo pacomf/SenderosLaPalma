@@ -19,7 +19,6 @@
         android:name="android.permission.CHANGE_WIFI_STATE"
         android:required="true" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
-
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
@@ -55,6 +54,10 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".activity.RecommenderActivity"
+            android:label="@string/title_activity_recommender" >
         </activity>
     </application>
 

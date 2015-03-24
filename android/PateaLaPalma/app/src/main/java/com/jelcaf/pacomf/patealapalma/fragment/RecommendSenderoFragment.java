@@ -1,6 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,6 +41,8 @@ public class RecommendSenderoFragment extends Fragment {
       startRecommendButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
+            Intent detailIntent = new Intent(getActivity(), RecommenderActivity.class);
+            startActivity(detailIntent);
          }
       });
    }

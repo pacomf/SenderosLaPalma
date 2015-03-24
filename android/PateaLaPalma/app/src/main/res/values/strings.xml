@@ -17,5 +17,8 @@
     <string name="group_recommend_senderos">Recomendar Sendero</string>
     <string name="recommend_senderos">Senderos Recomendados</string>
     <string name="all_senderos">Todos Los Senderos</string>
+    <string name="title_activity_recommender">RecommenderActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
