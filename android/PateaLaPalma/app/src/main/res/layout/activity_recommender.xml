@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity"
-    android:background="@drawable/sendero_fondo">
+    tools:context="com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity">
 
     <include layout="@layout/dashboard_toolbar"
              android:id="@+id/toolbar"/>

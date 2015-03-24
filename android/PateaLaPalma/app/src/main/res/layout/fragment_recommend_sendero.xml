@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment"
-    android:background="@drawable/sendero_fondo">
+    tools:context="com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
