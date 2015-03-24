@@ -47,6 +47,8 @@ module.exports = function (app) {
 	        ---
 	        | photos | INT | Amount of photos
 	        ---
+	        | date | STRING | Last Update: "2012-04-23T18:25:43.511Z"
+	        ---
 	*/
 	app.get('/api/senderos/:idsendero', senderoController.getSendero);
 

@@ -6,6 +6,7 @@ var photoSchema = new Schema({
     url: String,
     id_sendero: String,
     id_owner: String,
+    date: Date,
     geo: {type: [Number], index: '2d'},
     likes: {type: Number, default: 0}
 });

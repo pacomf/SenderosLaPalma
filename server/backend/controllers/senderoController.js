@@ -37,6 +37,7 @@ exports.updateSendero = function(name, regular_name, img_url){
 		var newPhoto= new photoModel({
 			id_sendero: senderos[0]._id,
     		id_owner: "root",
+    		date: new Date(),
     		url: img_url
 		});
 		newPhoto.save();
@@ -132,20 +133,27 @@ exports.getSenderos = function (req, res) {
 
 
 exports.getSendero = function (req, res) { 
-	var comments = req.query.comments ? (!checkEmpty(req.query) && !checkEmpty(req.query.comments)): 10;
-	var ratings = req.query.ratings ? (!checkEmpty(req.query) && !checkEmpty(req.query.ratings)): 10;
-	var photos = req.query.photos ? (!checkEmpty(req.query) && !checkEmpty(req.query.photos)): 10;
+	var comments = req.query.comments ? (!checkEmpty(req.query) && !checkEmpty(req.query.comments)): 20;
+	var ratings = req.query.ratings ? (!checkEmpty(req.query) && !checkEmpty(req.query.ratings)): 20;
+	var photos = req.query.photos ? (!checkEmpty(req.query) && !checkEmpty(req.query.photos)): 20;
+	var date;
+	if (!checkEmpty(req.query) && !checkEmpty(req.query.date)){
+		date = new Date(req.query.date);
+	} else {
+		date = new Date("2015-03-24T04:08:15.162Z");
+	}
 	var ret = {};
 	senderoModel.findById(req.params.idsendero, function (err, sendero) {
 		if (!err){
-			ret.sendero = sendero;
-			commentModel.find({id_sendero: req.params.idsendero}).limit(comments).exec(function (err, comments) {
+			ret.sendero = sendero._id;
+			ret.update = new Date();
+			commentModel.find({id_sendero: req.params.idsendero, date: {"$gte": date}}).limit(comments).sort({'date': -1}).exec(function (err, comments) {
 				if (!err){
 					ret.comments = comments;
-					ratingModel.find({id_sendero: req.params.idsendero}).limit(ratings).exec(function (err, ratings) {
+					ratingModel.find({id_sendero: req.params.idsendero, date: {"$gte": date}}).limit(ratings).sort({'date': -1}).exec(function (err, ratings) {
 						if (!err){
 							ret.ratings = ratings;
-							photoModel.find({id_sendero: req.params.idsendero}).limit(photos).exec(function (err, photos) {
+							photoModel.find({id_sendero: req.params.idsendero, date: {"$gte": date}}).limit(photos).sort({'date': -1}).exec(function (err, photos) {
 								if (!err){
 									ret.photos = photos;
 									res.send(ret);
