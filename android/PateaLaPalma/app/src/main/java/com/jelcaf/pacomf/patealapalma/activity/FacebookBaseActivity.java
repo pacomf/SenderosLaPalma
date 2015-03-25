@@ -3,14 +3,15 @@ package com.jelcaf.pacomf.patealapalma.activity;
 /**
  * Created by Paco on 25/03/2015.
  */
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 
 import com.facebook.Session;
 import com.facebook.UiLifecycleHelper;
 
-public abstract class FacebookBaseActivity extends ActionBarActivity {
+public abstract class FacebookBaseActivity extends FragmentActivity {
 
     // Var for Managing Life Cycle of Facebook Account
     private UiLifecycleHelper uiHelper;

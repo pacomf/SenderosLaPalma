@@ -4,6 +4,9 @@
     <string name="app_name">Patea La Palma</string>
     <string name="title_sendero_detail">Sendero Detail</string>
 
+    <!-- External APIs IDs-->
+    <string name="api_fb_id">1011095292238511</string>
+
     <!-- Settings -->
     <string name="action_settings">Settings</string>
 
@@ -19,6 +22,7 @@
     <string name="all_senderos">Todos Los Senderos</string>
     <string name="title_activity_recommender">RecommenderActivity</string>
 
-    <string name="hello_world">Hello world!</string>
+    <!-- Title Buttons -->
+    <string name="btn_title_login">Iniciar Sesión</string>
 
 </resources>
