@@ -15,7 +15,6 @@ import com.mobandme.android.bind.Binder;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
 
 /**
  * A fragment representing a single Sendero detail screen.

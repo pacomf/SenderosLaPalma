@@ -20,7 +20,7 @@ import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
  * This activity is mostly just a 'shell' activity containing nothing
  * more than a {@link com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment}.
  */
-public class SenderoDetailActivity extends ActionBarActivity {
+public class SenderoDetailActivity extends LocationBaseActivity{
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {

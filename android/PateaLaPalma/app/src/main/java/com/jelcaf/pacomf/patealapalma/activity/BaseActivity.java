@@ -19,7 +19,7 @@ import java.util.ArrayList;
 /**
  * Base Activity for Detail Race Activity.
  */
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends LocationBaseActivity {
    private static final int NUM_OF_ITEMS = 100;
    private static final int NUM_OF_ITEMS_FEW = 3;
 

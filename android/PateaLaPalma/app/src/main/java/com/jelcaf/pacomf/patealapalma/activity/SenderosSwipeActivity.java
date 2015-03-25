@@ -39,7 +39,7 @@ import it.neokree.materialtabs.MaterialTabListener;
  * {@link com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class SenderosSwipeActivity extends ActionBarActivity
+public class SenderosSwipeActivity extends LocationBaseActivity
       implements SenderoListFragment.Callbacks, MaterialTabListener {
 
    /**
