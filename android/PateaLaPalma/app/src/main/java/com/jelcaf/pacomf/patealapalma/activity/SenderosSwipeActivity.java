@@ -17,6 +17,7 @@ import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
+import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
@@ -58,6 +59,8 @@ public class SenderosSwipeActivity extends LocationBaseActivity
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_dashboard_with_tabs);
+
+      System.out.println("Hola: "+LoginMethods.getNameFacebook(this)+"-"+LoginMethods.getIdFacebook(this));
 
       // Toolbar Support
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

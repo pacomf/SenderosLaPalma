@@ -5,7 +5,7 @@
     <string name="title_sendero_detail">Sendero Detail</string>
 
     <!-- External APIs IDs-->
-    <string name="api_fb_id">1011095292238511</string>
+    <string name="api_fb_id">1420618671581509</string>
 
     <!-- Settings -->
     <string name="action_settings">Settings</string>
@@ -24,5 +24,11 @@
 
     <!-- Title Buttons -->
     <string name="btn_title_login">Iniciar Sesión</string>
+
+    <!-- Name Shared Preferences -->
+    <string name="sp_sharedpreferences">sp_patealapalma</string>
+    <string name="sp_fb_id">SPFBID</string>
+    <string name="sp_fb_name">SPFBNAME</string>
+    <string name="sp_fb_img_profile">SPFBIMGPROFILE</string>
 
 </resources>

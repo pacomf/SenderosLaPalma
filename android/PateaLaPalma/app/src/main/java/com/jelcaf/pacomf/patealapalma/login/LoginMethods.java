@@ -3,6 +3,8 @@ package com.jelcaf.pacomf.patealapalma.login;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.facebook.Request;
@@ -10,7 +12,11 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
+import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.images.Utilities;
+import com.jelcaf.pacomf.patealapalma.preferences.SharedPreferencesUtils;
 
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,7 +47,8 @@ public class LoginMethods {
                                     // Display the parsed user info
                                     try {
                                         Intent intent = new Intent(activity, goTo);
-                                        intent.putExtra("idfb", user.getId());
+                                        saveParamsFacebook(activity, user.getId(), user.getName());
+                                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         activity.startActivity(intent);
                                     } catch (Exception e){
                                         e.getStackTrace();
@@ -66,6 +73,45 @@ public class LoginMethods {
             Session.setActiveSession(session);
             session.openForRead(openRequest);
             return session;
+        }
+        return null;
+    }
+
+    public static void saveParamsFacebook (final Activity activity, final String idFacebook, String name){
+        SharedPreferencesUtils.addString(activity, activity.getString(R.string.sp_fb_id), idFacebook);
+        SharedPreferencesUtils.addString(activity, activity.getString(R.string.sp_fb_name), name);
+        Thread thread = new Thread(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    URL imageURL = new URL("https://graph.facebook.com/" + idFacebook + "/picture?type=large");
+                    Bitmap imgProfile = BitmapFactory.decodeStream(imageURL.openConnection().getInputStream());
+                    if (imgProfile != null){
+                        String imgProfileStr = Utilities.ImageToBase64(imgProfile);
+                        if (imgProfileStr != null){
+                            SharedPreferencesUtils.addString(activity, activity.getString(R.string.sp_fb_img_profile), imgProfileStr);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+    }
+
+    public static String getIdFacebook (Activity activity){
+        return SharedPreferencesUtils.getString(activity, activity.getString(R.string.sp_fb_id));
+    }
+
+    public static String getNameFacebook (Activity activity){
+        return SharedPreferencesUtils.getString(activity, activity.getString(R.string.sp_fb_name));
+    }
+
+    public static Bitmap getImgProfileFacebook (Activity activity){
+        String imgProfileStr = SharedPreferencesUtils.getString(activity, activity.getString(R.string.sp_fb_img_profile));
+        if (imgProfileStr != null){
+            return Utilities.Base64ToImage(imgProfileStr);
         }
         return null;
     }
