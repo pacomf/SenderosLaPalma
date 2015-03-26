@@ -16,17 +16,24 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.facebook.widget.ProfilePictureView;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
+import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import it.neokree.materialtabs.MaterialTab;
 import it.neokree.materialtabs.MaterialTabHost;
 import it.neokree.materialtabs.MaterialTabListener;
@@ -68,10 +75,19 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_dashboard_with_tabs);
 
-      System.out.println("Hola: "+LoginMethods.getNameFacebook(this)+"-"+LoginMethods.getIdFacebook(this));
-
       // Toolbar Support
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+      String idFB = LoginMethods.getIdFacebook(this);
+      if (idFB != null) {
+         try {
+            CircleImageView profileImg = (CircleImageView) toolbar.findViewById(R.id.profilePicture);
+            TextView name_user = (TextView) toolbar.findViewById(R.id.name_user);
+            name_user.setText(LoginMethods.getNameFacebook(this));
+            profileImg.setImageBitmap(LoginMethods.getImgProfileFacebook(this));
+         } catch (Exception e){
+            e.printStackTrace();
+         }
+      }
       setSupportActionBar(toolbar);
 
       tabHost = (MaterialTabHost) this.findViewById(R.id.tabHost);

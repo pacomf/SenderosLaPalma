@@ -1,5 +1,6 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,15 +8,24 @@ import android.view.MenuItem;
 
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.fragment.LoginFragment;
+import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
 public class LoginActivity extends FacebookBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        setFragmentsFromBundle(savedInstanceState);
+        if (LoginMethods.getIdFacebook(this) != null){
+            Intent intent = new Intent(this, SenderosSwipeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        } else {
+
+            setContentView(R.layout.activity_login);
+
+            setFragmentsFromBundle(savedInstanceState);
+        }
     }
 
 
