@@ -1,5 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.network;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -107,5 +109,12 @@ public class Utilities {
             ret = ret.substring(1);
         }
         return ret;
+    }
+
+    public static ProgressDialog getProgressDialog (Activity activity, String title, String description){
+        ProgressDialog pd = ProgressDialog.show(activity, title, description);
+        pd.setIndeterminate(false);
+        pd.setCancelable(false);
+        return pd;
     }
 }

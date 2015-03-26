@@ -9,6 +9,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.LocationServices;
+import com.jelcaf.pacomf.patealapalma.network.Request;
+import com.jelcaf.pacomf.patealapalma.network.Utilities;
 
 /**
  * Created by Paco on 25/03/2015.
@@ -70,6 +72,7 @@ public class LocationBaseActivity extends ActionBarActivity implements Connectio
         // in rare cases when a location is not available.
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
        if (mLastLocation != null) {
+           Request.getOpenWeatherInfo(this, mLastLocation.getLatitude(), mLastLocation.getLongitude(), Utilities.getProgressDialog(this, "h", "p"));
           System.out.println("Posicion: " + mLastLocation.getLongitude() + "|" + mLastLocation.getLatitude());
        }
     }

@@ -163,5 +163,9 @@ public class Utilities {
       }
    }
 
+   public static String getURIIconWeather (String icon){
+      return "http://openweathermap.org/img/w/"+icon+".png";
+   }
+
 }
 

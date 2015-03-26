@@ -2,6 +2,7 @@ package com.jelcaf.pacomf.patealapalma.network;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -232,5 +233,26 @@ public class Request {
 
         // add the request object to the queue to be executed
         ConfigWebServices.addToRequestQueue(activity, req);
+    }
+
+    public static void getOpenWeatherInfo(Context ctx, double lat, double lon, final ProgressDialog pd) {
+        final String URL = "http://api.openweathermap.org/data/2.5/find?lat=" + lat + "&lon=" + lon + "&cnt=1";
+        JsonObjectRequest req = new JsonObjectRequest(URL, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        com.jelcaf.pacomf.patealapalma.network.Response.responseOpenWeather(response, pd);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+                pd.dismiss();
+            }
+        }
+        );
+
+        // add the request object to the queue to be executed
+        ConfigWebServices.addToRequestQueue(ctx, req);
     }
 }
