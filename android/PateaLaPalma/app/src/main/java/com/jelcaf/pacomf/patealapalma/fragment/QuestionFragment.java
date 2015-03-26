@@ -2,6 +2,7 @@ package com.jelcaf.pacomf.patealapalma.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class QuestionFragment extends Fragment {
 
    private static final String ARG_QUESTION = "question";
 
+   private ViewGroup mContainer;
    private QuestionRecommenderForm mQuestion;
 
    public static QuestionFragment newInstance(QuestionRecommenderForm question) {
@@ -44,8 +46,8 @@ public class QuestionFragment extends Fragment {
    }
 
    @Override
-   public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                            Bundle savedInstanceState) {
+   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+      mContainer = container;
       View v = inflater.inflate(R.layout.question_fragment, container, false);
 
       ((TextView)v.findViewById(R.id.question)).setText(mQuestion.getQuestion());
@@ -62,6 +64,13 @@ public class QuestionFragment extends Fragment {
    private void createRadioButton(RadioGroup mRadioGroup, RecommenderQuestionResponse response) {
       RadioButton option = new RadioButton(getActivity());
       option.setText(response.text);
+      option.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            // TODO: Descomentar para pasar de pregunta cuando seleccionemos una respuesta
+            // ((ViewPager)mContainer).setCurrentItem(((ViewPager)mContainer).getCurrentItem() + 1, true);
+         }
+      });
       mRadioGroup.addView(option);
    }
 }
