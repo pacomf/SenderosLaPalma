@@ -3,11 +3,14 @@ package com.jelcaf.pacomf.patealapalma.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
+import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.adapter.SenderoAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
@@ -109,6 +112,13 @@ public class SenderoListFragment extends ListFragment {
          sendero.save();
       }
 
+   }
+
+   @Override
+   public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                            Bundle savedInstanceState) {
+      View v = inflater.inflate(R.layout.sendero_list, null);
+      return v;
    }
 
    @Override
