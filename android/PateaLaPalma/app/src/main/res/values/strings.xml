@@ -37,7 +37,18 @@
     <string name="sp_fb_name">SPFBNAME</string>
     <string name="sp_fb_img_profile">SPFBIMGPROFILE</string>
 
+    <!-- Name Temp Image (Take Camera Pictures) -->
+    <string name="temp_picture">tempPLP.jpg</string>
+
     <!-- Messages -->
     <string name="anonymous">Anónimo</string>
+    <string name="select_picture">Selecciona una Fotografía</string>
+    <string name="upload_picture">Subiendo Foto</string>
+    <string name="procesando">Espere Por Favor... Procesando...</string>
+    <string name="take_picture">Sacar Foto</string>
+    <string name="gallery_picture">Eligir de la Galería</string>
+    <string name="cancel">Cancelar</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="login_required">Es necesario Iniciar Sesión</string>
 
 </resources>

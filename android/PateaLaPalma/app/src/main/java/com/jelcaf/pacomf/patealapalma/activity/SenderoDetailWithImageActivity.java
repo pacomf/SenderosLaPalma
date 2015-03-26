@@ -1,9 +1,15 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
+import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -20,9 +26,19 @@ import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
+import com.jelcaf.pacomf.patealapalma.images.Utilities;
+import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
+import com.jelcaf.pacomf.patealapalma.preferences.SharedPreferencesUtils;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.URL;
 
 /**
  * @author Jorge Carballo
@@ -86,11 +102,15 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
 //      mTitleView.setText(getTitle());
       mTitleView.setText(mSendero.getName());
       setTitle(null);
+      final Activity activity = this;
       mFab = findViewById(R.id.fab);
       mFab.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
             Toast.makeText(SenderoDetailWithImageActivity.this, "FAB is clicked", Toast.LENGTH_SHORT).show();
+            // TODO: En las opciones de subida de imagenes, rating etc, comprobar que este logueado (metodo de comprobacion creado en LoginMethods)
+            if (LoginMethods.checkLogin(activity))
+               Utilities.selectImage(activity);
          }
       });
       mFabMargin = getResources().getDimensionPixelSize(R.dimen.margin_standard);
@@ -260,5 +280,33 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
             return true;
       }
       return super.onOptionsItemSelected(item);
+   }
+
+   @Override
+   public void onActivityResult(int requestCode, int resultCode, Intent data) {
+      super.onActivityResult(requestCode, resultCode, data);
+
+      if (resultCode != Activity.RESULT_OK)
+         return;
+
+      if (requestCode == Utilities.GALLERY_INTENT) {
+         if (data == null)
+            return;
+         Uri selectedPictureUri = data.getData();
+         if (selectedPictureUri == null)
+            return;
+         try {
+            // TODO: Parametros correctos: idSendero, latitud, longitud, etc
+            //ProgressDialog pd = ProgressDialog.show(this, getResources().getText(R.string.upload_picture), getResources().getText(R.string.procesando));
+            //pd.setIndeterminate(false);
+            //pd.dismiss();
+            //Utilities.uploadImage(this, Utilities.getBitMapFromUri(this, selectedPictureUri), LoginMethods.getIdFacebook(this), "idSendero", 0, 0, pd);
+         } catch (Exception e) {
+            e.printStackTrace();
+         }
+      } else if (requestCode == Utilities.CAMERA_INTENT) {
+         Utilities.getCameraPictureAndUpload(this);
+      }
+
    }
 }

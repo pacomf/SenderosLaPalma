@@ -1,7 +1,9 @@
 package com.jelcaf.pacomf.patealapalma.login;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -136,5 +138,28 @@ public class LoginMethods {
         Intent intent = new Intent(activity, LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
+    }
+
+    public static boolean checkLogin (final Activity activity){
+
+        if (getIdFacebook(activity) != null){
+            return true;
+        }
+
+        final CharSequence[] items = { activity.getString(R.string.login), activity.getString(R.string.cancel)};
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(activity.getString(R.string.login_required));
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (items[item].equals(activity.getString(R.string.login))) {
+                    goToLoginScreen(activity);
+                } else if (items[item].equals(activity.getString(R.string.cancel))) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+        return false;
     }
 }
