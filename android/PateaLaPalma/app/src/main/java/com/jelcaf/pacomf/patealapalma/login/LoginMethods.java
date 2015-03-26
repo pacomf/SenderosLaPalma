@@ -13,6 +13,7 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphUser;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.activity.LoginActivity;
 import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.preferences.SharedPreferencesUtils;
 
@@ -100,6 +101,13 @@ public class LoginMethods {
         thread.start();
     }
 
+    public static void deleteParamsFacebook (Activity activity){
+        SharedPreferencesUtils.addString(activity, activity.getString(R.string.sp_fb_id), null);
+        SharedPreferencesUtils.addString(activity, activity.getString(R.string.sp_fb_name), null);
+        SharedPreferencesUtils.addString(activity, activity.getString(R.string.sp_fb_img_profile), null);
+
+    }
+
     public static String getIdFacebook (Activity activity){
         return SharedPreferencesUtils.getString(activity, activity.getString(R.string.sp_fb_id));
     }
@@ -114,5 +122,19 @@ public class LoginMethods {
             return Utilities.Base64ToImage(imgProfileStr);
         }
         return null;
+    }
+    public static void closeFacebookSession(final Activity activity, final Class goTo){
+        Session session = Session.getActiveSession();
+        session.closeAndClearTokenInformation();
+        Intent intent = new Intent(activity, goTo);
+        deleteParamsFacebook(activity);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
+    }
+
+    public static void goToLoginScreen (Activity activity){
+        Intent intent = new Intent(activity, LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
     }
 }

@@ -1,5 +1,6 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -78,15 +80,30 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       // Toolbar Support
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       String idFB = LoginMethods.getIdFacebook(this);
+      CircleImageView profileImg = (CircleImageView) toolbar.findViewById(R.id.profilePicture);
+      TextView name_user = (TextView) toolbar.findViewById(R.id.name_user);
       if (idFB != null) {
          try {
-            CircleImageView profileImg = (CircleImageView) toolbar.findViewById(R.id.profilePicture);
-            TextView name_user = (TextView) toolbar.findViewById(R.id.name_user);
             name_user.setText(LoginMethods.getNameFacebook(this));
             profileImg.setImageBitmap(LoginMethods.getImgProfileFacebook(this));
          } catch (Exception e){
             e.printStackTrace();
          }
+      } else {
+            name_user.setText(getString(R.string.anonymous));
+            final Activity activity = this;
+            profileImg.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                  LoginMethods.goToLoginScreen(activity);
+               }
+            });
+            name_user.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                  LoginMethods.goToLoginScreen(activity);
+               }
+            });
       }
       setSupportActionBar(toolbar);
 
@@ -120,6 +137,12 @@ public class SenderosSwipeActivity extends LocationBaseActivity
    public boolean onCreateOptionsMenu(Menu menu) {
       MenuInflater inflater = getMenuInflater();
       inflater.inflate(R.menu.principal_menu, menu);
+      MenuItem item = menu.findItem(R.id.session);
+      if (LoginMethods.getIdFacebook(this) == null){
+         item.setTitle(getString(R.string.action_login));
+      } else {
+         item.setTitle(getString(R.string.action_logout));
+      }
       return true;
    }
 
@@ -130,6 +153,12 @@ public class SenderosSwipeActivity extends LocationBaseActivity
          case R.id.setting:
             callSettingsActivity();
             return true;
+         case R.id.session:
+            if (LoginMethods.getIdFacebook(this) == null){
+               LoginMethods.goToLoginScreen(this);
+            } else {
+               LoginMethods.closeFacebookSession(this, LoginActivity.class);
+            }
          default:
             return super.onOptionsItemSelected(item);
       }

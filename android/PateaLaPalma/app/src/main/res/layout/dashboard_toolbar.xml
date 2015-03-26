@@ -18,7 +18,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
-            android:src="@android:drawable/ic_menu_gallery"
+            android:src="@drawable/com_facebook_profile_default_icon"
             android:id="@+id/profilePicture"
             android:padding="1dp"
             app:border_color="@color/colorPrimaryDark"/>

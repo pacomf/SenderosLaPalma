@@ -10,6 +10,8 @@
 
     <!-- Settings -->
     <string name="action_settings">Settings</string>
+    <string name="action_logout">Cerrar Sesión</string>
+    <string name="action_login">Abrir Sesión</string>
 
     <!-- Config String -->
     <string name="server_ip">http://192.168.0.195</string>
@@ -26,10 +28,16 @@
     <!-- Title Buttons -->
     <string name="btn_title_login">Iniciar Sesión</string>
 
+    <!-- TextView -->
+    <string name="tv_anonymous_mode">Entra en modo Anónimo</string>
+
     <!-- Name Shared Preferences -->
     <string name="sp_sharedpreferences">sp_patealapalma</string>
     <string name="sp_fb_id">SPFBID</string>
     <string name="sp_fb_name">SPFBNAME</string>
     <string name="sp_fb_img_profile">SPFBIMGPROFILE</string>
+
+    <!-- Messages -->
+    <string name="anonymous">Anónimo</string>
 
 </resources>

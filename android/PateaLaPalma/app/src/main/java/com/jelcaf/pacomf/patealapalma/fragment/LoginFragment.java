@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.jelcaf.pacomf.patealapalma.R;
@@ -33,11 +34,20 @@ public class LoginFragment extends Fragment {
 
     private void initializeViews(View rootView) {
         ButtonRectangle loginBtn = (ButtonRectangle)rootView.findViewById(R.id.btn_login);
+        TextView anonymousTV = (TextView) rootView.findViewById(R.id.tv_anonymous);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginMethods.openFacebookSession(getActivity(), SenderosSwipeActivity.class);
+            }
+        });
+
+        anonymousTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SenderosSwipeActivity.class);
+                getActivity().startActivity(intent);
             }
         });
     }
