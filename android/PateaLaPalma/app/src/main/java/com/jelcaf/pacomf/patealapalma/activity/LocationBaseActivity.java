@@ -69,7 +69,9 @@ public class LocationBaseActivity extends ActionBarActivity implements Connectio
         // updates. Gets the best and most recent location currently available, which may be null
         // in rare cases when a location is not available.
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        System.out.println("Posicion: " + mLastLocation.getLongitude() + "|" + mLastLocation.getLatitude());
+       if (mLastLocation != null) {
+          System.out.println("Posicion: " + mLastLocation.getLongitude() + "|" + mLastLocation.getLatitude());
+       }
     }
 
     @Override
