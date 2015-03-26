@@ -15,4 +15,18 @@
         android:background="#1E88E5"
         android:text="@string/btn_title_login"/>
 
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        android:text="@string/app_name_login_page"
+        android:layout_above="@id/btn_login"/>
+
 </RelativeLayout>

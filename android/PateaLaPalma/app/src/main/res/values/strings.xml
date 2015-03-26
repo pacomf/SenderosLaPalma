@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Patea La Palma</string>
+    <string name="app_name_login_page">Patea\nLa Palma</string>
     <string name="title_sendero_detail">Sendero Detail</string>
 
     <!-- External APIs IDs-->
