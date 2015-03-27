@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.adapter.RecomenderQuestionsPagerAdapter;
 
@@ -20,8 +21,8 @@ public class RecommenderActivity extends ActionBarActivity {
    private CircleIndicator mIndicator;
    private RecomenderQuestionsPagerAdapter mPagerAdapter;
 
-   private Button mPreviousButton;
-   private Button mNextButton;
+   private ButtonRectangle mPreviousButton;
+   private ButtonRectangle mNextButton;
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +46,8 @@ public class RecommenderActivity extends ActionBarActivity {
       mViewPager = (ViewPager) findViewById(R.id.viewpager_default);
       mIndicator = (CircleIndicator) findViewById(R.id.indicator_default);
 
-      mPreviousButton = (Button) findViewById(R.id.previousButton);
-      mNextButton = (Button) findViewById(R.id.nextButton);
+      mPreviousButton = (ButtonRectangle) findViewById(R.id.previousButton);
+      mNextButton = (ButtonRectangle) findViewById(R.id.nextButton);
    }
 
 

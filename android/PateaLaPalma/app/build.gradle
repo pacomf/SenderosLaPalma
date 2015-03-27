@@ -82,6 +82,7 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:3.21.1'
     compile 'com.google.android.gms:play-services:6.5.87'
 
+    // https://github.com/ongakuer/CircleIndicator
     compile 'me.relex:circleindicator:1.1.2@aar'
     compile 'de.hdodenhof:circleimageview:1.2.1'
 }

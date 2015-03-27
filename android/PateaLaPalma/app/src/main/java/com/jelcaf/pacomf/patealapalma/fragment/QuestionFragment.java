@@ -56,7 +56,11 @@ public class QuestionFragment extends Fragment {
 
       ((TextView)v.findViewById(R.id.question)).setText(mQuestion.getQuestion());
 
-      RadioGroup mRadioGroup = (RadioGroup)v.findViewById(R.id.answer);
+      LinearLayout linearLayout = (LinearLayout)v.findViewById(R.id.answer);
+      RadioGroup mRadioGroup = new RadioGroup(getActivity());
+      mRadioGroup.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams
+            .MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+      linearLayout.addView(mRadioGroup);
 
       for (int i=0; i < mQuestion.getPosibleResponses().size(); i++) {
          createRadioButton(mRadioGroup, mQuestion, i);
