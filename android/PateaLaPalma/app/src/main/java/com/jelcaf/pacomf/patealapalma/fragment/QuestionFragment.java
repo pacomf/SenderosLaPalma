@@ -2,7 +2,6 @@ package com.jelcaf.pacomf.patealapalma.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +11,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.Slider;
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.binding.QuestionRecommenderForm;
-import com.jelcaf.pacomf.patealapalma.binding.RecommenderQuestionResponse;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderRangeQuestion;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderSingleChoiceQuestion;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderOptionResponse;
 
 /**
  * @author Jorge Carballo
@@ -26,10 +28,10 @@ public class QuestionFragment extends Fragment {
    private static final String TAG = QuestionFragment.class.getCanonicalName();
 
    private ViewGroup mContainer;
-   private QuestionRecommenderForm mQuestion;
+   private RecommenderBaseQuestion mQuestion;
    private QuestionFragment mFragment;
 
-   public static QuestionFragment newInstance(QuestionRecommenderForm question) {
+   public static QuestionFragment newInstance(RecommenderBaseQuestion question) {
       QuestionFragment fragment = new QuestionFragment();
       Bundle args = new Bundle();
       args.putSerializable(ARG_QUESTION, question);
@@ -45,7 +47,7 @@ public class QuestionFragment extends Fragment {
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       if (getArguments() != null) {
-         mQuestion = (QuestionRecommenderForm)getArguments().getSerializable(ARG_QUESTION);
+         mQuestion = (RecommenderBaseQuestion)getArguments().getSerializable(ARG_QUESTION);
       }
    }
 
@@ -56,31 +58,52 @@ public class QuestionFragment extends Fragment {
 
       ((TextView)v.findViewById(R.id.question)).setText(mQuestion.getQuestion());
 
-      LinearLayout linearLayout = (LinearLayout)v.findViewById(R.id.answer);
-      RadioGroup mRadioGroup = new RadioGroup(getActivity());
-      mRadioGroup.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams
-            .MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-      linearLayout.addView(mRadioGroup);
+      LinearLayout answerLinearLayout = (LinearLayout)v.findViewById(R.id.answer);
 
-      for (int i=0; i < mQuestion.getPosibleResponses().size(); i++) {
-         createRadioButton(mRadioGroup, mQuestion, i);
+      switch (mQuestion.getQuestionType()) {
+         case SingleChoice:
+            createSingleChoice(answerLinearLayout, (RecommenderSingleChoiceQuestion)mQuestion);
+            break;
+         case Range:
+            createRange(inflater, answerLinearLayout, (RecommenderRangeQuestion)mQuestion);
+            break;
       }
-
-      StringBuilder stringBuilder = new StringBuilder();
-      stringBuilder.append(mQuestion.getQuestion() + " -> (" + mQuestion.getSelectedResponse() + ")");
-      if (mQuestion.getSelectedResponse() != null) {
-         stringBuilder.append(" " + ((RadioButton)mRadioGroup.getChildAt(mQuestion
-               .getSelectedResponse()))
-               .getText());
-         ((RadioButton) mRadioGroup.getChildAt(mQuestion.getSelectedResponse())).setChecked(true);
-      }
-      Log.i(TAG, stringBuilder.toString());
 
       return v;
    }
 
-   private void createRadioButton(RadioGroup mRadioGroup, final QuestionRecommenderForm form, final int i) {
-      RecommenderQuestionResponse response = form.getPosibleResponses().get(i);
+   private void createRange(LayoutInflater inflater, LinearLayout answerLinearLayout, RecommenderRangeQuestion question) {
+      Slider slider = (Slider)inflater.inflate(R.layout.question_slider, answerLinearLayout, false);
+      slider.setMin(question.getMinValue());
+      slider.setMax(question.getMaxValue());
+      slider.setShowNumberIndicator(true);
+
+      answerLinearLayout.addView(slider);
+   }
+
+   private void createSingleChoice(LinearLayout answerLinearLayout, RecommenderSingleChoiceQuestion question) {
+      RadioGroup mRadioGroup = new RadioGroup(getActivity());
+      mRadioGroup.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams
+            .MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+      answerLinearLayout.addView(mRadioGroup);
+
+      for (int i=0; i < question.getPosibleResponses().size(); i++) {
+         createRadioButton(mRadioGroup, question, i);
+      }
+
+      StringBuilder stringBuilder = new StringBuilder();
+      stringBuilder.append(question.getQuestion() + " -> (" + question.getSelectedResponse() + ")");
+      if (question.getSelectedResponse() != null) {
+         stringBuilder.append(" " + ((RadioButton)mRadioGroup.getChildAt(question
+               .getSelectedResponse()))
+               .getText());
+         ((RadioButton) mRadioGroup.getChildAt(question.getSelectedResponse())).setChecked(true);
+      }
+      Log.i(TAG, stringBuilder.toString());
+   }
+
+   private void createRadioButton(RadioGroup mRadioGroup, final RecommenderSingleChoiceQuestion form, final int i) {
+      RecommenderOptionResponse response = form.getPosibleResponses().get(i);
       RadioButton option = new RadioButton(getActivity());
       option.setText(response.text);
       option.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));

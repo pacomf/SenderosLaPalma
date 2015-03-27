@@ -1,4 +1,4 @@
-package com.jelcaf.pacomf.patealapalma.binding;
+package com.jelcaf.pacomf.patealapalma.recommender;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +9,13 @@ import java.util.List;
  */
 public class RecommenderForm {
 
-   private List<QuestionRecommenderForm> questions;
+   private List<RecommenderSingleChoiceQuestion> questions;
 
    public RecommenderForm() {
       questions = new ArrayList<>();
    }
 
-   public void addQuestion (QuestionRecommenderForm question) {
+   public void addQuestion (RecommenderSingleChoiceQuestion question) {
       questions.add(question);
    }
 

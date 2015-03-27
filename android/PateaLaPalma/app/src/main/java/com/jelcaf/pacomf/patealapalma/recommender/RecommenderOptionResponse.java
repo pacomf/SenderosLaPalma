@@ -1,4 +1,4 @@
-package com.jelcaf.pacomf.patealapalma.binding;
+package com.jelcaf.pacomf.patealapalma.recommender;
 
 import java.io.Serializable;
 
@@ -6,12 +6,12 @@ import java.io.Serializable;
  * @author Jorge Carballo
  *         24/03/15
  */
-public class RecommenderQuestionResponse implements Serializable {
+public class RecommenderOptionResponse implements Serializable {
 
    public String text;
    public String value;
 
-   public RecommenderQuestionResponse (String text, String value) {
+   public RecommenderOptionResponse(String text, String value) {
       this.text = text;
       this.value = value;
    }

@@ -4,13 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.jelcaf.pacomf.patealapalma.binding.QuestionRecommenderForm;
-import com.jelcaf.pacomf.patealapalma.binding.RecommenderQuestionResponse;
-import com.jelcaf.pacomf.patealapalma.binding.ResponseType;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.jelcaf.pacomf.patealapalma.factories.QuestionRecommenderFactory;
 import com.jelcaf.pacomf.patealapalma.fragment.QuestionFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,7 +17,7 @@ import java.util.Random;
  */
 public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
 
-   private List<QuestionRecommenderForm> form;
+   private List<RecommenderBaseQuestion> form;
 
    private Random random = new Random();
 
@@ -31,7 +28,7 @@ public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
    }
 
    @Override public Fragment getItem(int i) {
-      QuestionRecommenderForm formQuestion = form.get(i);
+      RecommenderBaseQuestion formQuestion = form.get(i);
       return QuestionFragment.newInstance(formQuestion);
    }
 
