@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -14,7 +15,9 @@ import android.widget.TextView;
 import com.edmodo.rangebar.RangeBar;
 import com.gc.materialdesign.views.Slider;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.formats.DateSetter;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderCalendarQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderRangeQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderSingleChoiceQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderOptionResponse;
@@ -68,18 +71,29 @@ public class QuestionFragment extends Fragment {
          case Range:
             createRange(inflater, answerLinearLayout, (RecommenderRangeQuestion)mQuestion);
             break;
+         case Calendar:
+            createCalendar(inflater, answerLinearLayout, (RecommenderCalendarQuestion)mQuestion);
+            break;
       }
 
       return v;
+   }
+
+   private void createCalendar(LayoutInflater inflater, LinearLayout answerLinearLayout,
+                        RecommenderCalendarQuestion question) {
+      EditText dateEditText = (EditText)inflater.inflate(R.layout.question_calendar,
+            answerLinearLayout,
+            false);
+
+      DateSetter fromDate = new DateSetter(dateEditText, getActivity());
+
+      answerLinearLayout.addView(dateEditText);
    }
 
    private void createRange(LayoutInflater inflater, LinearLayout answerLinearLayout, RecommenderRangeQuestion question) {
       RangeBar slider = (RangeBar)inflater.inflate(R.layout.question_slider, answerLinearLayout,
             false);
       slider.setTickCount(question.getMaxValue() - question.getMinValue());
-//      slider.setLeft(question.getMinValue());
-//      slider.setRight(question.getMaxValue());
-//      slider.setShowNumberIndicator(true);
 
       answerLinearLayout.addView(slider);
    }

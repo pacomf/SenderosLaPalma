@@ -1,6 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.factories;
 
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderCalendarQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderRangeQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderSingleChoiceQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderOptionResponse;
@@ -67,9 +68,7 @@ public class QuestionRecommenderFactory {
       questionForm.add(createSingleChoiceQuestion(strQuestion, strResponses));
 
       strQuestion = "¿Fecha en la que se desea realizar el sendero";
-      strResponses.clear();
-      strResponses.add("TODO");
-      questionForm.add(createSingleChoiceQuestion(strQuestion, strResponses));
+      questionForm.add(createCalendarQuestion(strQuestion));
 
       strQuestion = "Distancia a la que se encuentra el sendero desde nuestra posición";
       strResponses.clear();
@@ -102,10 +101,12 @@ public class QuestionRecommenderFactory {
    }
 
    private RecommenderRangeQuestion createRangeQuestion(String strQuestion, Integer minValue, Integer maxValue) {
-      List<RecommenderOptionResponse> responses = new ArrayList<RecommenderOptionResponse>();
-      Integer i = START_VALUE;
-
       RecommenderRangeQuestion question = new RecommenderRangeQuestion(strQuestion, minValue, maxValue);
+      return question;
+   }
+
+   private RecommenderCalendarQuestion createCalendarQuestion(String strQuestion) {
+      RecommenderCalendarQuestion question = new RecommenderCalendarQuestion(strQuestion);
       return question;
    }
 }

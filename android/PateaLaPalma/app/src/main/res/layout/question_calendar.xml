@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.rengwuxian.materialedittext.MaterialEditText
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="Insert date"
+    android:inputType="none"
+    android:editable="false"
+    android:focusableInTouchMode="false"
+    android:focusable="true"
+    android:clickable="false" >
+
+
+</com.rengwuxian.materialedittext.MaterialEditText>

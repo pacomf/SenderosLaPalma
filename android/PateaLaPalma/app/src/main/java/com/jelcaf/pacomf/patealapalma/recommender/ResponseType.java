@@ -8,6 +8,7 @@ public enum ResponseType {
 
    Boolean,
    Integer,
-   String
+   String,
+   Date
 
 }
