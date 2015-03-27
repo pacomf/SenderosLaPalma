@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.gc.materialdesign.views.Slider
+<com.edmodo.rangebar.RangeBar
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/slider"
-    android:layout_width="fill_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rangebar"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    materialdesign:max="50"
-    materialdesign:min="0"
-    materialdesign:showNumberIndicator="true"/>
+    custom:tickHeight="0dp"
+    custom:connectingLineColor="@color/secondary"
+    custom:thumbColorNormal="@color/colorPrimary"
+    custom:thumbColorPressed="@color/colorPrimaryDark"
+    custom:barColor="@android:color/black"/>

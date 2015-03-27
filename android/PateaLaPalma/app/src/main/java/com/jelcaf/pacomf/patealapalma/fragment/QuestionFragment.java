@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.edmodo.rangebar.RangeBar;
 import com.gc.materialdesign.views.Slider;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
@@ -73,10 +74,12 @@ public class QuestionFragment extends Fragment {
    }
 
    private void createRange(LayoutInflater inflater, LinearLayout answerLinearLayout, RecommenderRangeQuestion question) {
-      Slider slider = (Slider)inflater.inflate(R.layout.question_slider, answerLinearLayout, false);
-      slider.setMin(question.getMinValue());
-      slider.setMax(question.getMaxValue());
-      slider.setShowNumberIndicator(true);
+      RangeBar slider = (RangeBar)inflater.inflate(R.layout.question_slider, answerLinearLayout,
+            false);
+      slider.setTickCount(question.getMaxValue() - question.getMinValue());
+//      slider.setLeft(question.getMinValue());
+//      slider.setRight(question.getMaxValue());
+//      slider.setShowNumberIndicator(true);
 
       answerLinearLayout.addView(slider);
    }
