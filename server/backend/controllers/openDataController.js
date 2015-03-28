@@ -54,3 +54,27 @@ exports.loadExtraInfo = function(file){
 		senderoController.updateSendero(info[i].name, info[i].id, info[i].url);
 	}
 }
+
+exports.loadWaterPoints = function (urlParam){
+	var url = urlParam;
+	if (utils.checkEmpty(url)){
+		url = "http://www.opendatalapalma.es/datasets/ea9995fafe1f40e5ada6dba4fe2e1ff2_1.geojson";
+	}
+
+	request({
+    	url: url,
+    	json: true
+	}, function (error, response, body) {
+	    if (!error && response.statusCode === 200) {
+	        // JSON is 'body'
+	        var pois = body.features;
+	        for (var i=0; i<pois.length; i++){
+	        	if (pois[i].properties.DESCRIP === "Chorro de agua potable"){
+	        		var id = pois[i].properties.ID.split("-")[1];
+	        		senderoController.updateSenderoWaterPoints(id, pois[i].geometry.coordinates)
+	        	}
+	        }
+	        console.log("Open Data Loaded!");
+	    }
+	});
+}

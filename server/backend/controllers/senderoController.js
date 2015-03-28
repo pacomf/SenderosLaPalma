@@ -46,6 +46,18 @@ exports.updateSendero = function(name, regular_name, img_url){
 	});
 }
 
+exports.updateSenderoWaterPoints = function(regular_name, geoWP){
+	senderoModel.find({regular_name: regular_name}).exec(function (err, senderos) {
+		if (senderos.length == 0){
+			console.log("No encontrada el sendero: "+regular_name);
+			return;
+		}
+		senderos[0].water_points.push(geoWP);
+		senderos[0].save();
+		console.log("Update Sendero "+senderos[0]._id);
+	});
+}
+
 exports.deleteAllSenderos = function(){
 	senderoModel.remove().exec();
 	console.log("All Senderos Remove!");

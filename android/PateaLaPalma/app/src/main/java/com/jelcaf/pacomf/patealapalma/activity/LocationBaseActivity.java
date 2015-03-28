@@ -72,7 +72,6 @@ public class LocationBaseActivity extends ActionBarActivity implements Connectio
         // in rare cases when a location is not available.
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
        if (mLastLocation != null) {
-           Request.getOpenWeatherInfo(this, mLastLocation.getLatitude(), mLastLocation.getLongitude(), Utilities.getProgressDialog(this, "h", "p"));
           System.out.println("Posicion: " + mLastLocation.getLongitude() + "|" + mLastLocation.getLatitude());
        }
     }

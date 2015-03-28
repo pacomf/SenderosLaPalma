@@ -44,4 +44,6 @@ var ratingModel = require('./backend/models/ratingModel');
 //odController.loadData(null);
 //odController.loadExtraInfo('./senderosInfo.json');
 
+//odController.loadWaterPoints(null);
+
 
