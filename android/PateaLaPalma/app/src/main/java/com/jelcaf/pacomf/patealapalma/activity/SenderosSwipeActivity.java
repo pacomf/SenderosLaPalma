@@ -2,9 +2,6 @@ package com.jelcaf.pacomf.patealapalma.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -26,6 +23,7 @@ import android.widget.TextView;
 import com.facebook.widget.ProfilePictureView;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
+import com.jelcaf.pacomf.patealapalma.binding.parser.ISO8601DateParse;
 import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
@@ -33,8 +31,7 @@ import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 import com.jelcaf.pacomf.patealapalma.network.Request;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import it.neokree.materialtabs.MaterialTab;
@@ -77,6 +74,8 @@ public class SenderosSwipeActivity extends LocationBaseActivity
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_dashboard_with_tabs);
+
+      Request.commentSenderoPOST(this, "5517d3b12128fb181f78f3a5", "1", null, null, "mi comentario", com.jelcaf.pacomf.patealapalma.network.Utilities.getProgressDialog(this, "A", "B"));
 
       // Toolbar Support
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

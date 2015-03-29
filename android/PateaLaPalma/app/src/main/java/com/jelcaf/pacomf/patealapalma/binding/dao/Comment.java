@@ -18,6 +18,15 @@ public class Comment extends Model {
    @Column(name = "senderoFK")
    private Sendero sendero;
 
+   public Comment(Sendero sendero, String owner, String description, java.util.Date date, Integer likes, Location location) {
+      this.sendero = sendero;
+      this.owner = owner;
+      this.description = description;
+      this.date = new java.sql.Date(date.getTime());
+      this.likes = likes;
+      this.location = location;
+   }
+
    private String owner;
    private String description;
    private Date date;

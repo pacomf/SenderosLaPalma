@@ -2,7 +2,11 @@ var mongoose = require('mongoose'),
     geoLocModel = require('../../models/geoLocModel');
 
 exports.toGeo = function(latitude, longitude){
-	return [parseFloat(longitude), parseFloat(latitude)];
+    if (latitude === undefined || longitude === undefined) 
+    	return [0,0];
+    else
+    	return [parseFloat(longitude), parseFloat(latitude)];
+    
 }
 
 

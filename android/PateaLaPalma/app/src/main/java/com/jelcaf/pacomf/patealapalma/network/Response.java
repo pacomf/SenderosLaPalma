@@ -3,13 +3,18 @@ package com.jelcaf.pacomf.patealapalma.network;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.location.Location;
 
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Date;
 
 /**
  * Created by Paco on 11/03/2015.
@@ -42,7 +47,7 @@ public class Response {
       }
    }
 
-   public static void responseCommentSenderoPOST (Activity activity, JSONObject response, ProgressDialog pd){
+   public static void responseCommentSenderoPOST (Activity activity, String idSendero, String idUser, String description, Double latitude, Double longitude, JSONObject response, ProgressDialog pd){
 
       try {
 
@@ -52,8 +57,17 @@ public class Response {
             return;
          } else {
             pd.dismiss();
-            System.out.println("Fin: "+response);
-            // TODO: ¿A dónde redirigir?
+            Date date = JSONToModel.dateFromResponse(response);
+            Location location = new Location("comment");
+            if (latitude != null && longitude != null) {
+                location.setLatitude(latitude);
+                location.setLongitude(longitude);
+            }
+             // TODO: Buscar el Sendero en BBDD Local, con el idSendero
+            Sendero sendero = null;
+            Comment comentario = new Comment(sendero, idUser, description, date, 0, location);
+            // TODO: Guardar el 'comentario' en BBDD
+
          }
       } catch (Exception e) {
          pd.dismiss();

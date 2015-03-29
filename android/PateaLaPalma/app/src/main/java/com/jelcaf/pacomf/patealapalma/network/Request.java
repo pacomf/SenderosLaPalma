@@ -48,20 +48,22 @@ public class Request {
       ConfigWebServices.addToRequestQueue(activity, req);
    }
 
-   public static void commentSenderoPOST (final Activity activity, String idSendero, String idUser, double latitude, double longitude, final String description, final ProgressDialog pd) {
+   public static void commentSenderoPOST (final Activity activity, final String idSendero, final String idUser, final Double latitude, final Double longitude, final String description, final ProgressDialog pd) {
 
       final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero+"/comment/"+idUser;
 
       Map<String, String>  params = new HashMap<String, String>();
-      params.put("longitude", String.valueOf(longitude));
-      params.put("latitude", String.valueOf(latitude));
+      if (latitude != null && longitude != null){
+          params.put("longitude", String.valueOf(longitude));
+          params.put("latitude", String.valueOf(latitude));
+      }
       params.put("description", description);
 
       JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),
             new Response.Listener<JSONObject>() {
                @Override
                public void onResponse(JSONObject response) {
-                  com.jelcaf.pacomf.patealapalma.network.Response.responseCommentSenderoPOST(activity, response, pd);
+                  com.jelcaf.pacomf.patealapalma.network.Response.responseCommentSenderoPOST(activity, idSendero, idUser, description, latitude, longitude, response, pd);
                }
             },
             new Response.ErrorListener() {
