@@ -7,6 +7,7 @@ import android.location.Location;
 
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Photo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
@@ -66,7 +67,7 @@ public class Response {
              // TODO: Buscar el Sendero en BBDD Local, con el idSendero
             Sendero sendero = null;
             Comment comentario = new Comment(sendero, idUser, description, date, 0, location);
-            // TODO: Guardar el 'comentario' en BBDD
+            // TODO: Guardar el 'comentario' en BBDD en la lista del Sendero
 
          }
       } catch (Exception e) {
@@ -76,7 +77,7 @@ public class Response {
       }
    }
 
-   public static void responsePhotoSenderoPOST (Activity activity, JSONObject response, ProgressDialog pd){
+   public static void responsePhotoSenderoPOST (Activity activity, String idSendero, String idUser, Double latitude, Double longitude, String url, JSONObject response, ProgressDialog pd){
 
       try {
 
@@ -86,8 +87,16 @@ public class Response {
             return;
          } else {
             pd.dismiss();
-            System.out.println("Fin: "+response);
-            // TODO: ¿A dónde redirigir?
+             Date date = JSONToModel.dateFromResponse(response);
+             Location location = new Location("photo");
+             if (latitude != null && longitude != null) {
+                 location.setLatitude(latitude);
+                 location.setLongitude(longitude);
+             }
+             // TODO: Buscar el Sendero en BBDD Local, con el idSendero
+             Sendero sendero = null;
+             Photo photo = new Photo(sendero, url, idUser, date, 0, location);
+             // TODO: Guardar la 'photo' en BBDD en la lista del Sendero
          }
       } catch (Exception e) {
          pd.dismiss();

@@ -79,20 +79,22 @@ public class Request {
       ConfigWebServices.addToRequestQueue(activity, req);
    }
 
-   public static void photoSenderoPOST (final Activity activity, String idSendero, String idUser, double latitude, double longitude, String url, final ProgressDialog pd) {
+   public static void photoSenderoPOST (final Activity activity, final String idSendero, final String idUser, final Double latitude, final Double longitude, final String url, final ProgressDialog pd) {
 
       final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero+"/photo/"+idUser;
 
       Map<String, String>  params = new HashMap<String, String>();
-      params.put("longitude", String.valueOf(longitude));
-      params.put("latitude", String.valueOf(latitude));
+       if (latitude != null && longitude != null){
+           params.put("longitude", String.valueOf(longitude));
+           params.put("latitude", String.valueOf(latitude));
+       }
       params.put("url", url);
 
       JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),
             new Response.Listener<JSONObject>() {
                @Override
                public void onResponse(JSONObject response) {
-                  com.jelcaf.pacomf.patealapalma.network.Response.responsePhotoSenderoPOST(activity, response, pd);
+                  com.jelcaf.pacomf.patealapalma.network.Response.responsePhotoSenderoPOST(activity, idSendero, idUser, latitude, longitude, url, response, pd);
                }
             },
             new Response.ErrorListener() {

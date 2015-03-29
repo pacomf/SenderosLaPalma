@@ -19,6 +19,17 @@ public class Photo extends Model {
    private Sendero sendero;
 
    private String url;
+
+   public Photo(Sendero sendero, String url, String owner, java.util.Date date, Integer likes, Location location) {
+      this.sendero = sendero;
+      this.url = url;
+      this.owner = owner;
+      this.likes = likes;
+      this.date = new java.sql.Date(date.getTime());
+      this.location = location;
+   }
+
+   private Date date;
    private String owner;
    private Integer likes;
    private Location location;
