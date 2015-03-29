@@ -10,6 +10,7 @@ import com.jelcaf.pacomf.patealapalma.binding.parser.IntegerParse;
 import com.mobandme.android.bind.annotations.BindTo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Jorge Carballo
@@ -35,8 +36,27 @@ public class Sendero extends Model {
    private Location geoStart;
    private Location geoEnd;
 
+   // Coordinates
+   public List<Geo> coordinates() {
+      return getMany(Geo.class, "senderoFK");
+   }
+
+   // Water Points
+   public List<Geo> waterPoints() {
+      return getMany(Geo.class, "senderoFK");
+   }
+
+   public Float getRating() {
+      return rating;
+   }
+
+   public void setRating(Float rating) {
+      this.rating = rating;
+   }
+
+
    private Float rating; // Global rating
-   private Float ownRating;
+   public Map<String, Integer> user_rating; // User_Rating
 
    // Comments
    public List<Comment> comments() {

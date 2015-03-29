@@ -168,7 +168,14 @@ exports.getSendero = function (req, res) {
 							photoModel.find({id_sendero: req.params.idsendero, date: {"$gte": date}}).limit(photos).sort({'date': -1}).exec(function (err, photos) {
 								if (!err){
 									ret.photos = photos;
-									res.send(ret);
+									if (!checkEmpty(req.query) && !checkEmpty(req.query.user)){
+										ratingModel.findOne({id_sendero: req.params.idsendero, id_owner: req.query.user}).exec(function (err, rating) {
+											ret.userrating = rating.rating;
+											res.send(rating);
+										});
+									} else {
+										res.send(ret);
+									}
 								} else {
 									res.send(resErr);
 								}

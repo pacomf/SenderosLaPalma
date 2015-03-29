@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class Request {
 
-   public static void ratingSenderoPOST (final Activity activity, String idSendero, String idUser, int rating, final ProgressDialog pd) {
+   public static void ratingSenderoPOST (final Activity activity, final String idSendero, final String idUser, final int rating, final ProgressDialog pd) {
 
       final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero+"/rating/"+idUser;
 
@@ -32,7 +32,7 @@ public class Request {
             new Response.Listener<JSONObject>(){
                @Override
                public void onResponse(JSONObject response) {
-                  com.jelcaf.pacomf.patealapalma.network.Response.responseRatingSenderoPOST(activity, response, pd);
+                  com.jelcaf.pacomf.patealapalma.network.Response.responseRatingSenderoPOST(activity, idSendero, idUser, rating, response, pd);
                }
             },
             new Response.ErrorListener() {

@@ -9,6 +9,8 @@ var senderoSchema = new Schema({
     type: String, 
     difficulty: String,
     geometry_type: String,
+    rating: {type: Number, default: 0},
+    nratings: {type: Number, default: 0},
     likes: {type: Number, default: 0},
     geoStart: {type: [Number], index: '2d'},
     geoEnd: {type: [Number], index: '2d'},

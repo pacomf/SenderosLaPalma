@@ -31,6 +31,7 @@ import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
 import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
+import com.jelcaf.pacomf.patealapalma.network.Request;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

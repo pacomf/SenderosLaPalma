@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,7 +16,7 @@ import org.json.JSONObject;
  */
 public class Response {
 
-   public static void responseRatingSenderoPOST (Activity activity, JSONObject response, ProgressDialog pd){
+   public static void responseRatingSenderoPOST (Activity activity, String idSendero, String idUser, int rating_user, JSONObject response, ProgressDialog pd){
 
       try {
 
@@ -25,8 +26,14 @@ public class Response {
             return;
          } else {
             pd.dismiss();
-            System.out.println("Fin: "+response);
-            // TODO: ¿A dónde redirigir?
+            String rating = JSONToModel.ratingFromResponseAddRating(response);
+            if (rating != null) {
+                System.out.println("Rating Devuelto: "+rating);
+                // TODO: Buscar en BBDD Local el Sendero (idSendero)
+                // TODO: Asignar el nuevo rating_medio al Sendero (sendero.rating=rating)
+                // TODO: Asignar en el Sendero el valor <idUser, rating> para guardar en local la valoracion de ese usuario a ese sendero
+            }
+
          }
       } catch (Exception e) {
          pd.dismiss();
