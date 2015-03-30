@@ -107,7 +107,7 @@ public class SenderoListFragment extends ListFragment {
 
       for (int i = 1; i < 10; i++) {
          Sendero sendero = new Sendero();
-         sendero.setServerId(i);
+         sendero.setServerId(String.valueOf(i));
          sendero.setName("Sendero " + i);
          sendero.save();
       }

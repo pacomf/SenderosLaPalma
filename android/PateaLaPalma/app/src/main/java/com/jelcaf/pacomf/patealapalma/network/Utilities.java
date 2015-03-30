@@ -108,6 +108,7 @@ public class Utilities {
         if (ret.charAt(0) == '&'){
             ret = ret.substring(1);
         }
+
         return ret;
     }
 

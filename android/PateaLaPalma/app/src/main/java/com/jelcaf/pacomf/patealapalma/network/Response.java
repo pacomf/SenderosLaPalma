@@ -105,7 +105,7 @@ public class Response {
       }
    }
 
-   public static void responseSenderoGET (Activity activity, JSONObject response, ProgressDialog pd){
+   public static void responseSenderoGET (Activity activity, String idSendero, String idUser, JSONObject response, ProgressDialog pd){
 
       try {
 
@@ -115,7 +115,9 @@ public class Response {
             return;
          } else {
             pd.dismiss();
-            System.out.println("Fin: "+response);
+            System.out.println("Fin: " + response);
+            JSONToModel.senderoInfoFromResponse(response, idSendero, idUser);
+
             // TODO: ¿A dónde redirigir?
          }
       } catch (Exception e) {
@@ -135,8 +137,12 @@ public class Response {
                 return;
             } else {
                 pd.dismiss();
-                System.out.println("Fin: "+response);
-                // TODO: ¿A dónde redirigir?
+                Sendero sendero;
+                for (int i=0; i<response.length(); i++){
+                    sendero = JSONToModel.senderoFromJSON(response.getJSONObject(i));
+                    //TODO: ¿Buscar en Local el Sendero y Borrarlo para Sobreescribirlo?
+                    //TODO: Guardar el sendero
+                }
             }
         } catch (Exception e) {
             pd.dismiss();

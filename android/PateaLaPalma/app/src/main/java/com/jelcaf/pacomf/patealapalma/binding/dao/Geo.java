@@ -13,6 +13,13 @@ public class Geo extends Model {
         return sendero;
     }
 
+    public Geo(Double latitud, Double longitud, String type, Sendero sendero) {
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.type = type;
+        this.sendero = sendero;
+    }
+
     public void setSendero(Sendero sendero) {
         this.sendero = sendero;
     }

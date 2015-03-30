@@ -75,8 +75,6 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_dashboard_with_tabs);
 
-      Request.commentSenderoPOST(this, "5517d3b12128fb181f78f3a5", "1", null, null, "mi comentario", com.jelcaf.pacomf.patealapalma.network.Utilities.getProgressDialog(this, "A", "B"));
-
       // Toolbar Support
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       String idFB = LoginMethods.getIdFacebook(this);

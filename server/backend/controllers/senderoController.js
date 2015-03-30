@@ -87,17 +87,20 @@ function getQuery(queryReq){
 	}
 
 	if (!checkEmpty(queryReq.minLength) && !checkEmpty(queryReq.maxLength)){
-		query.length = {$gte: parseFloat(queryReq.minLength), $lte: parseFloat(queryReq.maxLength)};
+		query.length={};
+		query.length.$gte= parseFloat(queryReq.minLength);
+		query.length.$lte= parseFloat(queryReq.maxLength);
 	} else if (!checkEmpty(queryReq.minLength)){
-		query.length = {$gte: parseFloat(queryReq.minLength)};
+		query.length={};
+		query.length.$gte= parseFloat(queryReq.minLength);
 	} else if (!checkEmpty(queryReq.maxLength)){
-		query.length = {$lte: parseFloat(queryReq.maxLength)};
+		query.length={};
+		query.length.$lte= parseFloat(queryReq.maxLength);
 	}
 
 	if (!checkEmpty(queryReq.difficulty)){
 		query.difficulty = queryReq.difficulty;
 	}
-
 	return query;
 }
 
@@ -125,7 +128,9 @@ function getAllSenderos(res) {
 };
 
 function getSenderosByQuery (req, res){
-	var amount = parseInt(req.query.amount) ? !checkEmpty(req.query.amount): 20;
+	var amount = 20;
+	if (!checkEmpty(req.query.amount))
+		amount = parseInt(req.query.amount);
 	senderoModel.find(getQuery(req.query), getNoSelect(req.query)).limit(amount).exec(function (err, senderos) {
 		if (!err){
 			res.send(senderos);
@@ -158,28 +163,22 @@ exports.getSendero = function (req, res) {
 	senderoModel.findById(req.params.idsendero, function (err, sendero) {
 		if (!err){
 			ret.sendero = sendero._id;
+			ret.rating = sendero.rating;
 			ret.update = new Date();
 			commentModel.find({id_sendero: req.params.idsendero, date: {"$gte": date}}).limit(comments).sort({'date': -1}).exec(function (err, comments) {
 				if (!err){
 					ret.comments = comments;
-					ratingModel.find({id_sendero: req.params.idsendero, date: {"$gte": date}}).limit(ratings).sort({'date': -1}).exec(function (err, ratings) {
+					photoModel.find({id_sendero: req.params.idsendero, date: {"$gte": date}}).limit(photos).sort({'date': -1}).exec(function (err, photos) {
 						if (!err){
-							ret.ratings = ratings;
-							photoModel.find({id_sendero: req.params.idsendero, date: {"$gte": date}}).limit(photos).sort({'date': -1}).exec(function (err, photos) {
-								if (!err){
-									ret.photos = photos;
-									if (!checkEmpty(req.query) && !checkEmpty(req.query.user)){
-										ratingModel.findOne({id_sendero: req.params.idsendero, id_owner: req.query.user}).exec(function (err, rating) {
-											ret.userrating = rating.rating;
-											res.send(rating);
-										});
-									} else {
-										res.send(ret);
-									}
-								} else {
-									res.send(resErr);
-								}
-							});
+							ret.photos = photos;
+							if (!checkEmpty(req.query) && !checkEmpty(req.query.user)){
+								ratingModel.findOne({id_sendero: req.params.idsendero, id_owner: req.query.user}).exec(function (err, rating) {
+									ret.userrating = rating.rating;
+									res.send(ret);
+								});
+							} else {
+								res.send(ret);
+							}
 						} else {
 							res.send(resErr);
 						}

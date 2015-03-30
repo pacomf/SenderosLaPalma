@@ -9,10 +9,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.binding.parser.ISO8601DateParse;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,16 +113,27 @@ public class Request {
       ConfigWebServices.addToRequestQueue(activity, req);
    }
 
-   public static void senderoGET (final Activity activity, String idSendero, final ProgressDialog pd) {
+   public static void senderoGET (final Activity activity, final String idSendero, final String idUser, final ProgressDialog pd) {
 
-      final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero;
+      // TODO: Recuperar de BBDD Local el Sendero (idSendero)
+      //Sendero sendero = null;
+
+      // TODO: Asignar a dateStr la fecha de ultima actualizacion del sendero (getDateUpdated())
+      String dateStr = "2015-03-24T04:08:15.162Z";
+      //String dateStr = ISO8601DateParse.toString(sendero.getDateUpdated());
+      String query = "?date="+dateStr;
+
+      if (idUser != null)
+          query+="&user="+idUser;
+
+      final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero+query;
 
       JsonObjectRequest req = new JsonObjectRequest(URL, null,
 
               new Response.Listener<JSONObject>() {
                  @Override
                  public void onResponse(JSONObject response) {
-                    com.jelcaf.pacomf.patealapalma.network.Response.responseSenderoGET(activity, response, pd);
+                    com.jelcaf.pacomf.patealapalma.network.Response.responseSenderoGET(activity, idSendero, idUser, response, pd);
                  }
               },
               new Response.ErrorListener() {

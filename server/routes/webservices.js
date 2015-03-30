@@ -49,6 +49,8 @@ module.exports = function (app) {
 	        ---
 	        | date | STRING | Last Update: "2012-04-23T18:25:43.511Z"
 	        ---
+	        | user | STRING | User to request
+	        ---
 	*/
 	app.get('/api/senderos/:idsendero', senderoController.getSendero);
 
