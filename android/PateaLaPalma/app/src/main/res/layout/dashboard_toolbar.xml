@@ -30,7 +30,17 @@
             android:textColor="@color/white"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@+id/profilePicture"
+            android:layout_toLeftOf="@+id/info_ic"
             android:id="@+id/name_user" />
+
+        <ImageView
+            android:id="@+id/info_ic"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@android:drawable/ic_menu_info_details"/>
 
     </RelativeLayout>
 

@@ -16,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -80,6 +81,7 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       String idFB = LoginMethods.getIdFacebook(this);
       CircleImageView profileImg = (CircleImageView) toolbar.findViewById(R.id.profilePicture);
       TextView name_user = (TextView) toolbar.findViewById(R.id.name_user);
+      final Activity activity = this;
       if (idFB != null) {
          try {
             name_user.setText(LoginMethods.getNameFacebook(this));
@@ -89,7 +91,6 @@ public class SenderosSwipeActivity extends LocationBaseActivity
          }
       } else {
             name_user.setText(getString(R.string.anonymous));
-            final Activity activity = this;
             profileImg.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -103,6 +104,14 @@ public class SenderosSwipeActivity extends LocationBaseActivity
                }
             });
       }
+      ImageView infoTB = (ImageView) toolbar.findViewById(R.id.info_ic);
+      infoTB.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            Intent intent = new Intent(activity, InfoActivity.class);
+            startActivity(intent);
+         }
+      });
       setSupportActionBar(toolbar);
 
       tabHost = (MaterialTabHost) this.findViewById(R.id.tabHost);
