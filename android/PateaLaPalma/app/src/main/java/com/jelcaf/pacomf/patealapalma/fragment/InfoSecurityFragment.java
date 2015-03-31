@@ -3,6 +3,8 @@ package com.jelcaf.pacomf.patealapalma.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,9 @@ public class InfoSecurityFragment extends Fragment {
     }
 
     private void initializeViews(View rootView) {
-
+        TextView tv = (TextView) rootView.findViewById(R.id.info);
+        tv.setText(Html.fromHtml(getString(R.string.sendero_security_info)));
+        tv.setMovementMethod(new ScrollingMovementMethod());
     }
 
 }

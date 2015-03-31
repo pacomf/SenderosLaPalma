@@ -22,6 +22,8 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tabHost"/>
+        android:layout_below="@+id/tabHost"
+        android:background="@color/white"
+        android:alpha="0.7"/>
 
 </RelativeLayout>

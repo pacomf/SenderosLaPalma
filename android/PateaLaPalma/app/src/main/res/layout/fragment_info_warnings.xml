@@ -6,8 +6,12 @@
     tools:context="com.jelcaf.pacomf.patealapalma.fragment.InfoWarningsFragment">
 
     <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:textSize="25dp"
+        android:scrollbars = "vertical"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

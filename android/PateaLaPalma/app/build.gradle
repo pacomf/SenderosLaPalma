@@ -91,5 +91,5 @@ dependencies {
     // TODO: Deberíamos cambiar a https://github.com/oli107/material-range-bar
 
     // https://github.com/rengwuxian/MaterialEditText
-    compile 'com.rengwuxian.materialedittext:library:2.0.0-SNAPSHOT'
+    compile 'com.rengwuxian.materialedittext:library:2.0.3'
 }

@@ -26,7 +26,7 @@
     <string name="all_senderos">Todos Los Senderos</string>
     <string name="title_activity_recommender">RecommenderActivity</string>
     <string name="title_tab_info_security">Por su Seguridad</string>
-    <string name="title_tab_info_warnings">Precaución</string>
+    <string name="title_tab_info_warnings">Tenga Precaución</string>
     <string name="title_tab_info_codes">Códigos</string>
 
     <!-- Title Buttons -->
@@ -56,5 +56,51 @@
     <string name="login_required">Es necesario Iniciar Sesión</string>
     <string name="title_activity_info">Información Relevante</string>
 
+    <!-- Codes Colors Senderos -->
+    <string name="senderocc_correct">Continuidad del Sendero</string>
+    <string name="senderocc_incorrect">Mala Dirección</string>
+    <string name="senderocc_direction">Cambio Dirección</string>
+    <string name="senderocc_gr">G.R.</string>
+    <string name="senderocc_pr">P.R.</string>
+    <string name="senderocc_sl">S.L.</string>
+
+    <!-- Info Senderos -->
+    <string name="sendero_security_info">
+        <![CDATA[
+            &#8226; Camine siempre en compañía.
+            <br/>
+            <br/>
+            &#8226; Informe de su ruta antes de partir.
+            <br/>
+            <br/>
+            &#8226; Lleve consigo un teléfono móvil.
+            <br/>
+            <br/>
+            &#8226; Lleve agua y alimentos de reserva.
+            <br/>
+            <br/>
+            &#8226; La ropa y el calzado deben de estar acordes con la dificultad del recorrido.
+        ]]>
+    </string>
+    <string name="sendero_warning_info">
+        <![CDATA[
+            &#8226; Por favor, no abandone el sendero.
+            <br/>
+            <br/>
+            &#8226; No recolecte ni dañe plantas, animales, rocas o restos arqueológicos.
+            <br/>
+            <br/>
+            &#8226; No haga fuego.
+            <br/>
+            <br/>
+            &#8226; Acampe en las áreas destinadas para este fin.
+            <br/>
+            <br/>
+            &#8226; No abandone residuos ni arroje basuras.
+            <br/>
+            <br/>
+            &#8226; Evite ruidos que afecten a la vida silvestre.
+        ]]>
+    </string>
 
 </resources>

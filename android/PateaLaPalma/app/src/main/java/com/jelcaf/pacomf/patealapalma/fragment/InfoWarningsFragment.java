@@ -2,9 +2,12 @@ package com.jelcaf.pacomf.patealapalma.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Html;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jelcaf.pacomf.patealapalma.R;
 
@@ -28,7 +31,9 @@ public class InfoWarningsFragment extends Fragment {
     }
 
     private void initializeViews(View rootView) {
-
+        TextView tv = (TextView) rootView.findViewById(R.id.info);
+        tv.setText(Html.fromHtml(getString(R.string.sendero_warning_info)));
+        tv.setMovementMethod(new ScrollingMovementMethod());
     }
 
 }
