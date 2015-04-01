@@ -94,4 +94,5 @@
         android:src="@drawable/ic_action_picture"
         app:fab_colorNormal="@color/floatButton"
         app:fab_colorPressed="@color/floatButtonPressed" />
+
 </FrameLayout>

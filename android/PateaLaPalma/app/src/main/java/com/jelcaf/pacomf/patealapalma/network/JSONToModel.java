@@ -78,7 +78,7 @@ public class JSONToModel {
         try {
             Location location = geoStrFromJSON(commentJSON.optString("geo"), "comment");
 
-            Comment comment = new Comment(sendero, commentJSON.optString("id_owner"), commentJSON.optString("description"), ISO8601DateParse.parse(commentJSON.optString("date")), commentJSON.optInt("likes"), location);
+            Comment comment = new Comment(sendero, commentJSON.optString("id_owner"), commentJSON.optString("name_owner"), commentJSON.optString("description"), ISO8601DateParse.parse(commentJSON.optString("date")), commentJSON.optInt("likes"), location);
             return comment;
         } catch (Exception e){
             return null;

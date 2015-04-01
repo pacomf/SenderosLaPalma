@@ -48,7 +48,7 @@ public class Response {
       }
    }
 
-   public static void responseCommentSenderoPOST (Activity activity, String idSendero, String idUser, String description, Double latitude, Double longitude, JSONObject response, ProgressDialog pd){
+   public static void responseCommentSenderoPOST (Activity activity, String idSendero, String idUser, String nameOwner, String description, Double latitude, Double longitude, JSONObject response, ProgressDialog pd){
 
       try {
 
@@ -66,7 +66,7 @@ public class Response {
             }
              // TODO: Buscar el Sendero en BBDD Local, con el idSendero
             Sendero sendero = null;
-            Comment comentario = new Comment(sendero, idUser, description, date, 0, location);
+            Comment comentario = new Comment(sendero, idUser, nameOwner, description, date, 0, location);
             // TODO: Guardar el 'comentario' en BBDD en la lista del Sendero
 
          }

@@ -29,6 +29,13 @@
     <string name="title_tab_info_warnings">Tenga Precaución</string>
     <string name="title_tab_info_codes">Códigos</string>
 
+    <!-- Titles Elements -->
+    <string name="title_popup_comments">Comentarios</string>
+
+    <!-- Placeholders -->
+    <string name="ph_write_comment">Escribe un comentario...</string>
+
+
     <!-- Title Buttons -->
     <string name="btn_title_login">Iniciar Sesión</string>
 
@@ -48,6 +55,7 @@
     <string name="anonymous">Anónimo</string>
     <string name="select_picture">Selecciona una Fotografía</string>
     <string name="upload_picture">Subiendo Foto</string>
+    <string name="upload_comment">Enviando Comentario</string>
     <string name="procesando">Espere Por Favor... Procesando...</string>
     <string name="take_picture">Sacar Foto</string>
     <string name="gallery_picture">Eligir de la Galería</string>

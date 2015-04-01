@@ -29,6 +29,7 @@ import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 import com.jelcaf.pacomf.patealapalma.preferences.SharedPreferencesUtils;
+import com.jelcaf.pacomf.patealapalma.views.CustomPopUp;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
@@ -109,8 +110,10 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          public void onClick(View v) {
             Toast.makeText(SenderoDetailWithImageActivity.this, "FAB is clicked", Toast.LENGTH_SHORT).show();
             // TODO: En las opciones de subida de imagenes, rating etc, comprobar que este logueado (metodo de comprobacion creado en LoginMethods)
-            if (LoginMethods.checkLogin(activity))
-               Utilities.selectImage(activity);
+            //if (LoginMethods.checkLogin(activity))
+            //   Utilities.selectImage(activity);
+            // TODO: Asignar la siguiente linea al VER TODOS LOS COMENTARIOS
+            CustomPopUp.newInstance().show(getFragmentManager(), null);
          }
       });
       mFabMargin = getResources().getDimensionPixelSize(R.dimen.margin_standard);
