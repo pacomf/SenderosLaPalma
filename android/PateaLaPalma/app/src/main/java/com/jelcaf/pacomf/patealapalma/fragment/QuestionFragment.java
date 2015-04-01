@@ -15,12 +15,15 @@ import android.widget.TextView;
 import com.edmodo.rangebar.RangeBar;
 import com.gc.materialdesign.views.Slider;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.formats.DateFormats;
 import com.jelcaf.pacomf.patealapalma.formats.DateSetter;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderCalendarQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderRangeQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderSingleChoiceQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderOptionResponse;
+
+import java.util.Calendar;
 
 /**
  * @author Jorge Carballo
@@ -85,7 +88,12 @@ public class QuestionFragment extends Fragment {
             answerLinearLayout,
             false);
 
-      DateSetter fromDate = new DateSetter(dateEditText, getActivity());
+      DateSetter fromDate = new DateSetter(dateEditText, getActivity(), question.getSelectedResponse());
+
+      Calendar calendar = (Calendar)question.getResponse();
+      if (calendar!= null) {
+         dateEditText.setText(DateFormats.getDateFormatted(calendar.getTime()));
+      }
 
       answerLinearLayout.addView(dateEditText);
    }

@@ -18,11 +18,12 @@ public class DateSetter implements View.OnClickListener, DatePickerDialog.OnDate
    private Calendar mCalendar;
    private Context mContext;
 
-   public DateSetter(EditText editText, Context ctx) {
+   public DateSetter(EditText editText, Context ctx, Calendar selectedResponse) {
       this.mEditText = editText;
       this.mEditText.setOnClickListener(this);
       this.mContext = ctx;
-      mCalendar = Calendar.getInstance();
+
+      this.mCalendar = selectedResponse;
    }
 
    @Override

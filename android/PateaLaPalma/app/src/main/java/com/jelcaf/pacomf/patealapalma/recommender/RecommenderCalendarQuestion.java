@@ -1,6 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.recommender;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -9,10 +10,12 @@ import java.util.Date;
  */
 public class RecommenderCalendarQuestion extends RecommenderBaseQuestion implements Serializable {
 
-   private Date value;
+   private Calendar value;
 
    public RecommenderCalendarQuestion(String question) {
       super(question);
+
+      value = Calendar.getInstance();
    }
 
    @Override
@@ -28,6 +31,14 @@ public class RecommenderCalendarQuestion extends RecommenderBaseQuestion impleme
    @Override
    public Object getResponseType() {
       return ResponseType.Date;
+   }
+
+   public Calendar getSelectedResponse() {
+      return value;
+   }
+
+   public void setSelectedResponse(Calendar selectedResponse) {
+      this.value = selectedResponse;
    }
 
 }
