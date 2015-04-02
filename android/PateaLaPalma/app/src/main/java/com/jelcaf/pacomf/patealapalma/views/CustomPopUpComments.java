@@ -1,50 +1,35 @@
 package com.jelcaf.pacomf.patealapalma.views;
 
-import android.app.Activity;
 import android.app.DialogFragment;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.view.Display;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 
 import com.facebook.widget.ProfilePictureView;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
-import com.jelcaf.pacomf.patealapalma.network.Request;
-import com.jelcaf.pacomf.patealapalma.network.Utilities;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
  * Created by Paco on 01/04/2015.
  */
-public class CustomPopUp extends DialogFragment {
+public class CustomPopUpComments extends DialogFragment {
 
-    public static CustomPopUp newInstance() {
-        CustomPopUp customPopUp = new CustomPopUp();
-        //customPopUp.setStyle(DialogFragment.STYLE_NO_FRAME, android.R.style.Theme_DeviceDefault_Dialog);
-        return customPopUp;
+    public static CustomPopUpComments newInstance() {
+        CustomPopUpComments customPopUpComments = new CustomPopUpComments();
+        //customPopUpComments.setStyle(DialogFragment.STYLE_NO_FRAME, android.R.style.Theme_DeviceDefault_Dialog);
+        return customPopUpComments;
     }
 
     @Override
@@ -56,7 +41,7 @@ public class CustomPopUp extends DialogFragment {
         getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         // Inflate the new view with margins and background
-        View v = inflater.inflate(R.layout.popup_layout, container, false);
+        View v = inflater.inflate(R.layout.popup_layout_comments, container, false);
 
         // TODO: Acciones de elementos del popup, imagen, edittext, upload.
         final EditText editText = (EditText) v.findViewById(R.id.writeComment);

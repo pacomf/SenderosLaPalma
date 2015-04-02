@@ -31,6 +31,7 @@
 
     <!-- Titles Elements -->
     <string name="title_popup_comments">Comentarios</string>
+    <string name="title_popup_map">Ruta Completa</string>
 
     <!-- Placeholders -->
     <string name="ph_write_comment">Escribe un comentario...</string>

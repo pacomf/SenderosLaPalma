@@ -1,15 +1,11 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -27,20 +23,10 @@ import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.images.Utilities;
-import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
-import com.jelcaf.pacomf.patealapalma.preferences.SharedPreferencesUtils;
-import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
-import com.jelcaf.pacomf.patealapalma.views.CustomPopUp;
+import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
 
 /**
  * @author Jorge Carballo
@@ -114,7 +100,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
             //if (LoginMethods.checkLogin(activity))
             //   Utilities.selectImage(activity);
             // TODO: Asignar la siguiente linea al VER TODOS LOS COMENTARIOS
-            CustomPopUp.newInstance().show(getFragmentManager(), null);
+            CustomPopUpComments.newInstance().show(getFragmentManager(), null);
             // TODO: Asignar la siguiente linea al botón de RATING
             //CustomDialogRating.showDialog(activity, idSendero, ratingActual);
          }

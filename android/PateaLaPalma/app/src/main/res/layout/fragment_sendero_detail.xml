@@ -79,6 +79,12 @@
             android:id="@+id/map"
             android:padding="6sp"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:id="@+id/clickMap"
+            android:padding="6sp" />
+
     </android.support.v7.widget.CardView>
 
 
