@@ -22,4 +22,11 @@
 
     <dimen name="sliding_slop">32dp</dimen>
     <dimen name="sliding_overlay_blur_size">4dp</dimen>
+
+    <dimen name="header_text_size">20sp</dimen>
+    <dimen name="title_text_size">18sp</dimen>
+    <dimen name="button_text_size">16sp</dimen>
+    <dimen name="sample_text_size">12sp</dimen>
+
+    <dimen name="margin">8dp</dimen>
 </resources>

@@ -56,6 +56,7 @@
     <string name="select_picture">Selecciona una Fotografía</string>
     <string name="upload_picture">Subiendo Foto</string>
     <string name="upload_comment">Enviando Comentario</string>
+    <string name="upload_rating">Enviando Valoración</string>
     <string name="procesando">Espere Por Favor... Procesando...</string>
     <string name="take_picture">Sacar Foto</string>
     <string name="gallery_picture">Eligir de la Galería</string>
@@ -63,6 +64,10 @@
     <string name="login">Iniciar Sesión</string>
     <string name="login_required">Es necesario Iniciar Sesión</string>
     <string name="title_activity_info">Información Relevante</string>
+    <string name="dialog_rating_title">Tu Valoración</string>
+    <string name="dialog_rating_subtitle">DE 0 A 5</string>
+    <string name="dialog_rating_footer_subtitle">CERRAR</string>
+    <string name="dialog_rating_footer_confirm">Confirmar</string>
 
     <!-- Codes Colors Senderos -->
     <string name="senderocc_correct">Continuidad del Sendero</string>

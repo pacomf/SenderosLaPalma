@@ -18,4 +18,6 @@
     <color name="floatButtonPressed">#CCCCCCCC</color>
 
     <color name="white">#FFFFFFFF</color>
+
+    <color name="overlay_light">#F8F8F8</color>
 </resources>

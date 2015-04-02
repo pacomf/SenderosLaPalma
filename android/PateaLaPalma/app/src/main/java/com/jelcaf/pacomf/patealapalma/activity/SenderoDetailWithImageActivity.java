@@ -29,6 +29,7 @@ import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 import com.jelcaf.pacomf.patealapalma.preferences.SharedPreferencesUtils;
+import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUp;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;
@@ -114,6 +115,8 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
             //   Utilities.selectImage(activity);
             // TODO: Asignar la siguiente linea al VER TODOS LOS COMENTARIOS
             CustomPopUp.newInstance().show(getFragmentManager(), null);
+            // TODO: Asignar la siguiente linea al botón de RATING
+            //CustomDialogRating.showDialog(activity, idSendero, ratingActual);
          }
       });
       mFabMargin = getResources().getDimensionPixelSize(R.dimen.margin_standard);
