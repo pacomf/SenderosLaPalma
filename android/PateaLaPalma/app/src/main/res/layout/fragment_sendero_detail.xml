@@ -75,15 +75,72 @@
 
         <com.jelcaf.pacomf.patealapalma.views.CustomMapView
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="100dp"
             android:id="@+id/map"
             android:padding="6sp"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="100dp"
             android:id="@+id/clickMap"
             android:padding="6sp" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_messages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="top">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:id="@+id/tvComments"
+                android:layout_marginTop="5dp"
+                android:text="@string/title_popup_comments" />
+
+            <ListView
+                android:id="@+id/listViewComments"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/tvComments"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/no_comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/tvComments"
+                android:gravity="center"
+                android:text="@string/no_comments"
+                android:visibility="gone"
+                android:layout_above="@+id/showMoreComments"
+                />
+
+            <Button
+                android:id="@+id/showMoreComments"
+                android:layout_below="@id/listViewComments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="@string/more_comments"
+                android:background="@drawable/selector_bg_button"
+                android:textColor="@color/black_overlay"
+                android:textSize="@dimen/sample_text_size"/>
+
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 

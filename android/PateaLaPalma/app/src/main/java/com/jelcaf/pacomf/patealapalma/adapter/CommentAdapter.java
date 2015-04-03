@@ -24,13 +24,15 @@ public class CommentAdapter extends BaseAdapter {
     private List<Comment> comments;
     private Activity activity;
     SimpleDateFormat dt1;
+    boolean limitItems;
 
 
-    public CommentAdapter(Activity activity, List<Comment> comments) {
+    public CommentAdapter(Activity activity, List<Comment> comments, boolean limitItems) {
         super();
         this.activity = activity;
         this.comments = comments;
         dt1 = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy");
+        this.limitItems = limitItems;
     }
 
     /**
@@ -45,6 +47,8 @@ public class CommentAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        if (limitItems)
+            return 3;
         return comments.size();
     }
 

@@ -36,7 +36,6 @@
     <!-- Placeholders -->
     <string name="ph_write_comment">Escribe un comentario...</string>
 
-
     <!-- Title Buttons -->
     <string name="btn_title_login">Iniciar Sesión</string>
 
@@ -66,9 +65,11 @@
     <string name="login_required">Es necesario Iniciar Sesión</string>
     <string name="title_activity_info">Información Relevante</string>
     <string name="dialog_rating_title">Tu Valoración</string>
-    <string name="dialog_rating_subtitle">DE 0 A 5</string>
+    <string name="dialog_rating_subtitle">DE 1 A 5</string>
     <string name="dialog_rating_footer_subtitle">CERRAR</string>
     <string name="dialog_rating_footer_confirm">Confirmar</string>
+    <string name="more_comments">Mostrar más Comentarios</string>
+    <string name="no_comments">No existen Comentarios.\n¡Sé el primer en Comentar!</string>
 
     <!-- Codes Colors Senderos -->
     <string name="senderocc_correct">Continuidad del Sendero</string>

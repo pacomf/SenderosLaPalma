@@ -41,6 +41,18 @@
                     android:layout_below="@id/titlePU"
                     android:layout_above="@+id/rlComment"/>
 
+                <TextView
+                    android:id="@+id/no_comments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:text="@string/no_comments"
+                    android:visibility="gone"
+                    android:layout_below="@id/titlePU"
+                    android:layout_above="@+id/rlComment"
+                    />
+
                 <RelativeLayout
                     android:id="@+id/rlComment"
                     android:layout_width="match_parent"

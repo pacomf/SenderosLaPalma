@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.facebook.widget.ProfilePictureView;
 import com.jelcaf.pacomf.patealapalma.R;
@@ -66,8 +67,10 @@ public class CustomPopUpComments extends DialogFragment {
             }
         });
 
+        TextView noComments = (TextView) v.findViewById(R.id.no_comments);
+
         ListView listView = (ListView)v.findViewById(R.id.listView);
-        setList(listView);
+        setList(listView, noComments);
 
         // Set up a click listener to dismiss the popup if they click outside
         // of the background view
@@ -81,7 +84,7 @@ public class CustomPopUpComments extends DialogFragment {
         return v;
     }
 
-    void setList(ListView listView){
+    void setList(ListView listView, TextView noComments){
 
         // TODO: Recuperar Listas de Comentarios del Sendero en cuestion
         ArrayList<Comment> commentsList = new ArrayList<>();
@@ -89,8 +92,13 @@ public class CustomPopUpComments extends DialogFragment {
             commentsList.add(new Comment(null, LoginMethods.getIdFacebook(getActivity()), "Paco", "Un comentario muy bonito y de lo boniuto que es es superior y asi para qued uro mas tiempo", new Date(), 0, null));
         }
 
-        CommentAdapter commentAdapter = new CommentAdapter(getActivity(), commentsList);
-        listView.setAdapter(commentAdapter);
+        if (commentsList.isEmpty()){
+            noComments.setVisibility(View.VISIBLE);
+        } else {
+            CommentAdapter commentAdapter = new CommentAdapter(getActivity(), commentsList, false);
+            listView.setAdapter(commentAdapter);
+        }
+
     }
 
 }

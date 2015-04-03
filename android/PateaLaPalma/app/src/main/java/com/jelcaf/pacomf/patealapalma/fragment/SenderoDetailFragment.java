@@ -8,13 +8,21 @@ import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Geo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 import com.jelcaf.pacomf.patealapalma.views.CustomMapView;
+import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpMap;
 import com.mobandme.android.bind.Binder;
 
@@ -27,6 +35,7 @@ import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.PathOverlay;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -91,7 +100,7 @@ public class SenderoDetailFragment extends Fragment {
                             Bundle savedInstanceState) {
       rootView = inflater.inflate(R.layout.fragment_sendero_detail, container, false);
 
-       initializeViews(rootView);
+      initializeViews(rootView);
 
        myModelBinder = new Binder.Builder()
             .setSource(mSendero)
@@ -127,7 +136,20 @@ public class SenderoDetailFragment extends Fragment {
             }
         });
 
-        initMap(coordinates.get(0).getLatitud(), coordinates.get(0).getLongitud(), coordinates.get(coordinates.size()-1).getLatitud(), coordinates.get(coordinates.size()-1).getLongitud());
+        initMap(coordinates.get(0).getLatitud(), coordinates.get(0).getLongitud(), coordinates.get(coordinates.size() - 1).getLatitud(), coordinates.get(coordinates.size() - 1).getLongitud());
+
+        Button moreCommentsBTN = (Button) rootView.findViewById(R.id.showMoreComments);
+        moreCommentsBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomPopUpComments.newInstance().show(getActivity().getFragmentManager(), null);
+            }
+        });
+
+        ListView listView = (ListView)rootView.findViewById(R.id.listViewComments);
+        TextView noComments = (TextView) rootView.findViewById(R.id.no_comments);
+        setList(listView, noComments, moreCommentsBTN);
+
     }
 
     protected void initMap(double latStart, double lonStart, double latEnd, double lonEnd){
@@ -161,4 +183,48 @@ public class SenderoDetailFragment extends Fragment {
         mapController.setZoom(11);
         mapController.setCenter(startPoint);
     }
+
+    void setList(ListView listView, TextView noComments, Button moreComments){
+
+        // TODO: Recuperar Listas de Comentarios del Sendero en cuestion
+        ArrayList<Comment> commentsList = new ArrayList<>();
+        for (int index = 0; index < 10; index++) {
+            commentsList.add(new Comment(null, LoginMethods.getIdFacebook(getActivity()), "Paco", "Un comentario muy bonito y de lo boniuto que es es superior y asi para qued uro mas tiempo", new Date(), 0, null));
+        }
+
+        if (commentsList.isEmpty()){
+            listView.setVisibility(View.GONE);
+            moreComments.setVisibility(View.GONE);
+            noComments.setVisibility(View.VISIBLE);
+            noComments.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CustomPopUpComments.newInstance().show(getActivity().getFragmentManager(), null);
+                }
+            });
+        } else {
+            CommentAdapter commentAdapter = new CommentAdapter(getActivity(), commentsList, true);
+            listView.setAdapter(commentAdapter);
+            //setListViewHeightBasedOnChildren(listView);
+        }
+    }
+
+    // Para adaptar el tamano de la lista a 3 comentarios (o los que devuelva el getCount()
+    /*public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }*/
 }
