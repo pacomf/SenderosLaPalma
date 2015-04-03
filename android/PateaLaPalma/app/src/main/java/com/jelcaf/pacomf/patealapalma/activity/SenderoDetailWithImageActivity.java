@@ -3,6 +3,7 @@ package com.jelcaf.pacomf.patealapalma.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -100,9 +101,12 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
             //if (LoginMethods.checkLogin(activity))
             //   Utilities.selectImage(activity);
             // TODO: Asignar la siguiente linea al VER TODOS LOS COMENTARIOS
-            CustomPopUpComments.newInstance().show(getFragmentManager(), null);
+            // CustomPopUpComments.newInstance().show(getFragmentManager(), null);
             // TODO: Asignar la siguiente linea al botón de RATING
             //CustomDialogRating.showDialog(activity, idSendero, ratingActual);
+            // TODO: Asignar al "Como llegar" recuperando la Location del Sendero (geoStart)
+            Location senderoLocation = getCurrentLocation();
+            com.jelcaf.pacomf.patealapalma.network.Utilities.howToGoToSendero(activity, getCurrentLocation(), senderoLocation);
          }
       });
       mFabMargin = getResources().getDimensionPixelSize(R.dimen.margin_standard);

@@ -3,8 +3,11 @@ package com.jelcaf.pacomf.patealapalma.network;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.telephony.TelephonyManager;
 
 /**
@@ -119,5 +122,12 @@ public class Utilities {
         return pd;
     }
 
+    public static void howToGoToSendero (Activity activity, Location myPosition, Location senderoPosition){
+        if (myPosition != null) {
+            Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                    Uri.parse("http://maps.google.com/maps?saddr=" + myPosition.getLatitude() + "," + myPosition.getLongitude() + "&daddr=" + senderoPosition.getLatitude() + "," + senderoPosition.getLongitude()));
+            activity.startActivity(intent);
+        }
+    }
 
 }
