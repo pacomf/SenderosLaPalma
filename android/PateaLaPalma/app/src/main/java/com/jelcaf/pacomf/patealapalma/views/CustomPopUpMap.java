@@ -41,17 +41,18 @@ import java.util.List;
 public class CustomPopUpMap extends DialogFragment {
 
     private double latitudeCenter, longitudeCenter;
-    private List<Geo> coordinates;
+    private List<Geo> coordinates, waterpoints;
     private Context ctx;
 
     public static CustomPopUpMap newInstance() {
         return new CustomPopUpMap();
     }
 
-    public void setParams (Context ctx, double latitudeCenter, double longitudeCenter, List<Geo> coordinates){
+    public void setParams (Context ctx, double latitudeCenter, double longitudeCenter, List<Geo> coordinates, List<Geo> waterpoints){
         this.latitudeCenter = latitudeCenter;
         this.longitudeCenter = longitudeCenter;
         this.coordinates = coordinates;
+        this.waterpoints = waterpoints;
         this.ctx = ctx;
     }
 
@@ -101,6 +102,13 @@ public class CustomPopUpMap extends DialogFragment {
                 }
                 pathOverlay.addPoint(new GeoPoint(geo.getLatitud(), geo.getLongitud()));
                 index++;
+            }
+
+            for (Geo geo: waterpoints){
+                myLocationOverlayItem = new OverlayItem("La Palma", "Islas Canarias", new GeoPoint(geo.getLatitud(), geo.getLongitud()));
+                myCurrentLocationMarker = this.getResources().getDrawable(R.drawable.water_bottle);
+                myLocationOverlayItem.setMarker(myCurrentLocationMarker);
+                items.add(myLocationOverlayItem);
             }
 
             ItemizedIconOverlay<OverlayItem> currentLocationOverlay = new ItemizedIconOverlay<>(items,

@@ -114,7 +114,7 @@ public class SenderoDetailFragment extends Fragment {
         map = (CustomMapView) rootView.findViewById(R.id.map);
         View clickMap = rootView.findViewById(R.id.clickMap);
         // TODO: Coger las Coordenadas del Sendero
-        List<Geo> coordinatesSendero = new ArrayList<>();
+        final List<Geo> coordinatesSendero = new ArrayList<>();
         coordinatesSendero.add(new Geo(28.712428, -17.859723, null ,null));
         coordinatesSendero.add(new Geo(28.716313, -17.906388, null, null));
         coordinatesSendero.add(new Geo(28.740699, -17.941578, null, null));
@@ -124,19 +124,23 @@ public class SenderoDetailFragment extends Fragment {
         coordinatesSendero.add(new Geo(28.822246, -17.954195, null, null));
         coordinatesSendero.add(new Geo(28.833224, -17.938746, null, null));
         coordinatesSendero.add(new Geo(28.854651, -17.913597, null, null));
-
-        final List<Geo> coordinates = coordinatesSendero;
+        // TODO: Coger las coordenadas de los WaterPoints
+        final List<Geo> coordinatesWaterPoints = new ArrayList<>();
+        coordinatesWaterPoints.add(new Geo(28.780879, -17.963293, null, null));
+        coordinatesWaterPoints.add(new Geo(28.801113, -17.960375, null, null));
+        coordinatesWaterPoints.add(new Geo(28.822246, -17.954195, null, null));
+        coordinatesWaterPoints.add(new Geo(28.833224, -17.938746, null, null));
 
         clickMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CustomPopUpMap customPopUpMap = CustomPopUpMap.newInstance();
-                customPopUpMap.setParams(getActivity(), coordinates.get(0).getLatitud(), coordinates.get(0).getLongitud(), coordinates);
+                customPopUpMap.setParams(getActivity(), coordinatesSendero.get(0).getLatitud(), coordinatesSendero.get(0).getLongitud(), coordinatesSendero, coordinatesWaterPoints);
                 customPopUpMap.show(getActivity().getFragmentManager(), null);
             }
         });
 
-        initMap(coordinates.get(0).getLatitud(), coordinates.get(0).getLongitud(), coordinates.get(coordinates.size() - 1).getLatitud(), coordinates.get(coordinates.size() - 1).getLongitud());
+        initMap(coordinatesSendero.get(0).getLatitud(), coordinatesSendero.get(0).getLongitud(), coordinatesSendero.get(coordinatesSendero.size() - 1).getLatitud(), coordinatesSendero.get(coordinatesSendero.size() - 1).getLongitud());
 
         Button moreCommentsBTN = (Button) rootView.findViewById(R.id.showMoreComments);
         moreCommentsBTN.setOnClickListener(new View.OnClickListener() {
