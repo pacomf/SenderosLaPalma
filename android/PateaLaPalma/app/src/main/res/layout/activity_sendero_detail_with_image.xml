@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|top"
         android:scaleType="center"
-        android:src="@drawable/ic_action_picture"
+        android:src="@drawable/sendero_menu"
         app:fab_colorNormal="@color/floatButton"
         app:fab_colorPressed="@color/floatButtonPressed" />
 

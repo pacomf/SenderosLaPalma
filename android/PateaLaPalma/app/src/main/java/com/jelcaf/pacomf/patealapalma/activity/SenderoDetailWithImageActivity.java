@@ -161,10 +161,11 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
 
    private void buildFloatingMenu(final Activity activity, final String idSendero) {
       SubActionButton.Builder itemBuilder = new SubActionButton.Builder(this);
+      itemBuilder.setLayoutParams(new FrameLayout.LayoutParams(140, 140));
 
       // Añadir imagen
       ImageView itemIcon = new ImageView(this);
-      itemIcon.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_media_play));
+      itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_photo));
       SubActionButton addImageButton = itemBuilder.setContentView(itemIcon).build();
       addImageButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -177,7 +178,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
 
       // Añadir Comentario
       itemIcon = new ImageView(this);
-      itemIcon.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_report_image));
+      itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_comments));
       SubActionButton addCommentButton = itemBuilder.setContentView(itemIcon).build();
       addCommentButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -188,7 +189,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
 
       // Añadir Valoración
       itemIcon = new ImageView(this);
-      itemIcon.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_camera));
+      itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_rating));
       SubActionButton addRatingButton = itemBuilder.setContentView(itemIcon).build();
       addRatingButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -199,7 +200,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
 
       // Qué ropa llevar
       itemIcon = new ImageView(this);
-      itemIcon.setImageDrawable(getResources().getDrawable(android.R.drawable.ic_menu_agenda));
+      itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_clothes));
       SubActionButton clothesButton = itemBuilder.setContentView(itemIcon).build();
 
       mFloatMenu = new FloatingActionMenu.Builder(this)
