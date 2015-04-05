@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId "com.jelcaf.pacomf.patealapalma"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 21
         versionCode 1
         versionName "1.0"
@@ -95,4 +95,7 @@ dependencies {
 
     // Dialog por Rating
     compile 'com.orhanobut:dialogplus:1.4@aar'
+
+    // https://github.com/oguzbilgener/CircularFloatingActionMenu
+    compile 'com.oguzdev:CircularFloatingActionMenu:1.0.2'
 }
