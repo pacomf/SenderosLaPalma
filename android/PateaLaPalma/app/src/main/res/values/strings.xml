@@ -117,5 +117,7 @@
             &#8226; Evite ruidos que afecten a la vida silvestre.
         ]]>
     </string>
+    <string name="next_text">Next</string>
+    <string name="done_text">Done</string>
 
 </resources>

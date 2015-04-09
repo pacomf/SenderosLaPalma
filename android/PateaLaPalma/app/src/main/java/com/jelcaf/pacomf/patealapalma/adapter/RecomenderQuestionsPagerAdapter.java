@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.jelcaf.pacomf.patealapalma.fragment.RecomenderResumeFragment;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.jelcaf.pacomf.patealapalma.factories.QuestionRecommenderFactory;
 import com.jelcaf.pacomf.patealapalma.fragment.QuestionFragment;
@@ -17,7 +18,10 @@ import java.util.Random;
  */
 public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
 
+   private static int NUM_EXTRA_PAGES = 1;
+
    private List<RecommenderBaseQuestion> form;
+   private RecomenderResumeFragment recomenderResume;
 
    private Random random = new Random();
 
@@ -25,14 +29,18 @@ public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
       super(fm);
 
       form = QuestionRecommenderFactory.getInstance().obtainQuestionForm();
+      recomenderResume = new RecomenderResumeFragment();
    }
 
    @Override public Fragment getItem(int i) {
-      RecommenderBaseQuestion formQuestion = form.get(i);
-      return QuestionFragment.newInstance(formQuestion);
+      if (i < form.size()) {
+         RecommenderBaseQuestion formQuestion = form.get(i);
+         return QuestionFragment.newInstance(formQuestion);
+      }
+      return recomenderResume;
    }
 
    @Override public int getCount() {
-      return form.size();
+      return form.size() + NUM_EXTRA_PAGES;
    }
 }

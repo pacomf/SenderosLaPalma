@@ -54,12 +54,59 @@
         <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/sendero_circular_view"
+            custom:mytitle="Circular"
+            custom:myvalue="Si"
+            custom:image="@drawable/circular"
+            android:padding="4sp"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8sp">
+
+        <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendero_time"
+            custom:mytitle="Duración aproximada"
+            custom:myvalue="3h 4m"
+            custom:image="@drawable/time"
+            android:padding="4sp"
+            android:layout_weight="2"/>
+
+        <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendero_tipo"
+            custom:mytitle="Tipo Sendero"
+            custom:myvalue="Pequeño Recorrido"
+            android:padding="4sp"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8sp">
+
+        <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/sendero_rating_view"
             custom:mytitle="Rating"
             custom:myvalue="5,6"
             custom:image="@drawable/rating"
             android:padding="4sp"
-            android:layout_weight="2"/>
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"/>
 
     </LinearLayout>
 

@@ -1,17 +1,20 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
+import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.adapter.RecomenderQuestionsPagerAdapter;
+import com.jelcaf.pacomf.patealapalma.views.MyCircleIndicator;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -39,7 +42,6 @@ public class RecommenderActivity extends ActionBarActivity {
       initUIVars();
 
       setUIVars();
-
    }
 
    private void initUIVars() {
@@ -50,11 +52,19 @@ public class RecommenderActivity extends ActionBarActivity {
       mNextButton = (ButtonRectangle) findViewById(R.id.nextButton);
    }
 
+   public void refreshTextButtons() {
+      if (mViewPager.getCurrentItem() < mPagerAdapter.getCount()) {
+         mNextButton.setText(getResources().getString(R.string.next_text));
+         return;
+      }
+      mNextButton.setText(getResources().getString(R.string.done_text));
+   }
 
    private void setUIVars() {
       mPagerAdapter = new RecomenderQuestionsPagerAdapter(getSupportFragmentManager());
       mViewPager.setAdapter(mPagerAdapter);
       mIndicator.setViewPager(mViewPager);
+      mIndicator.setOnPageChangeListener(new MyChangeListener());
 
       mPreviousButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -96,4 +106,16 @@ public class RecommenderActivity extends ActionBarActivity {
 
       return super.onOptionsItemSelected(item);
    }
+
+   public class MyChangeListener extends ViewPager.SimpleOnPageChangeListener {
+      @Override
+      public void onPageSelected(int position) {
+         if (position < mPagerAdapter.getCount() - 1) {
+            mNextButton.setText(getResources().getString(R.string.next_text));
+            return;
+         }
+         mNextButton.setText(getResources().getString(R.string.done_text));
+      }
+   }
+
 }
