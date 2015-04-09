@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.edmodo.rangebar.RangeBar;
+import com.appyvet.rangebar.RangeBar;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.formats.DateFormats;
 import com.jelcaf.pacomf.patealapalma.formats.DateSetter;
@@ -100,7 +100,8 @@ public class QuestionFragment extends Fragment {
    private void createRange(LayoutInflater inflater, LinearLayout answerLinearLayout, RecommenderRangeQuestion question) {
       RangeBar slider = (RangeBar)inflater.inflate(R.layout.question_slider, answerLinearLayout,
             false);
-      slider.setTickCount(question.getMaxValue() - question.getMinValue());
+      slider.setTickStart(question.getMinValue());
+      slider.setTickEnd(question.getMaxValue());
 
       answerLinearLayout.addView(slider);
    }

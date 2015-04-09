@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.edmodo.rangebar.RangeBar
+<com.appyvet.rangebar.RangeBar
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rangebar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    custom:tickHeight="0dp"
-    custom:connectingLineColor="@color/secondary"
-    custom:thumbColorNormal="@color/colorPrimary"
-    custom:thumbColorPressed="@color/colorPrimaryDark"
-    custom:barColor="@android:color/black"/>
+    android:layout_height="80dp"
+    custom:tickStart="5"
+    custom:tickInterval="1"
+    custom:tickEnd="10"
+    custom:selectorColor="@color/primary"
+    custom:connectingLineColor="@color/primary"
+    custom:pinColor="@color/primary"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:paddingTop="20dp"/>
