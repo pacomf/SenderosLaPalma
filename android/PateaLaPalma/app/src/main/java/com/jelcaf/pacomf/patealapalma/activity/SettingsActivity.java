@@ -21,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-
 import com.jelcaf.pacomf.patealapalma.R;
 
 import java.util.List;

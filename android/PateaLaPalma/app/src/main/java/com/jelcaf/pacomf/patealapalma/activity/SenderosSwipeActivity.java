@@ -7,37 +7,24 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.facebook.widget.ProfilePictureView;
+import com.astuetz.PagerSlidingTabStrip;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
-import com.jelcaf.pacomf.patealapalma.binding.parser.ISO8601DateParse;
 import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
-import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
-import com.jelcaf.pacomf.patealapalma.network.Request;
-
-import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import it.neokree.materialtabs.MaterialTab;
-import it.neokree.materialtabs.MaterialTabHost;
-import it.neokree.materialtabs.MaterialTabListener;
+
 
 
 /**
@@ -57,7 +44,7 @@ import it.neokree.materialtabs.MaterialTabListener;
  * to listen for item selections.
  */
 public class SenderosSwipeActivity extends LocationBaseActivity
-      implements SenderoListFragment.Callbacks, MaterialTabListener {
+      implements SenderoListFragment.Callbacks {
 
    /**
     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -67,7 +54,7 @@ public class SenderosSwipeActivity extends LocationBaseActivity
 
    private SenderoListFragment senderoListFragment;
 
-   MaterialTabHost tabHost;
+   PagerSlidingTabStrip tabHost;
    ViewPager pager;
    ViewPagerAdapter adapter;
 
@@ -114,30 +101,14 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       });
       setSupportActionBar(toolbar);
 
-      tabHost = (MaterialTabHost) this.findViewById(R.id.tabHost);
+      tabHost = (PagerSlidingTabStrip) this.findViewById(R.id.tabHost);
       pager = (ViewPager) this.findViewById(R.id.pager);
 
       // init view pager
       adapter = new ViewPagerAdapter(getSupportFragmentManager());
       pager.setAdapter(adapter);
-      pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-         @Override
-         public void onPageSelected(int position) {
-            // when user do a swipe the selected tab change
-            tabHost.setSelectedNavigationItem(position);
 
-         }
-      });
-
-      // insert all tabs from pagerAdapter data
-      for (int i = 0; i < adapter.getCount(); i++) {
-         tabHost.addTab(
-               tabHost.newTab()
-                     .setText(adapter.getPageTitle(i))
-                     .setTabListener(this)
-         );
-
-      }
+      tabHost.setViewPager(pager);
    }
 
    @Override
@@ -202,21 +173,6 @@ public class SenderosSwipeActivity extends LocationBaseActivity
          detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, id);
          startActivity(detailIntent);
       }
-   }
-
-   @Override
-   public void onTabSelected(MaterialTab tab) {
-      pager.setCurrentItem(tab.getPosition());
-   }
-
-   @Override
-   public void onTabReselected(MaterialTab tab) {
-
-   }
-
-   @Override
-   public void onTabUnselected(MaterialTab tab) {
-
    }
 
    private class ViewPagerAdapter extends FragmentStatePagerAdapter {

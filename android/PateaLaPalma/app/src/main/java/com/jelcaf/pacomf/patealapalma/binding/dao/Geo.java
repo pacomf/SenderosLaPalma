@@ -2,7 +2,6 @@ package com.jelcaf.pacomf.patealapalma.binding.dao;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
 
 /**
  * Created by Paco on 28/03/2015.

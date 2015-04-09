@@ -10,19 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
 
-import com.facebook.widget.ProfilePictureView;
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
-import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Geo;
-import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
 import org.osmdroid.DefaultResourceProxyImpl;
-import org.osmdroid.api.IGeoPoint;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
@@ -32,7 +24,6 @@ import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.PathOverlay;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

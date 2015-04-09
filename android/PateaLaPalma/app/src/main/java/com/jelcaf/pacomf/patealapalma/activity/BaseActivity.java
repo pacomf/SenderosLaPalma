@@ -1,7 +1,6 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
 import android.content.res.TypedArray;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;

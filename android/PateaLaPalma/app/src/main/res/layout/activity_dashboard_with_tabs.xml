@@ -10,13 +10,22 @@
     <include layout="@layout/dashboard_toolbar"
              android:id="@+id/toolbar"/>
 
-    <it.neokree.materialtabs.MaterialTabHost
+    <!--it.neokree.materialtabs.MaterialTabHost
         android:id="@+id/tabHost"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@+id/toolbar"
         app:primaryColor="@color/secondary"
-        app:accentColor="@color/colorPrimaryDark" />
+        app:accentColor="@color/colorPrimaryDark" /-->
+
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabHost"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_below="@+id/toolbar"
+        android:background="@color/secondary"
+        android:textColorPrimary="@color/white"
+        app:pstsIndicatorColor="@color/colorPrimaryDark"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"

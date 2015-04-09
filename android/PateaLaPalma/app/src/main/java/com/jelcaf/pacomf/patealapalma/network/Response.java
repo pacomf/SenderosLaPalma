@@ -5,14 +5,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.location.Location;
 
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Photo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
-import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;

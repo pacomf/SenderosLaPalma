@@ -3,11 +3,9 @@ package com.jelcaf.pacomf.patealapalma.network;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
-import android.media.Image;
 import android.os.AsyncTask;
 
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.images.*;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

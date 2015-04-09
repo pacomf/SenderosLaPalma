@@ -1,36 +1,23 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
-import java.util.Locale;
-
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.os.Bundle;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.fragment.InfoCodesFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.InfoSecurityFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.InfoWarningsFragment;
-import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
-import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
 
-import it.neokree.materialtabs.MaterialTab;
-import it.neokree.materialtabs.MaterialTabHost;
-import it.neokree.materialtabs.MaterialTabListener;
 
-public class InfoActivity extends ActionBarActivity implements MaterialTabListener {
+
+public class InfoActivity extends ActionBarActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -40,7 +27,7 @@ public class InfoActivity extends ActionBarActivity implements MaterialTabListen
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
-    MaterialTabHost tabHost;
+    PagerSlidingTabStrip tabHost;
     ViewPager pager;
     ViewPagerAdapter adapter;
 
@@ -52,45 +39,14 @@ public class InfoActivity extends ActionBarActivity implements MaterialTabListen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tabHost = (MaterialTabHost) this.findViewById(R.id.tabHost);
+        tabHost = (PagerSlidingTabStrip) this.findViewById(R.id.tabHost);
         pager = (ViewPager) this.findViewById(R.id.pager);
 
         // init view pager
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
-        pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                // when user do a swipe the selected tab change
-                tabHost.setSelectedNavigationItem(position);
 
-            }
-        });
-
-        // insert all tabs from pagerAdapter data
-        for (int i = 0; i < adapter.getCount(); i++) {
-            tabHost.addTab(
-                    tabHost.newTab()
-                            .setText(adapter.getPageTitle(i))
-                            .setTabListener(this)
-            );
-
-        }
-    }
-
-
-    @Override
-    public void onTabSelected(MaterialTab tab) {
-        pager.setCurrentItem(tab.getPosition());
-    }
-
-    @Override
-    public void onTabReselected(MaterialTab tab) {
-
-    }
-
-    @Override
-    public void onTabUnselected(MaterialTab tab) {
+        tabHost.setViewPager(pager);
 
     }
 

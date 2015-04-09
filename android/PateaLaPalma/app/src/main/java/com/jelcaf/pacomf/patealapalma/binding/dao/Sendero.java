@@ -1,13 +1,11 @@
 package com.jelcaf.pacomf.patealapalma.binding.dao;
 
 import android.location.Location;
-import android.util.ArrayMap;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.binding.parser.IntegerParse;
 import com.mobandme.android.bind.annotations.BindTo;
 
 import java.sql.Date;

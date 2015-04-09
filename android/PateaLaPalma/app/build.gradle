@@ -61,7 +61,8 @@ dependencies {
     // Volley, REST request
     compile 'com.mcxiaoke.volley:library:1.0.+@aar'
 
-    compile 'it.neokree:MaterialTabs:0.11'
+    // https://github.com/jpardogo/PagerSlidingTabStrip
+    compile 'com.jpardogo.materialtabstrip:library:1.0.9'
 
     // https://github.com/ksoichiro/Android-ObservableScrollView
     compile 'com.github.ksoichiro:android-observablescrollview:1.5.0'

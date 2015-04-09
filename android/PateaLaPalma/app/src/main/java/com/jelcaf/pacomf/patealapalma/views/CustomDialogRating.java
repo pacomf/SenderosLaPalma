@@ -3,12 +3,10 @@ package com.jelcaf.pacomf.patealapalma.views;
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
-import com.jelcaf.pacomf.patealapalma.network.Request;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.OnClickListener;

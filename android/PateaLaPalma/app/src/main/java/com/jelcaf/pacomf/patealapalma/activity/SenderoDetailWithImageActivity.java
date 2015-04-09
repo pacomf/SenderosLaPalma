@@ -3,7 +3,6 @@ package com.jelcaf.pacomf.patealapalma.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;

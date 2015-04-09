@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.jelcaf.pacomf.patealapalma.fragment.RecomenderResumeFragment;
-import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.jelcaf.pacomf.patealapalma.factories.QuestionRecommenderFactory;
 import com.jelcaf.pacomf.patealapalma.fragment.QuestionFragment;
+import com.jelcaf.pacomf.patealapalma.fragment.RecomenderResumeFragment;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 
 import java.util.List;
 import java.util.Random;

@@ -2,7 +2,6 @@ package com.jelcaf.pacomf.patealapalma.recommender;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * @author Jorge Carballo

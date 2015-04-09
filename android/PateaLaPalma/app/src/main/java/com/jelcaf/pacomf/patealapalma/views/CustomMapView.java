@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
-import com.jelcaf.pacomf.patealapalma.activity.SenderoDetailWithImageActivity;
 
 import org.osmdroid.views.MapView;
 

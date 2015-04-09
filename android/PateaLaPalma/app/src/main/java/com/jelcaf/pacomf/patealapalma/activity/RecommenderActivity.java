@@ -1,12 +1,9 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
-import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +11,6 @@ import android.view.View;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.adapter.RecomenderQuestionsPagerAdapter;
-import com.jelcaf.pacomf.patealapalma.views.MyCircleIndicator;
 
 import me.relex.circleindicator.CircleIndicator;
 

@@ -2,9 +2,9 @@ package com.jelcaf.pacomf.patealapalma.factories;
 
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderCalendarQuestion;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderOptionResponse;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderRangeQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderSingleChoiceQuestion;
-import com.jelcaf.pacomf.patealapalma.recommender.RecommenderOptionResponse;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,13 +9,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
-import com.jelcaf.pacomf.patealapalma.binding.parser.ISO8601DateParse;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 

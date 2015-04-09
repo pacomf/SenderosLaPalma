@@ -4,13 +4,12 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.LocationServices;
-import com.jelcaf.pacomf.patealapalma.network.Request;
-import com.jelcaf.pacomf.patealapalma.network.Utilities;
 
 /**
  * Created by Paco on 25/03/2015.

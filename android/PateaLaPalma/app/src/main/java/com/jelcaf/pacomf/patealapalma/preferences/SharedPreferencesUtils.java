@@ -1,7 +1,6 @@
 package com.jelcaf.pacomf.patealapalma.preferences;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.jelcaf.pacomf.patealapalma.R;
