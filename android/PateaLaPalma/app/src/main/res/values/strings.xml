@@ -125,5 +125,6 @@
     </string>
     <string name="next_text">Next</string>
     <string name="done_text">Done</string>
+    <string name="recommender_title">Cuestionario</string>
 
 </resources>

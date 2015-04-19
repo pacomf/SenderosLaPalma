@@ -20,6 +20,11 @@ public class RecommenderBaseQuestion implements IRecommenderQuestion, Serializab
    }
 
    @Override
+   public String getResumeQuestion() {
+      return getQuestion();
+   }
+
+   @Override
    public QuestionType getQuestionType() {
       return QuestionType.Base;
    }
@@ -30,8 +35,21 @@ public class RecommenderBaseQuestion implements IRecommenderQuestion, Serializab
    }
 
    @Override
+   public String getStrResponse() {
+      if (getResponse() == null) {
+         return "N/C";
+      }
+      return getResponse().toString();
+   }
+
+   @Override
    public Object getResponseType() {
       return null;
+   }
+
+   @Override
+   public boolean isMandatory() {
+      return false;
    }
 
 

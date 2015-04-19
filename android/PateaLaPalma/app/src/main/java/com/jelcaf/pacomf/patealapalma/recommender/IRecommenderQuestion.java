@@ -7,8 +7,11 @@ package com.jelcaf.pacomf.patealapalma.recommender;
 public interface IRecommenderQuestion {
 
    public String getQuestion();
+   public String getResumeQuestion();
    public QuestionType getQuestionType();
    public Object getResponse();
+   public String getStrResponse();
    public Object getResponseType();
+   public boolean isMandatory();
 
 }

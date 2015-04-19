@@ -34,6 +34,14 @@ public class RecommenderSingleChoiceQuestion extends RecommenderBaseQuestion imp
       return ResponseType.Integer;
    }
 
+   @Override
+   public String getStrResponse() {
+      if (getSelectedResponse() == null) {
+         return super.getStrResponse();
+      }
+      return posibleResponses.get(getSelectedResponse()).text;
+   }
+
    public void addResponses(List<RecommenderOptionResponse> responses) {
       this.posibleResponses = responses;
    }
@@ -49,4 +57,6 @@ public class RecommenderSingleChoiceQuestion extends RecommenderBaseQuestion imp
    public void setSelectedResponse(Integer selectedResponse) {
       this.selectedResponse = selectedResponse;
    }
+
+
 }

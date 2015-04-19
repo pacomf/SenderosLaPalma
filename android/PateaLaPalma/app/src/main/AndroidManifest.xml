@@ -61,7 +61,8 @@
         </activity>
         <activity
             android:name=".activity.RecommenderActivity"
-            android:label="@string/title_activity_recommender" >
+            android:label="@string/title_activity_recommender"
+            android:parentActivityName=".activity.SenderosSwipeActivity">
         </activity>
         <activity
             android:name=".activity.LoginActivity"

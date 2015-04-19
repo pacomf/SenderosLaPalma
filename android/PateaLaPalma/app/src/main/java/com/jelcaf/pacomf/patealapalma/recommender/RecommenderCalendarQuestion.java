@@ -32,6 +32,16 @@ public class RecommenderCalendarQuestion extends RecommenderBaseQuestion impleme
       return ResponseType.Date;
    }
 
+   @Override
+   public String getStrResponse() {
+      if (!Calendar.getInstance().equals(getResponse())) {
+         String theDate = value.get(Calendar.DAY_OF_MONTH) + "/" + value.get(Calendar
+               .MONTH) + "/" + value.get(Calendar.YEAR);
+         return theDate;
+      }
+      return "N/C";
+   }
+
    public Calendar getSelectedResponse() {
       return value;
    }
