@@ -44,7 +44,6 @@ public class CustomPopUpComments extends DialogFragment {
         // Inflate the new view with margins and background
         View v = inflater.inflate(R.layout.popup_layout_comments, container, false);
 
-        // TODO: Acciones de elementos del popup, imagen, edittext, upload.
         final EditText editText = (EditText) v.findViewById(R.id.writeComment);
         ImageView uploadIV = (ImageView) v.findViewById(R.id.sendIV);
         ProfilePictureView profilePictureView = (ProfilePictureView) v.findViewById(R.id.profilePicture);

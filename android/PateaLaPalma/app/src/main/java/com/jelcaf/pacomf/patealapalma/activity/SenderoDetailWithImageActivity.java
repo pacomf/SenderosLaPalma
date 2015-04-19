@@ -103,21 +103,9 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       final Activity activity = this;
       mFab = findViewById(R.id.fab);
 
-//      mFab.setOnClickListener(new View.OnClickListener() {
-//         @Override
-//         public void onClick(View v) {
-//            // TODO: En las opciones de subida de imagenes, rating etc, comprobar que este logueado (metodo de comprobacion creado en LoginMethods)
-//            //if (LoginMethods.checkLogin(activity))
-//            //   Utilities.selectImage(activity);
-//            // TODO: Asignar la siguiente linea al VER TODOS LOS COMENTARIOS
-//            // CustomPopUpComments.newInstance().show(getFragmentManager(), null);
-//            // TODO: Asignar la siguiente linea al botón de RATING
-//            //CustomDialogRating.showDialog(activity, idSendero, ratingActual);
-//            // TODO: Asignar al "Como llegar" recuperando la Location del Sendero (geoStart)
-//            Location senderoLocation = getCurrentLocation();
-//            com.jelcaf.pacomf.patealapalma.network.Utilities.howToGoToSendero(activity, getCurrentLocation(), senderoLocation);
-//         }
-//      });
+      // TODO: Asignar al "Como llegar" recuperando la Location del Sendero (geoStart)
+//      Location senderoLocation = getCurrentLocation();
+//      com.jelcaf.pacomf.patealapalma.network.Utilities.howToGoToSendero(activity, getCurrentLocation(), senderoLocation);
 
       mFabMargin = getResources().getDimensionPixelSize(R.dimen.margin_standard);
       ViewHelper.setScaleX(mFab, 0);

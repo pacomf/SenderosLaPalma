@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity;
+import com.jelcaf.pacomf.patealapalma.binding.utilities.LoadData;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +32,9 @@ public class RecommendSenderoFragment extends Fragment {
       rootView = inflater.inflate(R.layout.fragment_recommend_sendero, container, false);
 
       initializeViews(rootView);
+
+      // TODO: Comprobar si la BBDD esta inicializada (con valores) o no
+      LoadData.loadLocalData(getActivity());
 
       return rootView;
    }

@@ -70,6 +70,11 @@
     <string name="dialog_rating_footer_confirm">Confirmar</string>
     <string name="more_comments">Mostrar más Comentarios</string>
     <string name="no_comments">No existen Comentarios.\n¡Sé el primer en Comentar!</string>
+    <string name="process_title">Procesando</string>
+    <string name="load_db">Configurando la Base de Datos por primera vez</string>
+
+    <!-- File Names -->
+    <string name="initial_file">senderos.json</string>
 
     <!-- Codes Colors Senderos -->
     <string name="senderocc_correct">Continuidad del Sendero</string>

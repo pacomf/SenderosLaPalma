@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.astuetz.PagerSlidingTabStrip;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
+import com.jelcaf.pacomf.patealapalma.binding.utilities.LoadData;
 import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
