@@ -177,7 +177,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       addRatingButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-            CustomDialogRating.showDialog(activity, idSendero, 7);
+            CustomDialogRating.showDialog(activity, idSendero, mSendero.getUserRating());
          }
       });
 

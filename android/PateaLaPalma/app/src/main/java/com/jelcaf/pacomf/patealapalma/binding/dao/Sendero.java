@@ -9,9 +9,7 @@ import com.jelcaf.pacomf.patealapalma.R;
 import com.mobandme.android.bind.annotations.BindTo;
 
 import java.sql.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Jorge Carballo
@@ -104,7 +102,7 @@ public class Sendero extends Model {
    private Date dateUpdated;
 
    public Sendero() {
-      this.user_rating  = new HashMap<>();
+      userRating = 0;
    }
 
    // Coordinates
@@ -127,7 +125,16 @@ public class Sendero extends Model {
 
 
    private Double rating; // Global rating
-   public Map<String, Integer> user_rating; // User_Rating
+
+   public Integer getUserRating() {
+      return userRating;
+   }
+
+   public void setUserRating(Integer userRating) {
+      this.userRating = userRating;
+   }
+
+   private Integer userRating; // User_Rating
 
    // Comments
    public List<Comment> comments() {

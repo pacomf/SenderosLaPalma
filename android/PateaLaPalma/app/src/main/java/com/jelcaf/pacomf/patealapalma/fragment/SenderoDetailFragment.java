@@ -8,22 +8,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.activity.LocationBaseActivity;
 import com.jelcaf.pacomf.patealapalma.activity.SenderoDetailWithImageActivity;
 import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Geo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
+import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
 import com.jelcaf.pacomf.patealapalma.views.CustomMapView;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpMap;
+import com.jelcaf.pacomf.patealapalma.views.Utilities;
 import com.mobandme.android.bind.Binder;
 
 import org.osmdroid.DefaultResourceProxyImpl;
@@ -110,6 +113,23 @@ public class SenderoDetailFragment extends Fragment {
    }
 
     protected void initializeViews(View rootView){
+
+        ImageView l1 = (ImageView) rootView.findViewById(R.id.leaf1);
+        ImageView l2 = (ImageView) rootView.findViewById(R.id.leaf2);
+        ImageView l3 = (ImageView) rootView.findViewById(R.id.leaf3);
+        ImageView l4 = (ImageView) rootView.findViewById(R.id.leaf4);
+        ImageView l5 = (ImageView) rootView.findViewById(R.id.leaf5);
+        Utilities.setRating(getActivity(), mSendero.getUserRating(), l1, l2, l3, l4, l5);
+
+        LinearLayout ratingLL = (LinearLayout) rootView.findViewById(R.id.ratingLL);
+
+        ratingLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CustomDialogRating.showDialog(getActivity(), mSendero.getServerId(), mSendero.getUserRating());
+            }
+        });
+
         map = (CustomMapView) rootView.findViewById(R.id.map);
         View clickMap = rootView.findViewById(R.id.clickMap);
         // TODO: Coger las Coordenadas del Sendero

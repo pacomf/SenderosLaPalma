@@ -65,7 +65,7 @@ public class JSONToModel {
             }
             Integer userrating = response.optInt("userrating", -1);
             if (userrating != -1){
-                sendero.user_rating.put(idUser, userrating);
+                sendero.setUserRating(userrating);
             }
             //TODO: Save Sendero
         } catch (Exception e){
