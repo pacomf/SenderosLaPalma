@@ -33,9 +33,6 @@ public class RecommendSenderoFragment extends Fragment {
 
       initializeViews(rootView);
 
-      // TODO: Comprobar si la BBDD esta inicializada (con valores) o no
-      LoadData.loadLocalData(getActivity());
-
       return rootView;
    }
 

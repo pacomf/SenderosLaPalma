@@ -110,6 +110,9 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       pager.setAdapter(adapter);
 
       tabHost.setViewPager(pager);
+
+      // TODO: Comprobar si la BBDD esta inicializada (con valores) o no. Sino cargarla llamando a la siguiente funcion
+      // LoadData.loadLocalData(this);
    }
 
    @Override

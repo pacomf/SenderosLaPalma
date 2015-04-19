@@ -121,6 +121,8 @@ public class LoadData {
                         end.setLatitude(coordinatesList.get(coordinatesList.size() - 1).getLatitud());
                         end.setLongitude(coordinatesList.get(coordinatesList.size()-1).getLongitud());
 
+                        // TODO: Crear objeto sendero y dependencias (coordinates, etc) y almacenarlo en BBDD
+
                         porcentaje=(int)((i*100)/buffer.length());
                         publishProgress("" + porcentaje);
                     } catch (Exception e){
