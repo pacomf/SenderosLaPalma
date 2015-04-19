@@ -27,6 +27,7 @@ import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
+import com.jelcaf.pacomf.patealapalma.views.CustomPopUpWearable;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
@@ -185,6 +186,12 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       itemIcon = new ImageView(this);
       itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_clothes));
       SubActionButton clothesButton = itemBuilder.setContentView(itemIcon).build();
+      clothesButton.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+            CustomPopUpWearable.newInstance().show(getFragmentManager(), null);
+         }
+      });
 
       mFloatMenu = new FloatingActionMenu.Builder(this)
             .addSubActionView(addImageButton)
