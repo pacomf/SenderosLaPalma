@@ -38,6 +38,7 @@
 
     <!-- Title Buttons -->
     <string name="btn_title_login">Iniciar Sesión</string>
+    <string name="btn_como_llegar">¿Cómo llegar?</string>
 
     <!-- TextView -->
     <string name="tv_anonymous_mode">Entra en modo Anónimo</string>

@@ -1,6 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.fragment;
 
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,8 +11,11 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonRectangle;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.activity.LocationBaseActivity;
+import com.jelcaf.pacomf.patealapalma.activity.SenderoDetailWithImageActivity;
 import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Geo;
@@ -136,6 +140,22 @@ public class SenderoDetailFragment extends Fragment {
         });
 
         initMap(coordinatesSendero.get(0).getLatitud(), coordinatesSendero.get(0).getLongitud(), coordinatesSendero.get(coordinatesSendero.size() - 1).getLatitud(), coordinatesSendero.get(coordinatesSendero.size() - 1).getLongitud());
+
+        ButtonRectangle comoLlegarBTN = (ButtonRectangle) rootView.findViewById(R.id.btn_como_llegar);
+        comoLlegarBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    // TODO: Asignar a senderoLocation el valo de mSendero.getGeoStart()
+                    Location senderoLocation = new Location("sendero");
+                    senderoLocation.setLatitude(28.712428);
+                    senderoLocation.setLongitude(-17.859723);
+                    com.jelcaf.pacomf.patealapalma.network.Utilities.howToGoToSendero(getActivity(), ((SenderoDetailWithImageActivity) getActivity()).getCurrentLocation(), senderoLocation);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
 
         Button moreCommentsBTN = (Button) rootView.findViewById(R.id.showMoreComments);
         moreCommentsBTN.setOnClickListener(new View.OnClickListener() {

@@ -90,22 +90,49 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="8sp">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:orientation="horizontal"
+                  android:layout_width="wrap_content"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginRight="30dp"
+                  android:layout_marginTop="10dp"
+                  android:layout_marginBottom="10dp"
+                  android:layout_height="wrap_content">
 
-        <com.jelcaf.pacomf.patealapalma.views.SimpleDataView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/sendero_rating_view"
-            custom:mytitle="Rating"
-            custom:myvalue="5,6"
-            custom:image="@drawable/rating"
-            android:padding="4sp"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"/>
+        <ImageView
+            android:id="@+id/leaf1"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/leaf_off"/>
+
+        <ImageView
+            android:id="@+id/leaf2"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/leaf_off"/>
+
+        <ImageView
+            android:id="@+id/leaf3"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/leaf_off"/>
+
+        <ImageView
+            android:id="@+id/leaf4"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/leaf_off"/>
+
+        <ImageView
+            android:id="@+id/leaf5"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:src="@drawable/leaf_off"/>
 
     </LinearLayout>
 
@@ -132,6 +159,15 @@
             android:padding="6sp" />
 
     </android.support.v7.widget.CardView>
+
+    <com.gc.materialdesign.views.ButtonRectangle
+        android:id="@+id/btn_como_llegar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/btn_como_llegar"/>
 
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"

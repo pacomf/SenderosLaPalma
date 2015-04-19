@@ -103,10 +103,6 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       final Activity activity = this;
       mFab = findViewById(R.id.fab);
 
-      // TODO: Asignar al "Como llegar" recuperando la Location del Sendero (geoStart)
-//      Location senderoLocation = getCurrentLocation();
-//      com.jelcaf.pacomf.patealapalma.network.Utilities.howToGoToSendero(activity, getCurrentLocation(), senderoLocation);
-
       mFabMargin = getResources().getDimensionPixelSize(R.dimen.margin_standard);
       ViewHelper.setScaleX(mFab, 0);
       ViewHelper.setScaleY(mFab, 0);
