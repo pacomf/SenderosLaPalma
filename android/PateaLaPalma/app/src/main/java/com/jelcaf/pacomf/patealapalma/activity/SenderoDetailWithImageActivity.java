@@ -16,11 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.activeandroid.ActiveAndroid;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollViewCallbacks;
 import com.github.ksoichiro.android.observablescrollview.ScrollState;
 import com.github.ksoichiro.android.observablescrollview.ScrollUtils;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Photo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.images.Utilities;
@@ -28,11 +31,14 @@ import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpWearable;
+import com.jelcaf.pacomf.patealapalma.views.PhotoSliderView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
+
+import java.util.List;
 
 /**
  * @author Jorge Carballo
@@ -44,12 +50,11 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
    private static final boolean TOOLBAR_IS_STICKY = true;
 
    private View mToolbar;
-   private View mImageView;
+   private SliderLayout mImageSlider;
    private View mOverlayView;
    public static ObservableScrollView mScrollView;
    private TextView mTitleView;
    private View mFab;
-//   private ImageView mFab;
    private int mActionBarSize;
    private int mFlexibleSpaceShowFabOffset;
    private int mFlexibleSpaceImageHeight;
@@ -93,7 +98,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       if (!TOOLBAR_IS_STICKY) {
          mToolbar.setBackgroundColor(Color.TRANSPARENT);
       }
-      mImageView = findViewById(R.id.image);
+      mImageSlider = (SliderLayout)findViewById(R.id.image);
       mOverlayView = findViewById(R.id.overlay);
       mScrollView = (ObservableScrollView) findViewById(R.id.scroll);
       mScrollView.setScrollViewCallbacks(this);
@@ -141,6 +146,8 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       }
 
       buildFloatingMenu(activity, mSendero.getId().toString());
+
+      addImagesToSlider();
    }
 
    private void buildFloatingMenu(final Activity activity, final String idSendero) {
@@ -208,7 +215,8 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       float flexibleRange = mFlexibleSpaceImageHeight - mActionBarSize;
       int minOverlayTransitionY = mActionBarSize - mOverlayView.getHeight();
       ViewHelper.setTranslationY(mOverlayView, ScrollUtils.getFloat(-scrollY, minOverlayTransitionY, 0));
-      ViewHelper.setTranslationY(mImageView, ScrollUtils.getFloat(-scrollY / 2, minOverlayTransitionY, 0));
+      ViewHelper.setTranslationY(mImageSlider, ScrollUtils.getFloat(-scrollY / 2,
+            minOverlayTransitionY, 0));
 
       // Change alpha of overlay
       ViewHelper.setAlpha(mOverlayView, ScrollUtils.getFloat((float) scrollY / flexibleRange, 0, 1));
@@ -321,6 +329,20 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       }
    }
 
+   private void addImagesToSlider() {
+      List<Photo> lPhotos = mSendero.photos();
+      for (Photo lPhoto: lPhotos) {
+         PhotoSliderView photoSliderView = new PhotoSliderView(this);
+         photoSliderView
+               .image(lPhoto.getUrl())
+               .setScaleType(BaseSliderView.ScaleType.CenterCrop);
+         photoSliderView.textBackgroundColor(ScrollUtils.getColorWithAlpha(0.4f, mToolbarColor));
+
+         mImageSlider.addSlider(photoSliderView);
+      }
+
+   }
+
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
       int id = item.getItemId();
@@ -368,4 +390,6 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          mFloatMenu.updateItemPositions();
       }
    }
+
+
 }

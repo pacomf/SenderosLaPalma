@@ -20,6 +20,15 @@ public class Photo extends Model {
 
    private String url;
 
+   private Date date;
+   private String owner;
+   private Integer likes;
+   private Location location;
+
+   public Photo() {
+      super();
+   }
+
    public Photo(Sendero sendero, String url, String owner, java.util.Date date, Integer likes, Location location) {
       this.sendero = sendero;
       this.url = url;
@@ -29,9 +38,7 @@ public class Photo extends Model {
       this.location = location;
    }
 
-   private Date date;
-   private String owner;
-   private Integer likes;
-   private Location location;
-
+   public String getUrl() {
+      return this.url;
+   }
 }

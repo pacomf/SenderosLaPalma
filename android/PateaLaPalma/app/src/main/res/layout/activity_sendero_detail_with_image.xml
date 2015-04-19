@@ -6,13 +6,19 @@
              android:layout_height="match_parent"
              android:orientation="vertical">
 
-    <ImageView
+    <!--ImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="@dimen/flexible_space_image_height"
         android:scaleType="centerCrop"
         android:background="?attr/colorPrimary"
-        />
+        /-->
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/flexible_space_image_height"
+        android:background="?attr/colorPrimary"/>
 
     <View
         android:id="@+id/overlay"
