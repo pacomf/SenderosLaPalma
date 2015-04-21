@@ -1,6 +1,9 @@
 package com.jelcaf.pacomf.patealapalma.recommender;
 
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Jorge Carballo
@@ -9,6 +12,8 @@ import java.io.Serializable;
 public class RecommenderBaseQuestion implements IRecommenderQuestion, Serializable {
 
    private String question;
+   protected boolean mandatory = false;
+   private ISenderoFilter mSenderoFilter = null;
 
    protected RecommenderBaseQuestion(String question) {
       this.question = question;
@@ -49,8 +54,20 @@ public class RecommenderBaseQuestion implements IRecommenderQuestion, Serializab
 
    @Override
    public boolean isMandatory() {
-      return false;
+      return mandatory;
    }
 
+   @Override
+   public boolean checkSendero(Sendero sendero) {
+      if (mSenderoFilter == null) {
+         return true;
+      }
+      return mSenderoFilter.filterSendero(sendero);
+   }
+
+   @Override
+   public void addSenderoFilter(ISenderoFilter senderoFilter) {
+      mSenderoFilter = senderoFilter;
+   }
 
 }

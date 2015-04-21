@@ -1,6 +1,9 @@
 package com.jelcaf.pacomf.patealapalma.recommender;
 
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -56,6 +59,10 @@ public class RecommenderSingleChoiceQuestion extends RecommenderBaseQuestion imp
 
    public void setSelectedResponse(Integer selectedResponse) {
       this.selectedResponse = selectedResponse;
+   }
+
+   public void setMandatory(Boolean mandatory) {
+      this.mandatory = mandatory;
    }
 
 

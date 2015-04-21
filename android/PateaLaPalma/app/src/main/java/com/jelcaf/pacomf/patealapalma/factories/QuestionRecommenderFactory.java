@@ -1,5 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.factories;
 
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.recommender.ISenderoFilter;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderCalendarQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderOptionResponse;
@@ -37,7 +39,7 @@ public class QuestionRecommenderFactory {
       strResponses.add("Menos de 5");
       strResponses.add("Entre 5 y 10");
       strResponses.add("Más de 10");
-      questionForm.add(createSingleChoiceQuestion(strQuestion, strResponses));
+      questionForm.add(createSingleChoiceQuestion(strQuestion, strResponses, true));
 
       strQuestion = "¿Irán niños al sendero?";
       strResponses.clear();
@@ -59,7 +61,18 @@ public class QuestionRecommenderFactory {
       strResponses.add("Media");
       strResponses.add("Alta");
       strResponses.add("Extrema");
-      questionForm.add(createSingleChoiceQuestion(strQuestion, strResponses));
+      final RecommenderSingleChoiceQuestion difficultyQuestion = createSingleChoiceQuestion(strQuestion, strResponses);
+      difficultyQuestion.addSenderoFilter(new ISenderoFilter() {
+         @Override
+         public boolean filterSendero(Sendero sendero) {
+            if (sendero.getDifficulty() == null || sendero.getDifficulty().equals
+                  (difficultyQuestion.getResponse())) {
+               return true;
+            }
+            return false;
+         }
+      });
+      questionForm.add(difficultyQuestion);
 
       strQuestion = "¿El sendero es Circular?";
       strResponses.clear();
@@ -88,6 +101,11 @@ public class QuestionRecommenderFactory {
    }
 
    private RecommenderSingleChoiceQuestion createSingleChoiceQuestion(String strQuestion, List<String> strResponses) {
+      return createSingleChoiceQuestion(strQuestion, strResponses, false);
+   }
+
+   private RecommenderSingleChoiceQuestion createSingleChoiceQuestion(String strQuestion,
+            List<String> strResponses, Boolean mandatory) {
       List<RecommenderOptionResponse> responses = new ArrayList<RecommenderOptionResponse>();
       Integer i = START_VALUE;
       for (String strResponse : strResponses) {
@@ -97,6 +115,7 @@ public class QuestionRecommenderFactory {
          i++;
       }
       RecommenderSingleChoiceQuestion question = new RecommenderSingleChoiceQuestion(strQuestion, responses);
+      question.setMandatory(mandatory);
       return question;
    }
 

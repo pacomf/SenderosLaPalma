@@ -1,6 +1,6 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
-import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
@@ -10,9 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Select;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.adapter.RecomenderQuestionsPagerAdapter;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
+import com.nispok.snackbar.Snackbar;
+import com.nispok.snackbar.enums.SnackbarType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -33,6 +42,8 @@ public class RecommenderActivity extends ActionBarActivity {
       // Toolbar Support
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       setSupportActionBar(toolbar);
+
+      ActiveAndroid.initialize(getApplicationContext());
 
       // Show the Up button in the action bar.
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -76,6 +87,9 @@ public class RecommenderActivity extends ActionBarActivity {
       mNextButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
+            if (mNextButton.getText().equals(getResources().getString(R.string.done_text))) {
+               validateMandatoryQuestions();
+            }
             mViewPager.setCurrentItem(getItem(+1), true);
          }
       });
@@ -122,6 +136,64 @@ public class RecommenderActivity extends ActionBarActivity {
          }
          mNextButton.setText(getResources().getString(R.string.done_text));
       }
+   }
+
+   public String validateForm () {
+      List<RecommenderBaseQuestion> mForm = mPagerAdapter.form;
+      for (RecommenderBaseQuestion question :  mForm) {
+         if (question.isMandatory() && question.getResponse() == null) {
+            return "Debe contestar la pregunta " + question.getResumeQuestion();
+         }
+      }
+      return "";
+   }
+
+   private void validateMandatoryQuestions() {
+      String result = validateForm();
+      if (!result.isEmpty()) {
+         Snackbar.with(getApplicationContext().getApplicationContext()) // context
+               .text(result) // text to display
+               .actionLabel("Close") // action button label
+               .actionColor(Color.parseColor("#FF8A80"))
+               .type(SnackbarType.MULTI_LINE)
+               .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
+               .show(this); // activity where it is displayed
+      } else {
+         // TODO: El formulario es válido debemos filtrar los senderos y establecerlos en una
+         // preferencia
+         filtrarSenderos();
+      }
+   }
+
+   private void filtrarSenderos() {
+      List<Sendero> listaSenderos = getAllSenderos();
+      int total = listaSenderos.size();
+
+      // Para cada una de las preguntas le aplicamos el filtro
+      for (RecommenderBaseQuestion question : mPagerAdapter.form) {
+         List<Sendero> filterList = new ArrayList<Sendero>();
+         for (Sendero sendero: listaSenderos) {
+            if (question.checkSendero(sendero)) {
+               filterList.add(sendero);
+            }
+         }
+         listaSenderos = filterList;
+      }
+
+      Snackbar.with(getApplicationContext().getApplicationContext()) // context
+            .text(listaSenderos.size() + " de " + total + " senderos han pasado el filtro" )
+            .actionLabel("Close") // action button label
+            .actionColor(Color.parseColor("#FF8A80"))
+            .type(SnackbarType.MULTI_LINE)
+            .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
+            .show(this); // activity where it is displayed
+
+   }
+
+   private List<Sendero> getAllSenderos() {
+      return new Select()
+            .from(Sendero.class)
+            .execute();
    }
 
 }

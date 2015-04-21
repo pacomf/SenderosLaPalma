@@ -24,7 +24,7 @@ public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
 
    private static int NUM_EXTRA_PAGES = 1;
 
-   private List<RecommenderBaseQuestion> form;
+   public List<RecommenderBaseQuestion> form;
    private RecomenderResumeFragment recomenderResume;
 
    private Random random = new Random();
