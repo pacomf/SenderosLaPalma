@@ -62,7 +62,7 @@ public class SenderoListFragment extends ListFragment {
       /**
        * Callback for when an item has been selected.
        */
-      public void onItemSelected(Long id);
+      public void onItemSelected(String idserver);
    }
 
    /**
@@ -71,7 +71,7 @@ public class SenderoListFragment extends ListFragment {
     */
    private static Callbacks sDummyCallbacks = new Callbacks() {
       @Override
-      public void onItemSelected(Long id) {
+      public void onItemSelected(String id) {
       }
    };
 
@@ -125,8 +125,6 @@ public class SenderoListFragment extends ListFragment {
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
 
-      ActiveAndroid.initialize(getActivity());
-
       Bundle args = getArguments();
       if (args != null && args.getBoolean(SenderosConstants.Arguments.RECOMMENDED, false)) {
          this.recommended = true;
@@ -171,7 +169,7 @@ public class SenderoListFragment extends ListFragment {
    public void onListItemClick(ListView listView, View view, int position, long id) {
       super.onListItemClick(listView, view, position, id);
 
-      mCallbacks.onItemSelected(((Sendero)getListAdapter().getItem(position)).getId());
+      mCallbacks.onItemSelected(((Sendero)getListAdapter().getItem(position)).getServerId());
    }
 
    @Override

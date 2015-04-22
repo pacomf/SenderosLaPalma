@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class JSONToModel {
 
-    public static String ratingFromResponseAddRating (JSONObject response){
-        return response.optString("rating", null);
+    public static Double ratingFromResponseAddRating (JSONObject response){
+        return response.optDouble("rating", 0);
     }
 
     public static Date dateFromResponse (JSONObject response){
@@ -35,29 +35,9 @@ public class JSONToModel {
 
     public static void senderoInfoFromResponse (JSONObject response, String idSendero, String idUser){
         try {
-            // TODO: Recuperar el Sendero de BBDD Local (idSendero)
-            Sendero sendero = new Sendero();
+
+            Sendero sendero = Sendero.getByIdServer(idSendero);
             sendero.setDateUpdated(ISO8601DateParse.parse(response.optString("update")));
-
-            JSONArray comments = response.optJSONArray("comments");
-            List<Comment> commentsList = new ArrayList<>();
-            Comment comment;
-            for (int i=0; i<comments.length(); i++){
-                comment = commentFromJSON(sendero, comments.getJSONObject(i));
-                if (comment != null)
-                    commentsList.add(comment);
-            }
-            // TODO: Asignar la lista de comentarios (commentsList) al Sendero
-
-            JSONArray photos = response.optJSONArray("photos");
-            List<Photo> photosList = new ArrayList<>();
-            Photo photo;
-            for (int i=0; i<photos.length(); i++){
-                photo = photoFromJSON(sendero, photos.getJSONObject(i));
-                if (photo != null)
-                    photosList.add(photo);
-            }
-            // TODO: Asignar la lista de photos (photosList) al Sendero
 
             Double rating = response.optDouble("rating", -1);
             if (rating != -1) {
@@ -67,7 +47,46 @@ public class JSONToModel {
             if (userrating != -1){
                 sendero.setUserRating(userrating);
             }
-            //TODO: Save Sendero
+
+            sendero.save();
+
+            JSONArray comments = response.optJSONArray("comments");
+            Comment comment;
+            List<Comment> commentsL = sendero.comments();
+            for (int i=0; i<comments.length(); i++){
+                comment = commentFromJSON(sendero, comments.getJSONObject(i));
+                if (comment != null) {
+                    Boolean exists = false;
+                    for (Comment c: commentsL){
+                        if ((c.getDescription().equals(comment.getDescription())) && (c.getOwner().equals(comment.getOwner()))){
+                            exists = true;
+                            break;
+                        }
+                    }
+                    if (!exists)
+                        comment.save();
+                }
+            }
+
+            JSONArray photos = response.optJSONArray("photos");
+            Photo photo;
+            List<Photo> photosL = sendero.photos();
+            for (int i=0; i<photos.length(); i++){
+                photo = photoFromJSON(sendero, photos.getJSONObject(i));
+                if (photo != null) {
+                    Boolean exists = false;
+                    for (Photo p: photosL) {
+                        if (p.getUrl().equals(photo.getUrl())){
+                            exists = true;
+                            break;
+                        }
+
+                    }
+                    if (!exists)
+                        photo.save();
+                }
+            }
+
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -96,6 +115,7 @@ public class JSONToModel {
         }
     }
 
+    // TODO: Anadir a la funcion las LISTAS de coordenadas y esas cosas
     public static Sendero senderoFromJSON (JSONObject senderoJSON){
         Sendero sendero = new Sendero();
         sendero.setName(senderoJSON.optString("name"));
@@ -104,8 +124,6 @@ public class JSONToModel {
         sendero.setLength(senderoJSON.optDouble("length"));
         sendero.setType(senderoJSON.optString("type"));
         sendero.setDifficulty(senderoJSON.optString("difficulty"));
-        sendero.setGeoStart(geoStrFromJSON(senderoJSON.optString("geoStart"), "sendero"));
-        sendero.setGeoEnd(geoStrFromJSON(senderoJSON.optString("geoEnd"), "sendero"));
         sendero.setServerId(senderoJSON.optString("_id"));
         JSONArray coordinates = senderoJSON.optJSONArray("coordinates");
         List<Geo> coordinatesList = new ArrayList();
@@ -113,6 +131,7 @@ public class JSONToModel {
             coordinatesList.add(geoFromJSON(sendero, coordinates.optJSONObject(i), "coordinate"));
         }
 
+        /*
         List<Geo> wpList = new ArrayList();
         String wpStr = senderoJSON.optString("water_points");
         String[] wpCoordinates;
@@ -127,7 +146,8 @@ public class JSONToModel {
                 if (geoWP != null)
                     wpList.add(geoWP);
             }
-        }
+        }*/
+
         return sendero;
     }
 

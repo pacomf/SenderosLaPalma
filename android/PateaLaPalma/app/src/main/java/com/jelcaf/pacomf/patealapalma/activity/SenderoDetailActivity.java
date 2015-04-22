@@ -46,8 +46,7 @@ public class SenderoDetailActivity extends LocationBaseActivity{
          // Create the detail fragment and add it to the activity
          // using a fragment transaction.
          Bundle arguments = new Bundle();
-         arguments.putLong(SenderoDetailFragment.ARG_ITEM_ID,
-               getIntent().getLongExtra(SenderoDetailFragment.ARG_ITEM_ID, -1));
+         arguments.putString(SenderoDetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(SenderoDetailFragment.ARG_ITEM_ID));
          SenderoDetailFragment fragment = new SenderoDetailFragment();
          fragment.setArguments(arguments);
          getSupportFragmentManager().beginTransaction()

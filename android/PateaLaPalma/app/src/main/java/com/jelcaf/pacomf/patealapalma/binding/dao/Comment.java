@@ -18,6 +18,10 @@ public class Comment extends Model {
    @Column(name = "senderoFK")
    private Sendero sendero;
 
+   public Comment(){
+      super();
+   }
+
    public Comment(Sendero sendero, String owner, String nameowner, String description, java.util.Date date, Integer likes, Location location) {
       this.sendero = sendero;
       this.owner = owner;
@@ -25,7 +29,7 @@ public class Comment extends Model {
       this.description = description;
       this.date = new java.sql.Date(date.getTime());
       this.likes = likes;
-      this.location = location;
+      //this.location = location;
    }
 
    public String getOwner() {
@@ -44,19 +48,26 @@ public class Comment extends Model {
       return likes;
    }
 
-   public Location getLocation() {
-      return location;
-   }
-
    public String getNameowner() {
       return nameowner;
    }
 
+   @Column(name = "owner")
    private String owner;
+
+   @Column(name = "description")
    private String description;
+
+   @Column(name = "date")
    private Date date;
+
+   @Column(name = "likes")
    private Integer likes;
-   private Location location;
+
+   //@Column(name = "location")
+   //private Location location;
+
+   @Column(name = "nameowner")
    private String nameowner;
 
 }

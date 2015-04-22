@@ -12,6 +12,10 @@ public class Geo extends Model {
         return sendero;
     }
 
+    public Geo(){
+        super();
+    }
+
     public Geo(Double latitud, Double longitud, String type, Sendero sendero) {
         this.latitud = latitud;
         this.longitud = longitud;
@@ -26,6 +30,7 @@ public class Geo extends Model {
     @Column(name = "senderoFK")
     private Sendero sendero;
 
+    @Column(name = "type")
     private String type;
 
     public Double getLatitud() {
@@ -52,6 +57,9 @@ public class Geo extends Model {
         this.type = type;
     }
 
+    @Column(name = "latitud")
     private Double latitud;
+
+    @Column(name = "longitud")
     private Double longitud;
 }

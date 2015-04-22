@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.activeandroid.ActiveAndroid;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
 
@@ -26,8 +28,7 @@ import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
  * {@link com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment.Callbacks} interface
  * to listen for item selections.
  */
-public class SenderoListActivity extends ActionBarActivity
-      implements SenderoListFragment.Callbacks {
+public class SenderoListActivity extends ActionBarActivity implements SenderoListFragment.Callbacks {
 
    /**
     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
@@ -42,6 +43,9 @@ public class SenderoListActivity extends ActionBarActivity
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_sendero_list);
 
+      ActiveAndroid.initialize(this);
+
+
       // Toolbar Support
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       setSupportActionBar(toolbar);
@@ -55,9 +59,8 @@ public class SenderoListActivity extends ActionBarActivity
 
          // In two-pane mode, list items should be given the
          // 'activated' state when touched.
-         ((SenderoListFragment) getSupportFragmentManager()
-               .findFragmentById(R.id.sendero_list))
-               .setActivateOnItemClick(true);
+         senderoListFragment = ((SenderoListFragment) getSupportFragmentManager().findFragmentById(R.id.sendero_list));
+         senderoListFragment.setActivateOnItemClick(true);
       }
 
    }
@@ -69,13 +72,13 @@ public class SenderoListActivity extends ActionBarActivity
     * indicating that the item with the given ID was selected.
     */
    @Override
-   public void onItemSelected(Long id) {
+   public void onItemSelected(String idserver) {
       if (mTwoPane) {
          // In two-pane mode, show the detail view in this activity by
          // adding or replacing the detail fragment using a
          // fragment transaction.
          Bundle arguments = new Bundle();
-         arguments.putLong(SenderoDetailFragment.ARG_ITEM_ID, id);
+         arguments.putString(SenderoDetailFragment.ARG_ITEM_ID, idserver);
          SenderoDetailFragment fragment = new SenderoDetailFragment();
          fragment.setArguments(arguments);
          getSupportFragmentManager().beginTransaction()
@@ -86,7 +89,7 @@ public class SenderoListActivity extends ActionBarActivity
          // In single-pane mode, simply start the detail activity
          // for the selected item ID.
          Intent detailIntent = new Intent(this, SenderoDetailWithImageActivity.class);
-         detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, id);
+         detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, idserver);
          startActivity(detailIntent);
       }
    }

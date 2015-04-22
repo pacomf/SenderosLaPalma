@@ -15,9 +15,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.activeandroid.ActiveAndroid;
 import com.astuetz.PagerSlidingTabStrip;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.binding.utilities.LoadData;
 import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
@@ -111,8 +113,10 @@ public class SenderosSwipeActivity extends LocationBaseActivity
 
       tabHost.setViewPager(pager);
 
-      // TODO: Comprobar si la BBDD esta inicializada (con valores) o no. Sino cargarla llamando a la siguiente funcion
-      // LoadData.loadLocalData(this);
+      ActiveAndroid.initialize(this);
+
+      if (Sendero.isDBEmpty())
+         LoadData.loadLocalData(this);
    }
 
    @Override
@@ -157,13 +161,13 @@ public class SenderosSwipeActivity extends LocationBaseActivity
     * indicating that the item with the given ID was selected.
     */
    @Override
-   public void onItemSelected(Long id) {
+   public void onItemSelected(String idserver) {
       if (mTwoPane) {
          // In two-pane mode, show the detail view in this activity by
          // adding or replacing the detail fragment using a
          // fragment transaction.
          Bundle arguments = new Bundle();
-         arguments.putLong(SenderoDetailFragment.ARG_ITEM_ID, id);
+         arguments.putString(SenderoDetailFragment.ARG_ITEM_ID, idserver);
          SenderoDetailFragment fragment = new SenderoDetailFragment();
          fragment.setArguments(arguments);
          getSupportFragmentManager().beginTransaction()
@@ -174,7 +178,7 @@ public class SenderosSwipeActivity extends LocationBaseActivity
          // In single-pane mode, simply start the detail activity
          // for the selected item ID.
          Intent detailIntent = new Intent(this, SenderoDetailWithImageActivity.class);
-         detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, id);
+         detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, idserver);
          startActivity(detailIntent);
       }
    }

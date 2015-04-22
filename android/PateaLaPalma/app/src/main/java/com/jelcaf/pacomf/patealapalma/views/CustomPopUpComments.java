@@ -17,18 +17,23 @@ import com.facebook.widget.ProfilePictureView;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Paco on 01/04/2015.
  */
 public class CustomPopUpComments extends DialogFragment {
 
-    public static CustomPopUpComments newInstance() {
+    public String idSendero;
+
+    public static CustomPopUpComments newInstance(String idSendero) {
         CustomPopUpComments customPopUpComments = new CustomPopUpComments();
+        customPopUpComments.idSendero = idSendero;
         //customPopUpComments.setStyle(DialogFragment.STYLE_NO_FRAME, android.R.style.Theme_DeviceDefault_Dialog);
         return customPopUpComments;
     }
@@ -85,11 +90,8 @@ public class CustomPopUpComments extends DialogFragment {
 
     void setList(ListView listView, TextView noComments){
 
-        // TODO: Recuperar Listas de Comentarios del Sendero en cuestion
-        ArrayList<Comment> commentsList = new ArrayList<>();
-        for (int index = 0; index < 10; index++) {
-            commentsList.add(new Comment(null, LoginMethods.getIdFacebook(getActivity()), "Paco", "Un comentario muy bonito y de lo boniuto que es es superior y asi para qued uro mas tiempo", new Date(), 0, null));
-        }
+        Sendero mSendero = Sendero.getByIdServer(this.idSendero);
+        List<Comment> commentsList = mSendero.comments();
 
         if (commentsList.isEmpty()){
             noComments.setVisibility(View.VISIBLE);

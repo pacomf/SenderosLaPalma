@@ -70,7 +70,6 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_sendero_detail_with_image);
 
-      // ActiveAndroid
       ActiveAndroid.initialize(this);
 
       Bundle b = getIntent().getExtras();
@@ -78,7 +77,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          // Load the race content specified by the arguments.
          // In a real-world scenario, use a Loader
          // to load content from a content provider.
-         mSendero = Sendero.load(Sendero.class, b.getLong(SenderoDetailFragment.ARG_ITEM_ID));
+         mSendero = Sendero.getByIdServer(b.getString(SenderoDetailFragment.ARG_ITEM_ID));
       }
 
       setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
@@ -135,8 +134,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          // Create the detail fragment and add it to the activity
          // using a fragment transaction.
          Bundle arguments = new Bundle();
-         arguments.putLong(SenderoDetailFragment.ARG_ITEM_ID,
-               getIntent().getLongExtra(SenderoDetailFragment.ARG_ITEM_ID, -1));
+         arguments.putString(SenderoDetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(SenderoDetailFragment.ARG_ITEM_ID));
          SenderoDetailFragment fragment = new SenderoDetailFragment();
          fragment.setArguments(mScrollView);
          fragment.setArguments(arguments);
@@ -174,7 +172,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       addCommentButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-            CustomPopUpComments.newInstance().show(getFragmentManager(), null);
+            CustomPopUpComments.newInstance(mSendero.getServerId()).show(getFragmentManager(), null);
          }
       });
 

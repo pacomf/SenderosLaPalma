@@ -5,6 +5,7 @@ import android.content.Context;
 import android.location.Location;
 import android.os.AsyncTask;
 
+import com.activeandroid.query.Select;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Geo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Photo;
@@ -111,14 +112,14 @@ public class LoadData {
             try {
                 for(int i=0; i<buffer.length(); i++){
                     try {
+
+                        Sendero mSendero = new Sendero();
+
                         String regular_name = buffer.getJSONObject(i).getJSONObject("properties").optString("ID");
                         String version = buffer.getJSONObject(i).getJSONObject("properties").optString("FECHA");
                         Double length = buffer.getJSONObject(i).getJSONObject("properties").optDouble("LONGITUD");
                         String type = buffer.getJSONObject(i).getJSONObject("properties").optString("TIPO");
                         String difficulty = buffer.getJSONObject(i).getJSONObject("properties").optString("DIFICULTAD");
-
-                        //TODO: Pasarle el sendero correspondiente
-                        Sendero mSendero = null;
 
                         JSONObject mData = null;
                         for (int j=0; j<moreData.length(); j++){
@@ -128,41 +129,46 @@ public class LoadData {
                             }
                         }
 
+                        if (mData == null)
+                            continue;
+
                         String name = mData.optString("name");
                         // TODO: Modificar el file senderosInfo para incluir el idserver de Amazon para cada sendero
                         String idserver = mData.optString("idserver");
 
+                        mSendero.setRegularName(regular_name);
+                        mSendero.setVersion(version);
+                        mSendero.setLength(length);
+                        mSendero.setType(type);
+                        mSendero.setDifficulty(difficulty);
+                        mSendero.setName(name);
+                        mSendero.setServerId(idserver);
+
+                        mSendero.save();
+
                         JSONArray coordinates = buffer.getJSONObject(i).getJSONObject("geometry").optJSONArray("coordinates");
-                        List<Geo> coordinatesList = new ArrayList();
                         for (int j=0; j<coordinates.length(); j++){
-                            coordinatesList.add(geoStrFromJSON(coordinates.optString(j), "coordinate", mSendero));
+                            Geo geo = geoStrFromJSON(coordinates.optString(j), "coordinate", mSendero);
+                            geo.save();
                         }
 
-                        Location start = new Location("sendero");
-                        start.setLatitude(coordinatesList.get(0).getLatitud());
-                        start.setLongitude(coordinatesList.get(0).getLongitud());
-
-                        Location end = new Location("sendero");
-                        end.setLatitude(coordinatesList.get(coordinatesList.size() - 1).getLatitud());
-                        end.setLongitude(coordinatesList.get(coordinatesList.size()-1).getLongitud());
-
-                        List<Geo> coordinatesWaterPoints = new ArrayList<>();
                         for (int j=0; j<interes.length(); j++){
-                            if ("Chorro de agua potable".equals(interes.getJSONObject(j).getJSONObject("properties").optString("DESCRIP"))){
+                            if ("Chorro de agua potable".equals(interes.getJSONObject(j).getJSONObject("properties").optString("DESCRIP"))) {
                                 String id = interes.getJSONObject(j).getJSONObject("properties").optString("ID").split("-")[1];
-                                if (regular_name.equals(id))
-                                    coordinatesWaterPoints.add(geoStrFromJSON(interes.getJSONObject(j).getJSONObject("geometry").optString("coordinates"), "waterpoint", mSendero));
+                                if (regular_name.equals(id)){
+                                    Geo geo = geoStrFromJSON(interes.getJSONObject(j).getJSONObject("geometry").optString("coordinates"), "waterpoint", mSendero);
+                                    geo.save();
+                                }
                             }
                         }
 
-                        List<Photo> photos = new ArrayList<>();
-                        photos.add(new Photo(mSendero, mData.optString("url"), "root", new Date(), 0, start));
-
-                        // TODO: Crear objeto sendero y dependencias (coordinates, etc) y almacenarlo en BBDD
+                        Photo photo = new Photo(mSendero, mData.optString("url"), "root", new Date(), 0, null);
+                        photo.save();
 
                         porcentaje=(int)((i*100)/buffer.length());
                         publishProgress("" + porcentaje);
                     } catch (Exception e){
+                        e.printStackTrace();
                         fallos++;
                     }
                 }
@@ -181,6 +187,13 @@ public class LoadData {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             pd.dismiss();
+            List<Sendero> senderos = new Select()
+                    .from(Sendero.class)
+                    .execute();
+            System.out.println("Termineeeee: "+senderos.size());
+            for (Sendero s: senderos){
+                System.out.println("Sendero: "+s.getName());
+            }
         }
 
         @Override

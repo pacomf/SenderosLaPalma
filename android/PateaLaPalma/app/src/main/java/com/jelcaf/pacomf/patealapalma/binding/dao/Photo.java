@@ -18,12 +18,20 @@ public class Photo extends Model {
    @Column(name = "senderoFK")
    private Sendero sendero;
 
+   @Column(name = "url")
    private String url;
 
+   @Column(name = "date")
    private Date date;
+
+   @Column(name = "owner")
    private String owner;
+
+   @Column(name = "likes")
    private Integer likes;
-   private Location location;
+
+   //@Column(name = "location")
+   //private Location location;
 
    public Photo() {
       super();
@@ -35,7 +43,7 @@ public class Photo extends Model {
       this.owner = owner;
       this.likes = likes;
       this.date = new java.sql.Date(date.getTime());
-      this.location = location;
+      //this.location = location;
    }
 
    public String getUrl() {

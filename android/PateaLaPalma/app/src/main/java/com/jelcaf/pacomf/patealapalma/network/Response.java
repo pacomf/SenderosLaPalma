@@ -29,12 +29,12 @@ public class Response {
             return;
          } else {
             pd.dismiss();
-            String rating = JSONToModel.ratingFromResponseAddRating(response);
+            Double rating = JSONToModel.ratingFromResponseAddRating(response);
             if (rating != null) {
-                System.out.println("Rating Devuelto: "+rating);
-                // TODO: Buscar en BBDD Local el Sendero (idSendero)
-                // TODO: Asignar el nuevo rating_medio al Sendero (sendero.rating=rating)
-                // TODO: Asignar en el Sendero el valor <idUser, rating> para guardar en local la valoracion de ese usuario a ese sendero
+                Sendero sendero = Sendero.getByIdServer(idSendero);
+                sendero.setRating(rating);
+                sendero.setUserRating(rating_user);
+                sendero.save();
             }
 
          }
@@ -61,10 +61,10 @@ public class Response {
                 location.setLatitude(latitude);
                 location.setLongitude(longitude);
             }
-             // TODO: Buscar el Sendero en BBDD Local, con el idSendero
-            Sendero sendero = null;
+
+            Sendero sendero = Sendero.getByIdServer(idSendero);
             Comment comentario = new Comment(sendero, idUser, nameOwner, description, date, 0, location);
-            // TODO: Guardar el 'comentario' en BBDD en la lista del Sendero
+            comentario.save();
 
          }
       } catch (Exception e) {
@@ -90,10 +90,10 @@ public class Response {
                  location.setLatitude(latitude);
                  location.setLongitude(longitude);
              }
-             // TODO: Buscar el Sendero en BBDD Local, con el idSendero
-             Sendero sendero = null;
+
+             Sendero sendero = Sendero.getByIdServer(idSendero);
              Photo photo = new Photo(sendero, url, idUser, date, 0, location);
-             // TODO: Guardar la 'photo' en BBDD en la lista del Sendero
+             photo.save();
          }
       } catch (Exception e) {
          pd.dismiss();

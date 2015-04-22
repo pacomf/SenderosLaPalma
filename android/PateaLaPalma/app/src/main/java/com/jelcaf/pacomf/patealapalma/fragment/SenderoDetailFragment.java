@@ -83,7 +83,7 @@ public class SenderoDetailFragment extends Fragment {
          // Load the dummy content specified by the fragment
          // arguments. In a real-world scenario, use a Loader
          // to load content from a content provider.
-         mSendero = Sendero.load(Sendero.class, getArguments().getLong(ARG_ITEM_ID));
+          mSendero = Sendero.getByIdServer(getArguments().getString(SenderoDetailFragment.ARG_ITEM_ID));
 
       }
    }
@@ -133,22 +133,9 @@ public class SenderoDetailFragment extends Fragment {
         map = (CustomMapView) rootView.findViewById(R.id.map);
         View clickMap = rootView.findViewById(R.id.clickMap);
         // TODO: Coger las Coordenadas del Sendero
-        final List<Geo> coordinatesSendero = new ArrayList<>();
-        coordinatesSendero.add(new Geo(28.712428, -17.859723, null ,null));
-        coordinatesSendero.add(new Geo(28.716313, -17.906388, null, null));
-        coordinatesSendero.add(new Geo(28.740699, -17.941578, null, null));
-        coordinatesSendero.add(new Geo(28.763726, -17.953509, null, null));
-        coordinatesSendero.add(new Geo(28.780879, -17.963293, null, null));
-        coordinatesSendero.add(new Geo(28.801113, -17.960375, null, null));
-        coordinatesSendero.add(new Geo(28.822246, -17.954195, null, null));
-        coordinatesSendero.add(new Geo(28.833224, -17.938746, null, null));
-        coordinatesSendero.add(new Geo(28.854651, -17.913597, null, null));
+        final List<Geo> coordinatesSendero = mSendero.coordinates();
         // TODO: Coger las coordenadas de los WaterPoints
-        final List<Geo> coordinatesWaterPoints = new ArrayList<>();
-        coordinatesWaterPoints.add(new Geo(28.780879, -17.963293, null, null));
-        coordinatesWaterPoints.add(new Geo(28.801113, -17.960375, null, null));
-        coordinatesWaterPoints.add(new Geo(28.822246, -17.954195, null, null));
-        coordinatesWaterPoints.add(new Geo(28.833224, -17.938746, null, null));
+        final List<Geo> coordinatesWaterPoints = mSendero.waterPoints();
 
         clickMap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,7 +168,7 @@ public class SenderoDetailFragment extends Fragment {
         moreCommentsBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomPopUpComments.newInstance().show(getActivity().getFragmentManager(), null);
+                CustomPopUpComments.newInstance(mSendero.getServerId()).show(getActivity().getFragmentManager(), null);
             }
         });
 
@@ -225,11 +212,7 @@ public class SenderoDetailFragment extends Fragment {
 
     void setList(ListView listView, TextView noComments, Button moreComments){
 
-        // TODO: Recuperar Listas de Comentarios del Sendero en cuestion
-        ArrayList<Comment> commentsList = new ArrayList<>();
-        for (int index = 0; index < 10; index++) {
-            commentsList.add(new Comment(null, LoginMethods.getIdFacebook(getActivity()), "Paco", "Un comentario muy bonito y de lo boniuto que es es superior y asi para qued uro mas tiempo", new Date(), 0, null));
-        }
+        List<Comment> commentsList = mSendero.comments();
 
         if (commentsList.isEmpty()){
             listView.setVisibility(View.GONE);
@@ -238,7 +221,7 @@ public class SenderoDetailFragment extends Fragment {
             noComments.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CustomPopUpComments.newInstance().show(getActivity().getFragmentManager(), null);
+                    CustomPopUpComments.newInstance(mSendero.getServerId()).show(getActivity().getFragmentManager(), null);
                 }
             });
         } else {
