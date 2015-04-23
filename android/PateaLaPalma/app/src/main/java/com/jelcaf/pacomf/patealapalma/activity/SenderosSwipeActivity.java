@@ -69,13 +69,42 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       // Toolbar Support
       Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
       String idFB = LoginMethods.getIdFacebook(this);
-      CircleImageView profileImg = (CircleImageView) toolbar.findViewById(R.id.profilePicture);
+      final CircleImageView profileImg = (CircleImageView) toolbar.findViewById(R.id.profilePicture);
       TextView name_user = (TextView) toolbar.findViewById(R.id.name_user);
       final Activity activity = this;
       if (idFB != null) {
          try {
             name_user.setText(LoginMethods.getNameFacebook(this));
-            profileImg.setImageBitmap(LoginMethods.getImgProfileFacebook(this));
+            if (LoginMethods.getImgProfileFacebook(this) != null)
+               profileImg.setImageBitmap(LoginMethods.getImgProfileFacebook(this));
+            else {
+               Thread thread=  new Thread(){
+                  @Override
+                  public void run(){
+                     try {
+                        synchronized(this){
+                           while (LoginMethods.getImgProfileFacebook(activity) == null){
+                              wait(1000);
+                              if (LoginMethods.getImgProfileFacebook(activity) != null) {
+                                 activity.runOnUiThread(new Runnable() {
+                                    public void run() {
+                                       profileImg.setImageBitmap(LoginMethods.getImgProfileFacebook(activity));
+                                    }
+                                 });
+                                 break;
+                              }
+                           }
+                        }
+                     }
+                     catch(InterruptedException ex){
+                     }
+
+                     // TODO
+                  }
+               };
+
+               thread.start();
+            }
          } catch (Exception e){
             e.printStackTrace();
          }
