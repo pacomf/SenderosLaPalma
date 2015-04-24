@@ -1,7 +1,9 @@
 package com.jelcaf.pacomf.patealapalma.fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,10 +47,21 @@ public class RecomenderResumeFragment extends Fragment {
 
       for (RecommenderBaseQuestion question : form.questions) {
          TextView tv = new TextView(getActivity());
-         String qAndA = question.getResumeQuestion() + " : " + (question.getResponse() == null ? "N/C"
-               : question.getStrResponse());
+         tv.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
+         String qAndA = "-" + question.getResumeQuestion();
          tv.setText(qAndA);
+         tv.setGravity(Gravity.LEFT);
+
+         TextView tvResponse = new TextView(getActivity());
+         tvResponse.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+         tvResponse.setText(" " + question.getResponse() == null
+               ? "N/C" : question.getStrResponse());
+         tvResponse.setGravity(Gravity.LEFT);
+         tvResponse.setPadding(100, 0, 0, 0);
+
          answersLayout.addView(tv);
+         answersLayout.addView(tvResponse);
+
       }
 
 

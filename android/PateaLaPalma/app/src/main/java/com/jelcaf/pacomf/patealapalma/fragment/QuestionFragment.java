@@ -1,11 +1,13 @@
 package com.jelcaf.pacomf.patealapalma.fragment;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -129,7 +131,7 @@ public class QuestionFragment extends Fragment {
 
    private void createRadioButton(RadioGroup mRadioGroup, final RecommenderSingleChoiceQuestion form, final int i) {
       RecommenderOptionResponse response = form.getPosibleResponses().get(i);
-      RadioButton option = new RadioButton(getActivity());
+      final RadioButton option = new RadioButton(getActivity());
       option.setText(response.text);
       option.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
       option.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +140,16 @@ public class QuestionFragment extends Fragment {
             form.setSelectedResponse(i);
             // TODO: Descomentar para pasar de pregunta cuando seleccionemos una respuesta
             // ((ViewPager)mContainer).setCurrentItem(((ViewPager)mContainer).getCurrentItem() + 1, true);
+         }
+      });
+      option.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+         @Override
+         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (buttonView.isChecked()) {
+               buttonView.setTypeface(Typeface.DEFAULT_BOLD);
+            } else {
+               buttonView.setTypeface(Typeface.SANS_SERIF);
+            }
          }
       });
       mRadioGroup.addView(option);

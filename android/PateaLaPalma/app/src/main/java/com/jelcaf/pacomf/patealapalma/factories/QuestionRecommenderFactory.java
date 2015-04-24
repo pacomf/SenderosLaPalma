@@ -66,7 +66,7 @@ public class QuestionRecommenderFactory {
          @Override
          public boolean filterSendero(Sendero sendero) {
             if (sendero.getDifficulty() == null || sendero.getDifficulty().equals
-                  (difficultyQuestion.getResponse())) {
+                  (difficultyQuestion.getStrResponse())) {
                return true;
             }
             return false;
