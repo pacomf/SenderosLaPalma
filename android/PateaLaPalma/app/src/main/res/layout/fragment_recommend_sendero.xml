@@ -21,8 +21,10 @@
             android:layout_height="wrap_content"
             android:text="Recomendador de Senderos para Grupos"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="30sp"
             android:layout_above="@id/empty"
             android:textColor="@color/white"
+            android:textStyle="bold"
             android:layout_marginBottom="40dp"
             android:gravity="center"/>
 
@@ -35,7 +37,8 @@
             android:text="Iniciar"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="55dp"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            />
 
     </RelativeLayout>
 

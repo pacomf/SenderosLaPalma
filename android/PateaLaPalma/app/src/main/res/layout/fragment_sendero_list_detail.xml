@@ -21,38 +21,30 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_alignParentLeft="true"/>
 
 
         <TextView
             android:id="@+id/sendero_difficulty"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:text="Difficultad"
             android:textSize="10sp"
-            android:layout_marginLeft="10dp"
-            android:gravity="center_horizontal"/>
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:singleLine="true"
+            android:gravity="center"/>
 
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/my_sendero_name"
-        style="?android:attr/textAppearanceLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/image_and_difficulty"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="Nombre"
-        tools:context=".SenderoDetailFragment"/>
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sendero_left_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
+        android:id="@+id/sendero_right_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:orientation="vertical"
         android:layout_alignParentRight="true"
         android:gravity="right">
@@ -62,6 +54,7 @@
             style="?android:attr/textAppearanceMedium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Distance"/>
 
         <TextView
@@ -69,6 +62,7 @@
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="italic"
             android:text="3 h 30 min"/>
 
         <TextView
@@ -76,7 +70,22 @@
             style="?android:attr/textAppearanceSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="10sp"
             android:text="4.3"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/my_sendero_name"
+        style="?android:attr/textAppearanceLargePopupMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/image_and_difficulty"
+        android:layout_toLeftOf="@id/sendero_right_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Nombre"
+        android:singleLine="true"
+        android:gravity="center_vertical"
+        tools:context=".SenderoDetailFragment"/>
 
 </RelativeLayout>

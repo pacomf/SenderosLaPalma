@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gc.materialdesign.views.ButtonRectangle;
+import com.gc.materialdesign.views.Button;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity;
 import com.jelcaf.pacomf.patealapalma.binding.utilities.LoadData;
@@ -37,7 +37,8 @@ public class RecommendSenderoFragment extends Fragment {
    }
 
    private void initializeViews(View rootView) {
-      ButtonRectangle startRecommendButton = (ButtonRectangle)rootView.findViewById(R.id.startRecommendButton);
+      Button startRecommendButton = (Button)rootView.findViewById(R.id
+            .startRecommendButton);
 
       startRecommendButton.setOnClickListener(new View.OnClickListener() {
          @Override

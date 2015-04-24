@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.gc.materialdesign.views.ButtonRectangle;
 import com.github.ksoichiro.android.observablescrollview.ObservableScrollView;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.activity.SenderoDetailWithImageActivity;
 import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
@@ -26,6 +27,7 @@ import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
 import com.jelcaf.pacomf.patealapalma.views.CustomMapView;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpMap;
+import com.jelcaf.pacomf.patealapalma.views.SimpleDataView;
 import com.jelcaf.pacomf.patealapalma.views.Utilities;
 import com.mobandme.android.bind.Binder;
 
@@ -63,7 +65,10 @@ public class SenderoDetailFragment extends Fragment {
    CustomMapView map;
    ObservableScrollView scrollViewParent;
 
-    public SenderoDetailFragment() {
+   SimpleDataView mTime;
+   SimpleDataView mWater;
+
+   public SenderoDetailFragment() {
     }
 
 
@@ -176,6 +181,13 @@ public class SenderoDetailFragment extends Fragment {
         TextView noComments = (TextView) rootView.findViewById(R.id.no_comments);
         setList(listView, noComments, moreCommentsBTN);
 
+        mWater = (SimpleDataView) rootView.findViewById(R.id.sendero_water_view);
+        mWater.setValue(SenderosConstants.WaterFormat.format(SenderosConstants.WATER_BY_KM *
+              mSendero
+              .getLength()) + " litros");
+
+        mTime = (SimpleDataView) rootView.findViewById(R.id.sendero_time);
+        mTime.setValue(SenderosConstants.timeConversion(mSendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM));
     }
 
     protected void initMap(double latStart, double lonStart, double latEnd, double lonEnd){

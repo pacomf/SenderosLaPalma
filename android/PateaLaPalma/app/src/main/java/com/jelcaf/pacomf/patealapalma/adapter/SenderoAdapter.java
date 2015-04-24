@@ -1,6 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.adapter;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.colors.RandomColors;
 
@@ -43,6 +45,7 @@ public class SenderoAdapter extends BaseAdapter {
       TextView distance;
       TextView time;
       TextView difficulty;
+      TextView ratio;
    }
 
    @Override
@@ -69,6 +72,10 @@ public class SenderoAdapter extends BaseAdapter {
          holder = new ViewHolder();
          holder.name = (TextView) convertView.findViewById(R.id.my_sendero_name);
          holder.imageName = (ImageView) convertView.findViewById(R.id.sendero_image);
+         holder.distance = (TextView) convertView.findViewById(R.id.sendero_distance);
+         holder.time = (TextView) convertView.findViewById(R.id.sendero_time);
+         holder.difficulty = (TextView) convertView.findViewById(R.id.sendero_difficulty);
+         holder.ratio = (TextView) convertView.findViewById(R.id.sendero_rating);
 
          convertView.setTag(holder);
       } else {
@@ -78,9 +85,31 @@ public class SenderoAdapter extends BaseAdapter {
       Sendero sendero = senderos.get(position);
 
       holder.name.setText(sendero.getName());
+      holder.distance.setText(sendero.getLength().toString() + " km");
+      holder.time.setText(SenderosConstants.timeConversion(sendero.getLength() *
+            SenderosConstants
+            .SECONDS_IN_KM_MEDIUM));
+      holder.difficulty.setText(sendero.getRegularName());
+      holder.ratio.setText(sendero.getRating() == null ? "Sin ratio" : sendero.getRating().toString
+            ());
 
-      TextDrawable drawable = TextDrawable.builder().buildRound(sendero.getName().substring(0, 1), RandomColors.generator.getColor(sendero.getName()));
+      int color;
+      if (sendero.getDifficulty().equals("Alta")) {
+         color = this.activity.getResources().getColor(R.color.sendero_alta);
+      } else if (sendero.getDifficulty().equals("Media")) {
+         color = this.activity.getResources().getColor(R.color.sendero_media);
+      } else if (sendero.getDifficulty().equals("Baja")){
+         color = this.activity.getResources().getColor(R.color.sendero_baja);
+      } else {
+         color = this.activity.getResources().getColor(R.color.sendero_extrema);
+      }
+
+      TextDrawable drawable = TextDrawable.builder().buildRound(sendero.getRegularName()
+            .substring(0, 2), color);
+
       holder.imageName.setImageDrawable(drawable);
       return convertView;
    }
+
+
 }

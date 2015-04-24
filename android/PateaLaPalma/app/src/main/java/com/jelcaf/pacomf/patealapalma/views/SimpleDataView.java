@@ -72,4 +72,12 @@ public class SimpleDataView extends RelativeLayout {
 
       ((TextView)this.findViewById(R.id.view_value)).setText(mValue);
    }
+
+   public String getTitle() {
+      return this.mTitle;
+   }
+
+   public String getValue() {
+      return this.mValue;
+   }
 }

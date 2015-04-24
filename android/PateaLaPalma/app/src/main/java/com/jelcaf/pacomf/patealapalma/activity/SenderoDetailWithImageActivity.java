@@ -155,6 +155,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       // Añadir imagen
       ImageView itemIcon = new ImageView(this);
       itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_photo));
+      itemIcon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
       SubActionButton addImageButton = itemBuilder.setContentView(itemIcon).build();
       addImageButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -168,6 +169,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       // Añadir Comentario
       itemIcon = new ImageView(this);
       itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_comments));
+      itemIcon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
       SubActionButton addCommentButton = itemBuilder.setContentView(itemIcon).build();
       addCommentButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -179,6 +181,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       // Añadir Valoración
       itemIcon = new ImageView(this);
       itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_rating));
+      itemIcon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
       SubActionButton addRatingButton = itemBuilder.setContentView(itemIcon).build();
       addRatingButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -190,6 +193,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       // Qué ropa llevar
       itemIcon = new ImageView(this);
       itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_clothes));
+      itemIcon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
       SubActionButton clothesButton = itemBuilder.setContentView(itemIcon).build();
       clothesButton.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -233,7 +237,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          titleTranslationY = Math.max(0, titleTranslationY);
       }
       ViewHelper.setTranslationY(mTitleView, titleTranslationY);
-      ViewHelper.setTranslationX(mTitleView, 70);
+      ViewHelper.setTranslationX(mTitleView, 90);
 
       // Translate FAB
       int maxFabTranslationY = mFlexibleSpaceImageHeight - mFab.getHeight() / 2;
@@ -337,6 +341,10 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          photoSliderView.textBackgroundColor(ScrollUtils.getColorWithAlpha(0.4f, mToolbarColor));
 
          mImageSlider.addSlider(photoSliderView);
+      }
+
+      if (lPhotos.size() < 2) {
+         mImageSlider.stopAutoCycle();
       }
 
    }

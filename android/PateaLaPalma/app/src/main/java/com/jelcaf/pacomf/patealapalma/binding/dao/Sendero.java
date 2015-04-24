@@ -7,6 +7,7 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.binding.MyCustomViewBinder;
 import com.mobandme.android.bind.annotations.BindTo;
 
 import java.sql.Date;
@@ -35,12 +36,15 @@ public class Sendero extends Model {
    private String version;
 
    @Column(name = "length")
+   @BindTo(viewId = R.id.sendero_distance_view, binder = MyCustomViewBinder.class)
    private Double length;
 
    @Column(name = "type")
+   @BindTo(viewId = R.id.sendero_tipo, binder = MyCustomViewBinder.class)
    private String type;
 
    @Column(name = "difficulty")
+   @BindTo(viewId = R.id.sendero_difficulty_view, binder = MyCustomViewBinder.class)
    private String difficulty;
 
    @Column(name = "rating")
@@ -163,7 +167,6 @@ public class Sendero extends Model {
       Geo geo = geos.get(geos.size() - 1);
       return geo;
    }
-
 
    public String getServerId () {
       return serverId;

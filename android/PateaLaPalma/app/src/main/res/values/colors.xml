@@ -14,6 +14,11 @@
     <color name="accent">#69F0AE</color>
     <color name="accentLight">#00E676</color>
 
+    <color name="sendero_extrema">#F44336</color>
+    <color name="sendero_alta">#FF9800</color>
+    <color name="sendero_media">#FFEB3B</color>
+    <color name="sendero_baja">#8BC34A</color>
+
     <color name="floatButton">#FFFFFFFF</color>
     <color name="floatButtonPressed">#CCCCCCCC</color>
 

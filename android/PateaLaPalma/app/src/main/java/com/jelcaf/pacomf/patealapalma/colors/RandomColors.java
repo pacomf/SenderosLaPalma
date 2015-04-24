@@ -25,4 +25,5 @@ public class RandomColors {
             Math.max((int) (g * factor), 0),
             Math.max((int) (b * factor), 0));
    }
+
 }

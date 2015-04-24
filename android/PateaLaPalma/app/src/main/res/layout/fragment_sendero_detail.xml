@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/sendero_circular_view"
             custom:mytitle="Circular"
-            custom:myvalue="Si"
+            custom:myvalue="No"
             custom:image="@drawable/circular"
             android:padding="4sp"
             android:layout_weight="2"/>
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/sendero_time"
             custom:mytitle="Duración aproximada"
-            custom:myvalue="3h 4m"
+            custom:myvalue="Sin definir"
             custom:image="@drawable/time"
             android:padding="4sp"
             android:layout_weight="2"/>
@@ -84,6 +84,7 @@
             android:id="@+id/sendero_tipo"
             custom:mytitle="Tipo Sendero"
             custom:myvalue="Pequeño Recorrido"
+            custom:image="@drawable/info"
             android:padding="4sp"
             android:layout_weight="2"/>
 
@@ -99,6 +100,14 @@
                   android:layout_marginTop="10dp"
                   android:layout_marginBottom="10dp"
                   android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="Ratio: "
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"/>
 
         <ImageView
             android:id="@+id/leaf1"
