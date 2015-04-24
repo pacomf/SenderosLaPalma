@@ -72,7 +72,7 @@
     <string name="more_comments">Mostrar más Comentarios</string>
     <string name="no_comments">No existen Comentarios.\n¡Sé el primer en Comentar!</string>
     <string name="process_title">Procesando</string>
-    <string name="load_db">Configurando la Base de Datos por primera vez</string>
+    <string name="load_db">Configurando la Base de Datos por primera vez. Esta operación puede tardar varios minutos. Tenga paciencia, NO requiere conexión a internet.</string>
 
     <!-- File Names -->
     <string name="initial_file">senderos.json</string>

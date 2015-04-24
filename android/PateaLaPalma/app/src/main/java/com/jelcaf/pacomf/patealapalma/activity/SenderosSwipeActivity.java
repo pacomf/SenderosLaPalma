@@ -143,9 +143,6 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       tabHost.setViewPager(pager);
 
       ActiveAndroid.initialize(this);
-
-      if (Sendero.isDBEmpty())
-         LoadData.loadLocalData(this);
    }
 
    @Override

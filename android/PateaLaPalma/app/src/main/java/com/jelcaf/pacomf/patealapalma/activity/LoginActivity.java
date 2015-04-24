@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 
+import com.activeandroid.ActiveAndroid;
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.binding.utilities.LoadData;
 import com.jelcaf.pacomf.patealapalma.fragment.LoginFragment;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
@@ -25,6 +27,11 @@ public class LoginActivity extends FacebookBaseActivity {
 
             setFragmentsFromBundle(savedInstanceState);
         }
+
+        ActiveAndroid.initialize(this);
+
+        if (Sendero.isDBEmpty())
+            LoadData.loadLocalData(this);
     }
 
 

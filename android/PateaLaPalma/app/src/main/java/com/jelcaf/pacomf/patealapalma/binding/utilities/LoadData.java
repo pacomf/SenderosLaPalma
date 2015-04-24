@@ -5,6 +5,7 @@ import android.content.Context;
 import android.location.Location;
 import android.os.AsyncTask;
 
+import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Geo;
@@ -14,8 +15,12 @@ import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -147,9 +152,18 @@ public class LoadData {
                         mSendero.save();
 
                         JSONArray coordinates = buffer.getJSONObject(i).getJSONObject("geometry").optJSONArray("coordinates");
-                        for (int j=0; j<coordinates.length(); j++){
-                            Geo geo = geoStrFromJSON(coordinates.optString(j), "coordinate", mSendero);
-                            geo.save();
+
+                        ActiveAndroid.beginTransaction();
+                        try {
+                            for (int j=0; j<coordinates.length(); j++){
+                                Geo geo = geoStrFromJSON(coordinates.optString(j), "coordinate", mSendero);
+                                geo.save();
+                            }
+
+                            ActiveAndroid.setTransactionSuccessful();
+                        }
+                        finally {
+                            ActiveAndroid.endTransaction();
                         }
 
                         for (int j=0; j<interes.length(); j++){
@@ -181,7 +195,7 @@ public class LoadData {
         protected void onProgressUpdate(String... progress) {
             super.onProgressUpdate(progress);
             pd.setProgress(porcentaje);
-            pd.setMessage(context.getResources().getString(R.string.load_db) + " " + porcentaje + "%");
+            pd.setMessage(context.getResources().getString(R.string.load_db));
         }
 
         protected void onPostExecute(Void result) {
@@ -201,4 +215,6 @@ public class LoadData {
             super.onPreExecute();
         }
     }
+
+
 }
