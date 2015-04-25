@@ -5,15 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.factories.QuestionRecommenderFactory;
 import com.jelcaf.pacomf.patealapalma.fragment.QuestionFragment;
+import com.jelcaf.pacomf.patealapalma.fragment.RecomenderInfoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.RecomenderResumeFragment;
-import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderForm;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -22,36 +20,37 @@ import java.util.Random;
  */
 public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
 
-   private static int NUM_EXTRA_PAGES = 1;
+   private static int NUM_EXTRA_PAGES = 2;
 
-   public List<RecommenderBaseQuestion> form;
+   public RecommenderForm form;
+   private RecomenderInfoFragment recomenderInfo;
    private RecomenderResumeFragment recomenderResume;
-
-   private Random random = new Random();
 
    public RecomenderQuestionsPagerAdapter(FragmentManager fm) {
       super(fm);
 
-      form = QuestionRecommenderFactory.getInstance().obtainQuestionForm();
+//      QuestionRecommenderFactory.getInstance().initializeQuestionForm();
+      form = RecommenderForm.getInstance();
 
-      Bundle arguments = new Bundle();
-      arguments.putSerializable(RecomenderResumeFragment.ARG_FORM, new RecommenderForm(form));
       recomenderResume = new RecomenderResumeFragment();
-      recomenderResume.setArguments(arguments);
+      recomenderInfo = new RecomenderInfoFragment();
 //      fm.beginTransaction()
 //            .replace(R.id.sendero_detail_container, recomenderResume)
 //            .commit();
    }
 
    @Override public Fragment getItem(int i) {
-      if (i < form.size()) {
-         RecommenderBaseQuestion formQuestion = form.get(i);
+      if (i < form.getQuestions().size()) {
+         RecommenderBaseQuestion formQuestion = form.getQuestions().get(i);
          return QuestionFragment.newInstance(formQuestion);
+      }
+      if (i == form.getQuestions().size()) {
+         return recomenderInfo;
       }
       return recomenderResume;
    }
 
    @Override public int getCount() {
-      return form.size() + NUM_EXTRA_PAGES;
+      return form.getQuestions().size() + NUM_EXTRA_PAGES;
    }
 }

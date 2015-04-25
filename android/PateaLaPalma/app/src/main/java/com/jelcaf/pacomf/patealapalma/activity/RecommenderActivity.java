@@ -139,7 +139,7 @@ public class RecommenderActivity extends ActionBarActivity {
    }
 
    public String validateForm () {
-      List<RecommenderBaseQuestion> mForm = mPagerAdapter.form;
+      List<RecommenderBaseQuestion> mForm = mPagerAdapter.form.getQuestions();
       for (RecommenderBaseQuestion question :  mForm) {
          if (question.isMandatory() && question.getResponse() == null) {
             return "Debe contestar la pregunta " + question.getResumeQuestion();
@@ -170,7 +170,7 @@ public class RecommenderActivity extends ActionBarActivity {
       int total = listaSenderos.size();
 
       // Para cada una de las preguntas le aplicamos el filtro
-      for (RecommenderBaseQuestion question : mPagerAdapter.form) {
+      for (RecommenderBaseQuestion question : mPagerAdapter.form.getQuestions()) {
          List<Sendero> filterList = new ArrayList<Sendero>();
          for (Sendero sendero: listaSenderos) {
             if (question.checkSendero(sendero)) {
