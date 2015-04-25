@@ -29,7 +29,7 @@
                 android:textStyle="italic"
                 android:gravity="center_vertical"
                 android:paddingBottom="20dp"
-                android:text="Resúmen del cuestionario"/>
+                android:text="@string/resume_recommender"/>
 
         </LinearLayout>
 

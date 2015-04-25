@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Patea La Palma</string>
-    <string name="app_name_login_page">Patea\nLa Palma</string>
+    <string name="app_name_login_page">Hiking\nLa Palma</string>
     <string name="title_sendero_detail">Sendero Detail</string>
 
     <!-- External APIs IDs-->
@@ -11,37 +11,37 @@
     <!-- Settings -->
     <string name="action_settings">Settings</string>
     <string name="action_info">Info</string>
-    <string name="action_logout">Cerrar Sesión</string>
-    <string name="action_login">Abrir Sesión</string>
+    <string name="action_logout">Close Session</string>
+    <string name="action_login">Open Session</string>
 
     <!-- Config String -->
-    <string name="server_ip">http://192.168.0.196</string>
-    <string name="server_port">7200</string>
+    <string name="server_ip" translatable="false">http://192.168.0.196</string>
+    <string name="server_port" translatable="false">7200</string>
     <string name="clientid_imgur">e29cd388bb8b764</string>
     <string name="clientsecret_imgur">4e46a425b115cae945d7f0f5d3944660599d764c</string>
 
     <!-- Title Tabs -->
-    <string name="group_recommend_senderos">Para Grupos</string>
-    <string name="recommend_senderos">Para Ti</string>
-    <string name="all_senderos">Todos Los Senderos</string>
-    <string name="title_activity_recommender">RecommenderActivity</string>
-    <string name="title_tab_info_security">Por su Seguridad</string>
-    <string name="title_tab_info_warnings">Tenga Precaución</string>
-    <string name="title_tab_info_codes">Códigos</string>
+    <string name="group_recommend_senderos">Groups</string>
+    <string name="recommend_senderos">For you</string>
+    <string name="all_senderos">All Hikes</string>
+    <string name="title_activity_recommender">Recommender</string>
+    <string name="title_tab_info_security">For Your own Safety</string>
+    <string name="title_tab_info_warnings">Warnings</string>
+    <string name="title_tab_info_codes">Codes</string>
 
     <!-- Titles Elements -->
-    <string name="title_popup_comments">Comentarios</string>
-    <string name="title_popup_map">Ruta Completa</string>
+    <string name="title_popup_comments">Comments</string>
+    <string name="title_popup_map">Full Hike</string>
 
     <!-- Placeholders -->
-    <string name="ph_write_comment">Escribe un comentario...</string>
+    <string name="ph_write_comment">Write a comment...</string>
 
     <!-- Title Buttons -->
-    <string name="btn_title_login">Iniciar Sesión</string>
-    <string name="btn_como_llegar">¿Cómo llegar?</string>
+    <string name="btn_title_login">Login</string>
+    <string name="btn_como_llegar">How to get there?</string>
 
     <!-- TextView -->
-    <string name="tv_anonymous_mode">Entra en modo Anónimo</string>
+    <string name="tv_anonymous_mode">Login Incognito Mode</string>
 
     <!-- Name Shared Preferences -->
     <string name="sp_sharedpreferences">sp_patealapalma</string>
@@ -53,34 +53,34 @@
     <string name="temp_picture">tempPLP.jpg</string>
 
     <!-- Messages -->
-    <string name="anonymous">Anónimo</string>
-    <string name="select_picture">Selecciona una Fotografía</string>
-    <string name="upload_picture">Subiendo Foto</string>
-    <string name="upload_comment">Enviando Comentario</string>
-    <string name="upload_rating">Enviando Valoración</string>
-    <string name="procesando">Espere Por Favor... Procesando...</string>
-    <string name="take_picture">Sacar Foto</string>
-    <string name="gallery_picture">Eligir de la Galería</string>
-    <string name="cancel">Cancelar</string>
-    <string name="login">Iniciar Sesión</string>
-    <string name="login_required">Es necesario Iniciar Sesión</string>
-    <string name="title_activity_info">Información Relevante</string>
-    <string name="dialog_rating_title">Tu Valoración</string>
-    <string name="dialog_rating_subtitle">DE 1 A 5</string>
-    <string name="dialog_rating_footer_subtitle">CERRAR</string>
-    <string name="dialog_rating_footer_confirm">Confirmar</string>
-    <string name="more_comments">Mostrar más Comentarios</string>
-    <string name="no_comments">No existen Comentarios.\n¡Sé el primer en Comentar!</string>
-    <string name="process_title">Procesando</string>
-    <string name="load_db">Configurando la Base de Datos por primera vez. Esta operación puede tardar varios minutos. Tenga paciencia, NO requiere conexión a internet.</string>
+    <string name="anonymous">Incognito</string>
+    <string name="select_picture">Select a Picture</string>
+    <string name="upload_picture">Uploading Picture</string>
+    <string name="upload_comment">Sending Comment</string>
+    <string name="upload_rating">Sending Rating</string>
+    <string name="procesando">Please, wait... Processing...</string>
+    <string name="take_picture">Take a Picture</string>
+    <string name="gallery_picture">Choose from Gallery</string>
+    <string name="cancel">Cancel</string>
+    <string name="login">Login</string>
+    <string name="login_required">Login is required</string>
+    <string name="title_activity_info">Information of Interest</string>
+    <string name="dialog_rating_title">Your Rating</string>
+    <string name="dialog_rating_subtitle">FROM 1 TO 5</string>
+    <string name="dialog_rating_footer_subtitle">CLOSE</string>
+    <string name="dialog_rating_footer_confirm">Agree</string>
+    <string name="more_comments">More Comments</string>
+    <string name="no_comments">There are NO Comments.\nBe the first to comment!</string>
+    <string name="process_title">Processing</string>
+    <string name="load_db">Configuring the Database for the first time. This may take several minutes. Be patient, NO internet connection required.</string>
 
     <!-- File Names -->
     <string name="initial_file">senderos.json</string>
 
     <!-- Codes Colors Senderos -->
-    <string name="senderocc_correct">Continuidad del Sendero</string>
-    <string name="senderocc_incorrect">Mala Dirección</string>
-    <string name="senderocc_direction">Cambio Dirección</string>
+    <string name="senderocc_correct">Correct</string>
+    <string name="senderocc_incorrect">Incorrect</string>
+    <string name="senderocc_direction">Change in Direction</string>
     <string name="senderocc_gr">G.R.</string>
     <string name="senderocc_pr">P.R.</string>
     <string name="senderocc_sl">S.L.</string>
@@ -88,43 +88,49 @@
     <!-- Info Senderos -->
     <string name="sendero_security_info">
         <![CDATA[
-            &#8226; Camine siempre en compañía.
+            &#8226; Go always accompanied.
             <br/>
             <br/>
-            &#8226; Informe de su ruta antes de partir.
+            &#8226; Give details of your inteded route to someone before setting off.
             <br/>
             <br/>
-            &#8226; Lleve consigo un teléfono móvil.
+            &#8226; Carry a mobile phone.
             <br/>
             <br/>
-            &#8226; Lleve agua y alimentos de reserva.
+            &#8226; Take sufficient water and food.
             <br/>
             <br/>
-            &#8226; La ropa y el calzado deben de estar acordes con la dificultad del recorrido.
+            &#8226; Clothing and foodwear should correspond to the degree of difficulty of the hike.
         ]]>
     </string>
     <string name="sendero_warning_info">
         <![CDATA[
-            &#8226; Por favor, no abandone el sendero.
+            &#8226; Do not stray from the sign-posted paths.
             <br/>
             <br/>
-            &#8226; No recolecte ni dañe plantas, animales, rocas o restos arqueológicos.
+            &#8226; Do not take plants, animals, rocks or archaelogical remains with you.
             <br/>
             <br/>
-            &#8226; No haga fuego.
+            &#8226; Do not light fires.
             <br/>
             <br/>
-            &#8226; Acampe en las áreas destinadas para este fin.
+            &#8226; Camp only at the campsites.
             <br/>
             <br/>
-            &#8226; No abandone residuos ni arroje basuras.
+            &#8226; Do not leave or throw away rubbish.
             <br/>
             <br/>
-            &#8226; Evite ruidos que afecten a la vida silvestre.
+            &#8226; Do not make noise to alter animals.
         ]]>
     </string>
+    <string name="prev_text">Previous</string>
     <string name="next_text">Next</string>
     <string name="done_text">Done</string>
-    <string name="recommender_title">Cuestionario</string>
+    <string name="recommender_title">Questionnaire</string>
+    <string name="fail_question">You must answer the question</string>
+    <string name="close">Close</string>
+    <string name="prev_resume_recommender">It will generate a summary of selected responses</string>
+    <string name="resume_recommender">Summary of the Questionnaire</string>
+
 
 </resources>

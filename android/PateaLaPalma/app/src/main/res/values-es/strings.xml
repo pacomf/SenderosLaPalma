@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Patea La Palma</string>
+    <string name="app_name_login_page">Patea\nLa Palma</string>
+    <string name="title_sendero_detail">Sendero Detail</string>
+
+    <!-- External APIs IDs-->
+    <string name="api_fb_id">1420618671581509</string>
+
+    <!-- Settings -->
+    <string name="action_settings">Configuración</string>
+    <string name="action_info">Info</string>
+    <string name="action_logout">Cerrar Sesión</string>
+    <string name="action_login">Abrir Sesión</string>
+
+    <string name="clientid_imgur">e29cd388bb8b764</string>
+    <string name="clientsecret_imgur">4e46a425b115cae945d7f0f5d3944660599d764c</string>
+
+    <!-- Title Tabs -->
+    <string name="group_recommend_senderos">Para Grupos</string>
+    <string name="recommend_senderos">Para Ti</string>
+    <string name="all_senderos">Todos Los Senderos</string>
+    <string name="title_activity_recommender">Recomendación</string>
+    <string name="title_tab_info_security">Por su Seguridad</string>
+    <string name="title_tab_info_warnings">Tenga Precaución</string>
+    <string name="title_tab_info_codes">Códigos</string>
+
+    <!-- Titles Elements -->
+    <string name="title_popup_comments">Comentarios</string>
+    <string name="title_popup_map">Ruta Completa</string>
+
+    <!-- Placeholders -->
+    <string name="ph_write_comment">Escribe un comentario...</string>
+
+    <!-- Title Buttons -->
+    <string name="btn_title_login">Iniciar Sesión</string>
+    <string name="btn_como_llegar">¿Cómo llegar?</string>
+
+    <!-- TextView -->
+    <string name="tv_anonymous_mode">Entra en modo Anónimo</string>
+
+    <!-- Name Shared Preferences -->
+    <string name="sp_sharedpreferences">sp_patealapalma</string>
+    <string name="sp_fb_id">SPFBID</string>
+    <string name="sp_fb_name">SPFBNAME</string>
+    <string name="sp_fb_img_profile">SPFBIMGPROFILE</string>
+
+    <!-- Name Temp Image (Take Camera Pictures) -->
+    <string name="temp_picture">tempPLP.jpg</string>
+
+    <!-- Messages -->
+    <string name="anonymous">Anónimo</string>
+    <string name="select_picture">Selecciona una Fotografía</string>
+    <string name="upload_picture">Subiendo Foto</string>
+    <string name="upload_comment">Enviando Comentario</string>
+    <string name="upload_rating">Enviando Valoración</string>
+    <string name="procesando">Espere Por Favor... Procesando...</string>
+    <string name="take_picture">Sacar Foto</string>
+    <string name="gallery_picture">Eligir de la Galería</string>
+    <string name="cancel">Cancelar</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="login_required">Es necesario Iniciar Sesión</string>
+    <string name="title_activity_info">Información Relevante</string>
+    <string name="dialog_rating_title">Tu Valoración</string>
+    <string name="dialog_rating_subtitle">DE 1 A 5</string>
+    <string name="dialog_rating_footer_subtitle">CERRAR</string>
+    <string name="dialog_rating_footer_confirm">Confirmar</string>
+    <string name="more_comments">Mostrar más Comentarios</string>
+    <string name="no_comments">No existen Comentarios.\n¡Sé el primer en Comentar!</string>
+    <string name="process_title">Procesando</string>
+    <string name="load_db">Configurando la Base de Datos por primera vez. Esta operación puede tardar varios minutos. Tenga paciencia, NO requiere conexión a internet.</string>
+
+    <!-- File Names -->
+    <string name="initial_file">senderos.json</string>
+
+    <!-- Codes Colors Senderos -->
+    <string name="senderocc_correct">Continuidad del Sendero</string>
+    <string name="senderocc_incorrect">Mala Dirección</string>
+    <string name="senderocc_direction">Cambio Dirección</string>
+    <string name="senderocc_gr">G.R.</string>
+    <string name="senderocc_pr">P.R.</string>
+    <string name="senderocc_sl">S.L.</string>
+
+    <!-- Info Senderos -->
+    <string name="sendero_security_info">
+        <![CDATA[
+            &#8226; Camine siempre en compañía.
+            <br/>
+            <br/>
+            &#8226; Informe de su ruta antes de partir.
+            <br/>
+            <br/>
+            &#8226; Lleve consigo un teléfono móvil.
+            <br/>
+            <br/>
+            &#8226; Lleve agua y alimentos de reserva.
+            <br/>
+            <br/>
+            &#8226; La ropa y el calzado deben de estar acordes con la dificultad del recorrido.
+        ]]>
+    </string>
+    <string name="sendero_warning_info">
+        <![CDATA[
+            &#8226; Por favor, no abandone el sendero.
+            <br/>
+            <br/>
+            &#8226; No recolecte ni dañe plantas, animales, rocas o restos arqueológicos.
+            <br/>
+            <br/>
+            &#8226; No haga fuego.
+            <br/>
+            <br/>
+            &#8226; Acampe en las áreas destinadas para este fin.
+            <br/>
+            <br/>
+            &#8226; No abandone residuos ni arroje basuras.
+            <br/>
+            <br/>
+            &#8226; Evite ruidos que afecten a la vida silvestre.
+        ]]>
+    </string>
+    <string name="prev_text">Anterior</string>
+    <string name="next_text">Siguiente</string>
+    <string name="done_text">Finalizar</string>
+    <string name="recommender_title">Cuestionario</string>
+    <string name="fail_question">Debe contestar la pregunta </string>
+    <string name="close">Cerrar</string>
+    <string name="prev_resume_recommender">Se va a generar un resúmen de las respuestas seleccionadas</string>
+    <string name="resume_recommender">Resúmen del cuestionario</string>
+
+</resources>

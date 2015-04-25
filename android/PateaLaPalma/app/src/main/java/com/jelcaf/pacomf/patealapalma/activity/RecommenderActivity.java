@@ -142,7 +142,7 @@ public class RecommenderActivity extends ActionBarActivity {
       List<RecommenderBaseQuestion> mForm = mPagerAdapter.form.getQuestions();
       for (RecommenderBaseQuestion question :  mForm) {
          if (question.isMandatory() && question.getResponse() == null) {
-            return "Debe contestar la pregunta " + question.getResumeQuestion();
+            return getString(R.string.fail_question) + question.getResumeQuestion();
          }
       }
       return "";
@@ -153,7 +153,7 @@ public class RecommenderActivity extends ActionBarActivity {
       if (!result.isEmpty()) {
          Snackbar.with(getApplicationContext().getApplicationContext()) // context
                .text(result) // text to display
-               .actionLabel("Close") // action button label
+               .actionLabel(getString(R.string.close)) // action button label
                .actionColor(Color.parseColor("#FF8A80"))
                .type(SnackbarType.MULTI_LINE)
                .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
@@ -182,7 +182,7 @@ public class RecommenderActivity extends ActionBarActivity {
 
       Snackbar.with(getApplicationContext().getApplicationContext()) // context
             .text(listaSenderos.size() + " de " + total + " senderos han pasado el filtro" )
-            .actionLabel("Close") // action button label
+            .actionLabel(getString(R.string.close)) // action button label
             .actionColor(Color.parseColor("#FF8A80"))
             .type(SnackbarType.MULTI_LINE)
             .duration(Snackbar.SnackbarDuration.LENGTH_LONG)

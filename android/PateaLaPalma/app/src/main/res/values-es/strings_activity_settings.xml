@@ -1,25 +1,25 @@
 <resources>
-    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings">Configuración</string>
 
     <!-- Strings related to Settings -->
 
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
-    <string name="pref_title_display_weight">User Weight (kg)</string>
+    <string name="pref_title_display_name">Nombre</string>
+    <string name="pref_default_display_name">Jonay Podenco</string>
+    <string name="pref_title_display_weight">Peso (kg)</string>
     <string name="pref_default_display_weight">75</string>
-    <string name="pref_title_display_height">User Height (cm)</string>
+    <string name="pref_title_display_height">Altura (cm)</string>
     <string name="pref_default_display_height">175</string>
 
     <!-- Example settings for Notifications -->
-    <string name="pref_ringtone_silent">Silent</string>
+    <string name="pref_ringtone_silent">Silenciar</string>
 
     <!-- Settings for User -->
-    <string name="pref_header_user_senders">User Preferences</string>
+    <string name="pref_header_user_senders">Preferencias de Usuario</string>
 
-    <string name="pref_title_user_senderos_frecuency">Frequency doing Trails</string>
+    <string name="pref_title_user_senderos_frecuency">Frecuencia realizando Senderos</string>
     <string-array name="pref_user_senderos_frecuency_titles">
         <item>Ninguno</item>
         <item>1 o 2 al año</item>

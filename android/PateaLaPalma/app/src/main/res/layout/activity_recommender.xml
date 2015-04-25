@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
-                        android:text="Previous"/>
+                        android:text="@string/prev_text"/>
 
                 <com.gc.materialdesign.views.ButtonRectangle
                         android:id="@+id/nextButton"
@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@color/colorPrimary"
-                        android:text="Next"/>
+                        android:text="@string/next_text"/>
 
             </LinearLayout>
         </FrameLayout>

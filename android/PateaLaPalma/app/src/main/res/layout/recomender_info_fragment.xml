@@ -18,7 +18,7 @@
             android:textSize="20sp"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="Se va a generar un resúmen de las respuestas seleccionadas" />
+            android:text="@string/prev_resume_recommender" />
 
 
     </LinearLayout>
