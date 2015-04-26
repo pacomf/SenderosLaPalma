@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -18,7 +19,10 @@ import android.util.Base64;
 
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
-import com.jelcaf.pacomf.patealapalma.network.UploadToImgurTask;
+import com.jelcaf.pacomf.patealapalma.network.image.Upload;
+import com.jelcaf.pacomf.patealapalma.network.image.UploadService;
+import com.nispok.snackbar.Snackbar;
+import com.nispok.snackbar.enums.SnackbarType;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -51,10 +55,25 @@ public class Utilities {
       return null;
    }
 
-   public static void uploadImage (Activity ctx, Bitmap imagen, String idUser, String idSendero, double latitude, double longitude, ProgressDialog pd){
-      UploadToImgurTask uploadToImgurTask = new UploadToImgurTask();
-      uploadToImgurTask.setParams(ctx, pd, imagen, idUser, idSendero, latitude, longitude);
-      uploadToImgurTask.execute();
+   public static void uploadImage (Activity ctx, File fimg, Bitmap imagen, String uri, String idUser, String idSendero, double latitude, double longitude, ProgressDialog pd){
+      if (!com.jelcaf.pacomf.patealapalma.network.Utilities.haveInternet(ctx)){
+         pd.dismiss();
+         Snackbar.with(ctx) // context
+                 .text(ctx.getString(R.string.fail_internet)) // text to display
+                 .type(SnackbarType.MULTI_LINE)
+                 .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
+                 .show(ctx); // activity where it is displayed
+         return;
+      }
+
+      Upload upload = new Upload();
+
+      upload.image = fimg;
+      upload.title = "Patea La Palma";
+      upload.description = idUser+":"+idSendero;
+
+      new UploadService(upload, ctx, pd, idSendero, idUser, latitude, longitude).execute();
+
    }
 
    public static void selectImage (final Activity activity){
@@ -149,10 +168,7 @@ public class Utilities {
          final Bitmap bm = BitmapFactory.decodeFile(f.getAbsolutePath(), btmapOptions);
 
          ProgressDialog pd = ProgressDialog.show(activity, activity.getResources().getText(R.string.upload_picture), activity.getResources().getText(R.string.procesando));
-         Utilities.uploadImage(activity, bm, LoginMethods.getIdFacebook(activity), idSendero, 0, 0, pd);
-
-         f.delete();
-         // TODO: Guardar en local las imagenes sacadas desde la app?
+         Utilities.uploadImage(activity, f, bm, f.getAbsolutePath(), LoginMethods.getIdFacebook(activity), idSendero, 0, 0, pd);
 
       } catch (Exception e) {
          e.printStackTrace();

@@ -128,5 +128,6 @@
     <string name="close">Cerrar</string>
     <string name="prev_resume_recommender">Se va a generar un resúmen de las respuestas seleccionadas</string>
     <string name="resume_recommender">Resúmen del cuestionario</string>
+    <string name="fail_internet">No hay conexión a Internet</string>
 
 </resources>

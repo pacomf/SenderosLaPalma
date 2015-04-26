@@ -49,13 +49,15 @@ dependencies {
     compile 'com.android.support:support-v4:21.0.3'
     compile 'com.android.support:cardview-v7:21.0.+'
 
+    // ActiveAndroid
+    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
+
     // Http for Imgur API
     compile('org.apache.httpcomponents:httpmime:4.+') {
         exclude module: "httpclient"
     }
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
 
-    // ActiveAndroid
-    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
     // Android Bind: https://github.com/txusballesteros/android-bind
     compile 'com.mobandme:android-bind:1.0+'
     // Volley, REST request

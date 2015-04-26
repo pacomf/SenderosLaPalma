@@ -131,6 +131,7 @@
     <string name="close">Close</string>
     <string name="prev_resume_recommender">It will generate a summary of selected responses</string>
     <string name="resume_recommender">Summary of the Questionnaire</string>
+    <string name="fail_internet">Fail Internet Connection</string>
 
 
 </resources>

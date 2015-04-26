@@ -29,6 +29,7 @@ import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.images.Utilities;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
+import com.jelcaf.pacomf.patealapalma.network.image.DocumentHelper;
 import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpWearable;
@@ -39,6 +40,7 @@ import com.nineoldandroids.view.ViewPropertyAnimator;
 import com.oguzdev.circularfloatingactionmenu.library.FloatingActionMenu;
 import com.oguzdev.circularfloatingactionmenu.library.SubActionButton;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -380,7 +382,8 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          try {
             ProgressDialog pd = ProgressDialog.show(this, getResources().getText(R.string.upload_picture), getResources().getText(R.string.procesando));
             pd.setIndeterminate(false);
-            Utilities.uploadImage(this, Utilities.getBitMapFromUri(this, selectedPictureUri), LoginMethods.getIdFacebook(this), mSendero.getServerId(), 0, 0, pd);
+            File chosenFile = new File(DocumentHelper.getPath(this, selectedPictureUri));
+            Utilities.uploadImage(this, chosenFile, Utilities.getBitMapFromUri(this, selectedPictureUri), selectedPictureUri.getPath(), LoginMethods.getIdFacebook(this), mSendero.getServerId(), 0, 0, pd);
          } catch (Exception e) {
             e.printStackTrace();
          }
