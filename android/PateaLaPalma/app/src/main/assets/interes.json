@@ -1193,3 +1193,5 @@
 { "type": "Feature", "properties": { "OBJECTID": 998, "ID": "PDI-PRLP1310-00013", "TIPO": "Natural", "SUBTIPO": "Otros", "DESCRIP": "Zona de reserva de Lomo del Mato" }, "geometry": { "type": "Point", "coordinates": [ -17.849306, 28.725917 ] } },
 { "type": "Feature", "properties": { "OBJECTID": 999, "ID": "PDI-PRLP1310-00015", "TIPO": "Cultural", "SUBTIPO": "Etnog_Otros", "DESCRIP": "Antiguo abrigo pastoril" }, "geometry": { "type": "Point", "coordinates": [ -17.846778, 28.727167 ] } },
 { "type": "Feature", "properties": { "OBJECTID": 1000, "ID": "PDI-PRLP1310-00019", "TIPO": "Natural", "SUBTIPO": "Geol_Barranco", "DESCRIP": "Barranco de Los Guanches" }, "geometry": { "type": "Point", "coordinates": [ -17.850306, 28.740472 ] } }
+]
+}
