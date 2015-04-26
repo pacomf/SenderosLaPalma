@@ -42,11 +42,15 @@ exports.addRating = function (req, res){
 			console.log("Update Rating "+rating._id);
 			senderoModel.findById(req.params.idsendero).exec(function (err, sendero) {
 				if ((sendero !== null) && (sendero !== undefined)){
-					sendero.rating = ((sendero.rating*sendero.nratings)-prating)/(sendero.nratings-1);
-					sendero.nratings = sendero.nratings-1;
-					var arating = sendero.rating*sendero.nratings;
-					sendero.nratings = sendero.nratings+1;
-					sendero.rating = ((arating+parseFloat(req.body.rating))/sendero.nratings);
+					if (sendero.nratings == 1){
+						sendero.rating = parseFloat(req.body.rating);
+					} else {
+						sendero.rating = ((sendero.rating*sendero.nratings)-prating)/(sendero.nratings-1);
+						sendero.nratings = sendero.nratings-1;
+						var arating = sendero.rating*sendero.nratings;
+						sendero.nratings = sendero.nratings+1;
+						sendero.rating = ((arating+parseFloat(req.body.rating))/sendero.nratings);
+					}
 					sendero.save();
 					console.log("Update Rating Sendero "+sendero._id);
 					resOk.rating = sendero.rating;
