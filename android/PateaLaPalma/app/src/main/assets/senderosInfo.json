@@ -2,273 +2,267 @@
 	"senderos":[
 		{
 		 "id":"GR1301",
-		 "idserver":"1",
+		 "idserver":"553d0670407e36d0239b72e4",
 		 "name":"S/C de La Palma - Puntallana",
 	     "url":"http://www.tourmac.info/fotos/GR130-1ETAPA.jpg"
 	    },
 	    {
 		 "id":"GR1302",
-		 "idserver":"1",
+		 "idserver":"553d0670407e36d0239b7af8",
 		 "name":"Puntallana - Barlovento",
 	     "url":"http://www.tourmac.info/fotos/GR130-2ETAPA.jpg"
 	    },
 	    {
 		 "id":"GR1304",
-		 "idserver":"2",
+		 "idserver":"553d0670407e36d0239b84a4",
 		 "name":"Garafía - Tijarafe",
 	     "url":"http://www.tourmac.info/fotos/GR130-4ETAPA.jpg"
 	    },
 	    {
 		 "id":"GR1305",
-		 "idserver":"3",
+		 "idserver":"553d0671407e36d0239b8a37",
 		 "name":"Tijarafe - Los Llanos de Aridane",
 	     "url":"http://www.tourmac.info/fotos/ppbFsEpBxnmtBdqdhfjz.jpg"
 	    },
 	    {
 		 "id":"GR1307",
-		 "idserver":"4",
+		 "idserver":"553d0671407e36d0239b8f31",
 		 "name":"Fuencaliente - Villa de Mazo",
 	     "url":"http://www.tourmac.info/fotos/GR130-7ETAPA.jpg"
 	    },
 	    {
 		 "id":"GR1306",
-		 "idserver":"5",
+		 "idserver":"553d0671407e36d0239b9516",
 		 "name":"Los Llanos de Aridane - Fuencaliente",
 	     "url":"http://www.tourmac.info/fotos/GR130-6ETAPA.jpg"
 	    },
 	    {
 		 "id":"GR1308",
-		 "idserver":"1",
+		 "idserver":"553d0671407e36d0239b9821",
 		 "name":"Villa de Mazo - Santa Cruz de La Palma",
 	     "url":"http://www.tourmac.info/fotos/GR130-8ETAPA.jpg"
 	    },
 	    {
 		 "id":"PRLP0100",
-		 "idserver":"1",
+		 "idserver":"553d0671407e36d0239b9fba",
 		 "name":"Santa Cruz de La Palma - Puerto de Tazacorte",
 	     "url":"http://www.tourmac.info/fotos/PR-LP1.jpg"
 	    },
 	    {
 		 "id":"PRLP0220",
-		 "idserver":"1",
+		 "idserver":"553d0671407e36d0239ba375",
 		 "name":"Ruta de Los Molinos",
 	     "url":"http://www.tourmac.info/fotos/PR-LP2.2.jpg"
 	    },
 	    {
 		 "id":"GR1311",
-		 "idserver":"1",
+		 "idserver":"553d0672407e36d0239bab14",
 		 "name":"Puerto de Tazacorte - Roque de Los Muchachos",
 	     "url":"http://www.tourmac.info/fotos/GR131-1ETAPA.jpg"
 	    },
 	    {
 		 "id":"GR1313",
-		 "idserver":"1",
+		 "idserver":"553d0672407e36d0239bb16e",
 		 "name":"Refugio de El Pilar - Fuencaliente",
 	     "url":"http://www.tourmac.info/fotos/GR131-3ETAPA.jpg"
 	    },
 	    {
 		 "id":"PRLP0210",
-		 "idserver":"1",
+		 "idserver":"553d0672407e36d0239bb456",
 		 "name":"El Corchete",
 	     "url":"https://lh6.googleusercontent.com/-m--OdJACveQ/VNzkU27HbMI/AAAAAAAAFzw/SFYpQynVZXE/w967-h725-no/073.jpg"
 	    },
 	    {
 		 "id":"GR1312",
-		 "idserver":"1",
+		 "idserver":"553d0673407e36d0239bc0ba",
 		 "name":"Roque de Los Muchachos - Refugio del Pilar",
 	     "url":"http://www.tourmac.info/fotos/GR131-2ETAPA.jpg"
 	    },
 	    {
 		 "id":"PRLP0200",
-		 "idserver":"1",
+		 "idserver":"553d0673407e36d0239bcffc",
 		 "name":"La Tabladita - Santa Cruz de La Palma",
 	     "url":"http://www.tourmac.info/fotos/PR-LP2.jpg"
 	    },
 	    {
 		 "id":"PRLP0320",
-		 "idserver":"1",
+		 "idserver":"553d0673407e36d0239bd366",
 		 "name":"Fuente de Olén - Casa del Monte",
 	     "url":"http://www.tourmac.info/fotos/PR-LP3.2.jpg"
 	    },
 	    {
 		 "id":"PRLP0300",
-		 "idserver":"1",
+		 "idserver":"553d0674407e36d0239bdacb",
 		 "name":"Pico de La Nieve - Santa Cruz de La Palma",
 	     "url":"http://www.tourmac.info/fotos/PR-LP3.jpg"
 	    },
 	    {
 		 "id":"PRLP0310",
-		 "idserver":"1",
+		 "idserver":"553d0674407e36d0239bdd11",
 		 "name":"Montaña de Tagoja - Santa Cruz de La Palma",
 	     "url":"http://www.tourmac.info/fotos/PR-LP3.1.jpg"
 	    },
 	    {
 		 "id":"PRLP0400",
-		 "idserver":"1",
+		 "idserver":"553d0674407e36d0239be23e",
 		 "name":"Carretera del Roque Los Muchachos - San Juan de Puntallana",
 	     "url":"http://www.tourmac.info/fotos/PR-LP4.jpg"
 	    },
 	    {
 		 "id":"PRLP0410",
-		 "idserver":"1",
+		 "idserver":"553d0674407e36d0239be56b",
 		 "name":"Cruce de Tenagua - PR LP 4",
 	     "url":"http://www.tourmac.info/fotos/PR-LP4.1.jpg"
 	    },
 	    {
 		 "id":"PRLP0600",
-		 "idserver":"1",
+		 "idserver":"553d0674407e36d0239bea54",
 		 "name":"Los Sauces - Centro de Visitantes de la Reserva de la Biosfera",
 	     "url":"http://www.tourmac.info/fotos/PR-LP6.jpg"
 	    },
 	    {
 		 "id":"PRLP1700",
-		 "idserver":"1",
+		 "idserver":"553d0674407e36d0239bf045",
 		 "name":"Camino de la Faya: Refugio del Pilar - Playa del Hoyo",
 	     "url":"http://www.tourmac.info/fotos/PR-LP17.jpg"
 	    },
 	    {
 		 "id":"PRLP0710",
-		 "idserver":"1",
+		 "idserver":"553d0675407e36d0239bf3aa",
 		 "name":"Las Cabezadas - Centro de Visitantes de Los Tilos",
 	     "url":"http://www.tourmac.info/fotos/PR-LP7.1.jpg"
 	    },
 	    {
 		 "id":"PRLP0800",
-		 "idserver":"1",
+		 "idserver":"553d0675407e36d0239bf8af",
 		 "name":"Pico de La Cruz - Barlovento",
 	     "url":"http://www.tourmac.info/fotos/PR-LP%208.jpg"
 	    },
 	    {
 		 "id":"PRLP0910",
-		 "idserver":"1",
+		 "idserver":"553d0675407e36d0239c04df",
 		 "name":"Roque del Faro",
 	     "url":"http://www.tourmac.info/fotos/sdvyDBCnoarjDDsclECz.JPG"
 	    },
 	    {
 		 "id":"PRLP0900",
-		 "idserver":"1",
+		 "idserver":"553d0675407e36d0239c0cea",
 		 "name":"Los Andenes - Santo Domingo de Garafía",
 	     "url":"http://www.tourmac.info/fotos/PR-LP%209.jpg"
 	    },
 	    {
 		 "id":"PRLP1100",
-		 "idserver":"1",
+		 "idserver":"553d0676407e36d0239c1086",
 		 "name":"Roque de Los Muchachos - Puntagorda",
 	     "url":"http://www.tourmac.info/fotos/PR-LP11.jpg"
 	    },
 	    {
 		 "id":"PRLP1210",
-		 "idserver":"1",
+		 "idserver":"553d0676407e36d0239c127a",
 		 "name":"Lomo de Las Piedras Altas - Tinizara",
 	     "url":"http://www.tourmac.info/fotos/PR-LP%2012.1.jpg"
 	    },
 	    {
 		 "id":"PRLP1200",
-		 "idserver":"1",
+		 "idserver":"553d0676407e36d0239c1736",
 		 "name":"Roque de Los Muchachos - Tijarafe",
 	     "url":"http://www.tourmac.info/fotos/PR-LP12.jpg"
 	    },
 	    {
 		 "id":"PRLP1220",
-		 "idserver":"1",
+		 "idserver":"553d0676407e36d0239c1c85",
 		 "name":"Tijarafe",
 	     "url":"http://www.tourmac.info/fotos/PR-LP12.2.jpg"
 	    },
 	    {
 		 "id":"PRLP1400",
-		 "idserver":"1",
+		 "idserver":"553d0676407e36d0239c1def",
 		 "name":"Refugio de El Pilar - El Paso",
 	     "url":"http://www.tourmac.info/fotos/PR-LP14.jpg"
 	    },
 	    {
 		 "id":"PRLP1330",
-		 "idserver":"1",
+		 "idserver":"553d0676407e36d0239c21f9",
 		 "name":"Centro Visitantes Parque Nacional - Pico Bejenado",
 	     "url":"http://www.tourmac.info/fotos/PR_LP13.3.jpg"
 	    },
 	    {
 		 "id":"PRLP1310",
-		 "idserver":"1",
+		 "idserver":"553d0676407e36d0239c28ca",
 		 "name":"Mirador de La Cumbrecita - Zona de acampada de Taburiente",
 	     "url":"http://www.tourmac.info/fotos/PR-LP13.1.jpg"
 	    },
 	    {
 		 "id":"PRLP1610",
-		 "idserver":"1",
+		 "idserver":"553d0677407e36d0239c2bc7",
 		 "name":"Cruce con el sendero PR LP 16 - La Salemera",
 	     "url":"http://www.tourmac.info/fotos/PR-LP16.1.jpg"
 	    },
 	    {
 		 "id":"PRLP1500",
-		 "idserver":"1",
+		 "idserver":"553d0677407e36d0239c32e1",
 		 "name":"Tigalate - Jedey",
 	     "url":"http://www.tourmac.info/fotos/PR-LP15.jpg"
 	    },
 	    {
 		 "id":"PRLP1600",
-		 "idserver":"1",
+		 "idserver":"553d0677407e36d0239c3784",
 		 "name":"Refugio de El Pilar - Playa del Hoyo",
 	     "url":"http://www.tourmac.info/fotos/PR-LP16.jpg"
 	    },
 	    {
 		 "id":"PRLP1410",
-		 "idserver":"1",
+		 "idserver":"553d0678407e36d0239c3e45",
 		 "name":"Lavas de San Juan",
 	     "url":"http://www.tourmac.info/fotos/PR-LP14.1.jpg"
 	    },
 	    {
 		 "id":"PRLP1800",
-		 "idserver":"1",
+		 "idserver":"553d0678407e36d0239c4527",
 		 "name":"Refugio de El Pilar - Los Guinchos",
 	     "url":"http://www.tourmac.info/fotos/PR-LP18.jpg"
 	    },
 	    {
 		 "id":"PRLP1810",
-		 "idserver":"1",
+		 "idserver":"553d0678407e36d0239c4756",
 		 "name":"Los Cancajos - Cruz de La Pavona",
 	     "url":"http://www.tourmac.info/fotos/PR-LP18.1.jpg"
 	    },
 	    {
 		 "id":"PRLP1900",
-		 "idserver":"1",
+		 "idserver":"553d0678407e36d0239c49d7",
 		 "name":"Las Fuentes de Las Breñas: San Pedro - La Calafata",
 	     "url":"http://www.tourmac.info/fotos/PR-LP19.jpg"
 	    },
 	    {
 		 "id":"PRLP1820",
-		 "idserver":"1",
+		 "idserver":"553d0678407e36d0239c4bac",
 		 "name":"La Calafata - Pista del Carbonero",
 	     "url":"http://www.tourmac.info/fotos/PR-LP18.2.jpg"
 	    },
 	    {
 		 "id":"PRLP0510",
-		 "idserver":"1",
+		 "idserver":"553d0678407e36d0239c4ee0",
 		 "name":"Cubo de La Galga",
 	     "url":"http://www.tourmac.info/fotos/PR-LP%205.1.jpg"
 	    },
 	    {
 		 "id":"PRLP0230",
-		 "idserver":"1",
+		 "idserver":"553d0678407e36d0239c54bd",
 		 "name":"Barranco de La Madera",
 	     "url":"http://www.tourmac.info/fotos/PR-LP2.3.jpg"
 	    },
 	    {
 		 "id":"PRLP1300",
-		 "idserver":"1",
+		 "idserver":"553d0679407e36d0239c5ec6",
 		 "name":"Los Llanos de Aridane - Caldera de Taburiente",
 	     "url":"http://www.tourmac.info/fotos/PR-LP13.jpg"
 	    },
 	    {
 		 "id":"PRLP0920",
-		 "idserver":"1",
+		 "idserver":"553d0675407e36d0239bfd7c",
 		 "name":"La Zarza",
 	     "url":"http://www.tourmac.info/fotos/PR-LP%209.2.jpg"
-	    },
-	    {
-		 "id":"PRLP1700",
-		 "idserver":"1",
-		 "name":"Camino de la Faya: Refugio del Pilar - Playa del Hoyo",
-	     "url":"http://www.tourmac.info/fotos/PR-LP17.jpg"
 	    }
 	]
 }

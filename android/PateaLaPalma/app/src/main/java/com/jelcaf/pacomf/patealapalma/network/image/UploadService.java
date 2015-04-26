@@ -85,7 +85,7 @@ public class UploadService extends AsyncTask<Void, Void, Void> {
     @Override protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
 
-        // TODO: La imagen se borra, ¿guardarla en el futuro?
+        // TODO: La imagen se borra, guardarla en el futuro?
         this.image.delete();
 
         if(response != null){
