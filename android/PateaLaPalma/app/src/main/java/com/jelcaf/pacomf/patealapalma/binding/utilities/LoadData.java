@@ -138,7 +138,7 @@ public class LoadData {
                             continue;
 
                         String name = mData.optString("name");
-                        // TODO: Modificar el file senderosInfo para incluir el idserver de Amazon para cada sendero
+
                         String idserver = mData.optString("idserver");
 
                         mSendero.setRegularName(regular_name);

@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
+import com.jelcaf.pacomf.patealapalma.network.Request;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.Holder;
 import com.orhanobut.dialogplus.OnClickListener;
@@ -17,8 +19,14 @@ import com.orhanobut.dialogplus.ViewHolder;
  */
 public class CustomDialogRating {
 
-    public static void showDialog (final Activity activity, final String idSendero, final int arating) {
+    public static DialogPlus popup;
+    public static SenderoDetailFragment fragment;
+    public static int rating;
 
+    public static void showDialog (final Activity activity, final SenderoDetailFragment fragment, final String idSendero, final int arating) {
+
+        CustomDialogRating.fragment = fragment;
+        CustomDialogRating.rating=0;
         Holder holder;
         if (arating>0) {
             LayoutInflater inflater = LayoutInflater.from(activity);
@@ -38,7 +46,6 @@ public class CustomDialogRating {
         OnClickListener clickListener = new OnClickListener() {
             @Override
             public void onClick(DialogPlus dialog, View view) {
-                int rating=0;
                 ImageView leaf1 = (ImageView) ((View)view.getParent()).findViewById(R.id.leaf1);
                 ImageView leaf2 = (ImageView) ((View)view.getParent()).findViewById(R.id.leaf2);
                 ImageView leaf3 = (ImageView) ((View)view.getParent()).findViewById(R.id.leaf3);
@@ -64,8 +71,7 @@ public class CustomDialogRating {
                     case R.id.footer_confirm_button:
                         if (LoginMethods.checkLogin(activity)) {
                             if (arating != rating){
-                                // TODO: Send Rating to Server. Descomentar linea siguiente
-                                // Request.ratingSenderoPOST(activity, idSendero, LoginMethods.getIdFacebook(activity), rating, com.jelcaf.pacomf.patealapalma.network.Utilities.getProgressDialog(activity, activity.getString(R.string.upload_rating), activity.getString(R.string.procesando)));
+                                Request.ratingSenderoPOST(activity, popup, idSendero, LoginMethods.getIdFacebook(activity), rating, com.jelcaf.pacomf.patealapalma.network.Utilities.getProgressDialog(activity, activity.getString(R.string.upload_rating), activity.getString(R.string.procesando)));
                             }
                         }
                         return;
@@ -81,7 +87,7 @@ public class CustomDialogRating {
             }
         };
 
-        final DialogPlus dialog = new DialogPlus.Builder(activity)
+        popup = new DialogPlus.Builder(activity)
                 .setContentHolder(holder)
                 .setHeader(R.layout.dialog_rating_header)
                 .setFooter(R.layout.dialog_rating_footer)
@@ -89,7 +95,15 @@ public class CustomDialogRating {
                 .setGravity(DialogPlus.Gravity.CENTER)
                 .setOnClickListener(clickListener)
                 .create();
-        dialog.show();
 
+        popup.show();
+
+    }
+
+    public static void dismiss(){
+        if (popup.isShowing()) {
+            popup.dismiss();
+            fragment.uploadFragment();
+        }
     }
 }

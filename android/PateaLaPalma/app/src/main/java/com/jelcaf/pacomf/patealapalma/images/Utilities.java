@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 
 import com.jelcaf.pacomf.patealapalma.R;
+import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 import com.jelcaf.pacomf.patealapalma.network.UploadToImgurTask;
 
 import java.io.ByteArrayOutputStream;
@@ -135,7 +136,7 @@ public class Utilities {
       return uri.getPath();
    }
 
-   public static void getCameraPictureAndUpload (final Activity activity){
+   public static void getCameraPictureAndUpload (final Activity activity, String idSendero){
       File f = new File(Environment.getExternalStorageDirectory().toString());
       for (File temp : f.listFiles()) {
          if (temp.getName().equals(activity.getString(R.string.temp_picture))) {
@@ -147,10 +148,8 @@ public class Utilities {
          BitmapFactory.Options btmapOptions = new BitmapFactory.Options();
          final Bitmap bm = BitmapFactory.decodeFile(f.getAbsolutePath(), btmapOptions);
 
-         //ProgressDialog pd = ProgressDialog.show(this, getResources().getText(R.string.upload_picture), getResources().getText(R.string.procesando));
-         //pd.setIndeterminate(false);
-         //pd.dismiss();
-         //Utilities.uploadImage(this, bm, LoginMethods.getIdFacebook(this), "idSendero", 0, 0, pd);
+         ProgressDialog pd = ProgressDialog.show(activity, activity.getResources().getText(R.string.upload_picture), activity.getResources().getText(R.string.procesando));
+         Utilities.uploadImage(activity, bm, LoginMethods.getIdFacebook(activity), idSendero, 0, 0, pd);
 
          f.delete();
          // TODO: Guardar en local las imagenes sacadas desde la app?

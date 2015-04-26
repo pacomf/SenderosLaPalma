@@ -15,7 +15,7 @@
     <string name="action_login">Open Session</string>
 
     <!-- Config String -->
-    <string name="server_ip" translatable="false">http://192.168.0.196</string>
+    <string name="server_ip" translatable="false">http://192.168.0.197</string>
     <string name="server_port" translatable="false">7200</string>
     <string name="clientid_imgur">e29cd388bb8b764</string>
     <string name="clientsecret_imgur">4e46a425b115cae945d7f0f5d3944660599d764c</string>

@@ -71,6 +71,9 @@ public class ISO8601DateParse {
 
     public static String toString( Date date ) {
 
+        if (date == null)
+            return null;
+
         SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss.SSSZ" );
 
         TimeZone tz = TimeZone.getTimeZone("UTC");

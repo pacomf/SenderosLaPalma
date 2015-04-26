@@ -98,8 +98,6 @@ public class SenderosSwipeActivity extends LocationBaseActivity
                      }
                      catch(InterruptedException ex){
                      }
-
-                     // TODO
                   }
                };
 

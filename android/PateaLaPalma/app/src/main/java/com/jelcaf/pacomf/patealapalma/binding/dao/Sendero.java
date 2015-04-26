@@ -101,7 +101,9 @@ public class Sendero extends Model {
    }
 
    public java.util.Date getDateUpdated() {
-      return new java.util.Date(this.dateUpdated.getTime());
+      if (this.dateUpdated != null)
+         return new java.util.Date(this.dateUpdated.getTime());
+      return null;
    }
 
    public void setDateUpdated(java.util.Date dateU) {
@@ -132,6 +134,8 @@ public class Sendero extends Model {
    }
 
    public Double getRating() {
+      if (rating == null)
+         return 0.0;
       return rating;
    }
 

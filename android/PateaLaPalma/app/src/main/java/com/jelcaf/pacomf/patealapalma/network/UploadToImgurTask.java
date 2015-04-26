@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.util.Base64;
 
 import com.jelcaf.pacomf.patealapalma.R;
 
@@ -18,6 +19,14 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 
 public class UploadToImgurTask extends AsyncTask<String, Void, String> {
 
@@ -40,8 +49,9 @@ public class UploadToImgurTask extends AsyncTask<String, Void, String> {
    @Override
    protected String doInBackground(String... params) {
       final String upload_to = "https://api.imgur.com/3/image";
+      String key = ctx.getString(R.string.clientid_imgur);
 
-      HttpClient httpClient = new DefaultHttpClient();
+      /*HttpClient httpClient = new DefaultHttpClient();
       HttpContext localContext = new BasicHttpContext();
       HttpPost httpPost = new HttpPost(upload_to);
       httpPost.setHeader("Authorization", "Client-ID " + ctx.getString(R.string.clientid_imgur));
@@ -65,8 +75,9 @@ public class UploadToImgurTask extends AsyncTask<String, Void, String> {
          return json.getJSONObject("data").optString("link");
       } catch (Exception e) {
          e.printStackTrace();
-      }
+      }*/
       return null;
+
    }
 
    @Override

@@ -161,7 +161,7 @@ exports.getSendero = function (req, res) {
 	}
 	var ret = {};
 	senderoModel.findById(req.params.idsendero, function (err, sendero) {
-		if (!err){
+		if ((!err) && (sendero !== null) && (sendero !== undefined)){
 			ret.sendero = sendero._id;
 			ret.rating = sendero.rating;
 			ret.update = new Date();

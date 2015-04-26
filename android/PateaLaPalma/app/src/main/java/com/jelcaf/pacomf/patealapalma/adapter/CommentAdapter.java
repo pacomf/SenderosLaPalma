@@ -30,7 +30,7 @@ public class CommentAdapter extends BaseAdapter {
         super();
         this.activity = activity;
         this.comments = comments;
-        dt1 = new SimpleDateFormat("hh:mm:ss dd/MM/yyyy");
+        dt1 = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
         this.limitItems = limitItems;
     }
 

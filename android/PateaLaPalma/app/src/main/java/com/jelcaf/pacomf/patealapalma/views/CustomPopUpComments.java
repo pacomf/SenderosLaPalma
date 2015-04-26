@@ -1,6 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.views;
 
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,7 +19,9 @@ import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
+import com.jelcaf.pacomf.patealapalma.network.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,10 +33,14 @@ import java.util.List;
 public class CustomPopUpComments extends DialogFragment {
 
     public String idSendero;
+    SenderoDetailFragment fragment;
+    CustomPopUpComments popup;
 
-    public static CustomPopUpComments newInstance(String idSendero) {
+    public static CustomPopUpComments newInstance(SenderoDetailFragment fragment, String idSendero) {
         CustomPopUpComments customPopUpComments = new CustomPopUpComments();
         customPopUpComments.idSendero = idSendero;
+        customPopUpComments.fragment = fragment;
+        customPopUpComments.popup = customPopUpComments;
         //customPopUpComments.setStyle(DialogFragment.STYLE_NO_FRAME, android.R.style.Theme_DeviceDefault_Dialog);
         return customPopUpComments;
     }
@@ -62,10 +69,8 @@ public class CustomPopUpComments extends DialogFragment {
             public void onClick(View v) {
                 if (!editText.getText().toString().isEmpty()){
                     if (LoginMethods.checkLogin(getActivity())) {
-                        System.out.println("Valgo C: " + editText.getText().toString());
-                        //TODO: Enviar comentario a servidor
-                        //ProgressDialog pd = Utilities.getProgressDialog(getActivity(), getString(R.string.upload_comment), getString(R.string.procesando));
-                        //Request.commentSenderoPOST(getActivity(), idSendero, LoginMethods.getIdFacebook(getActivity()), LoginMethods.getNameFacebook(getActivity()), latitude, longitude, editText.getText().toString(), pd);
+                        ProgressDialog pd = com.jelcaf.pacomf.patealapalma.network.Utilities.getProgressDialog(getActivity(), getString(R.string.upload_comment), getString(R.string.procesando));
+                        Request.commentSenderoPOST(popup, idSendero, LoginMethods.getIdFacebook(getActivity()), LoginMethods.getNameFacebook(getActivity()), 0.0, 0.0, editText.getText().toString(), pd);
                     }
                 }
             }
@@ -100,6 +105,12 @@ public class CustomPopUpComments extends DialogFragment {
             listView.setAdapter(commentAdapter);
         }
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        fragment.uploadFragment();
     }
 
 }

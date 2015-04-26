@@ -9,7 +9,7 @@ exports.addComment = function (req, res){
 	var newComment= new commentModel({
 		id_sendero: req.params.idsendero,
     	id_owner: req.params.idowner,
-    	name_owner: req.params.nameowner,
+    	name_owner: req.body.nameowner,
     	date: new Date(),
     	geo: utils.toGeo(req.body.latitude, req.body.longitude), 
     	description: req.body.description

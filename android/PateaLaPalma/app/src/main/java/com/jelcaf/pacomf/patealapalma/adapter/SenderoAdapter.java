@@ -90,7 +90,7 @@ public class SenderoAdapter extends BaseAdapter {
             SenderosConstants
             .SECONDS_IN_KM_MEDIUM));
       holder.difficulty.setText(sendero.getRegularName());
-      holder.ratio.setText(sendero.getRating() == null ? "Sin ratio" : sendero.getRating().toString
+      holder.ratio.setText(sendero.getRating() == 0 ? "Sin ratio" : sendero.getRating().toString
             ());
 
       int color;

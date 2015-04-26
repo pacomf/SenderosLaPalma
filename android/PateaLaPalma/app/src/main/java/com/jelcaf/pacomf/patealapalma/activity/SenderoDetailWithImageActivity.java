@@ -1,6 +1,7 @@
 package com.jelcaf.pacomf.patealapalma.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -62,6 +63,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
    private int mToolbarColor;
    private boolean mFabIsShown;
    private FloatingActionMenu mFloatMenu;
+   SenderoDetailFragment fragment;
 
    private Sendero mSendero;
 
@@ -135,7 +137,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          // using a fragment transaction.
          Bundle arguments = new Bundle();
          arguments.putString(SenderoDetailFragment.ARG_ITEM_ID, getIntent().getStringExtra(SenderoDetailFragment.ARG_ITEM_ID));
-         SenderoDetailFragment fragment = new SenderoDetailFragment();
+         fragment = new SenderoDetailFragment();
          fragment.setArguments(mScrollView);
          fragment.setArguments(arguments);
          getSupportFragmentManager().beginTransaction()
@@ -143,7 +145,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
                .commit();
       }
 
-      buildFloatingMenu(activity, mSendero.getId().toString());
+      buildFloatingMenu(activity, mSendero.getServerId());
 
       addImagesToSlider();
    }
@@ -174,7 +176,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       addCommentButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-            CustomPopUpComments.newInstance(mSendero.getServerId()).show(getFragmentManager(), null);
+            CustomPopUpComments.newInstance(fragment, mSendero.getServerId()).show(getFragmentManager(), null);
          }
       });
 
@@ -186,7 +188,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       addRatingButton.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {
-            CustomDialogRating.showDialog(activity, idSendero, mSendero.getUserRating());
+            CustomDialogRating.showDialog(activity, fragment, idSendero, mSendero.getUserRating());
          }
       });
 
@@ -376,16 +378,14 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          if (selectedPictureUri == null)
             return;
          try {
-            // TODO: Parametros correctos: idSendero, latitud, longitud, etc
-            //ProgressDialog pd = ProgressDialog.show(this, getResources().getText(R.string.upload_picture), getResources().getText(R.string.procesando));
-            //pd.setIndeterminate(false);
-            //pd.dismiss();
-            //Utilities.uploadImage(this, Utilities.getBitMapFromUri(this, selectedPictureUri), LoginMethods.getIdFacebook(this), "idSendero", 0, 0, pd);
+            ProgressDialog pd = ProgressDialog.show(this, getResources().getText(R.string.upload_picture), getResources().getText(R.string.procesando));
+            pd.setIndeterminate(false);
+            Utilities.uploadImage(this, Utilities.getBitMapFromUri(this, selectedPictureUri), LoginMethods.getIdFacebook(this), mSendero.getServerId(), 0, 0, pd);
          } catch (Exception e) {
             e.printStackTrace();
          }
       } else if (requestCode == Utilities.CAMERA_INTENT) {
-         Utilities.getCameraPictureAndUpload(this);
+         Utilities.getCameraPictureAndUpload(this, mSendero.getServerId());
       }
 
    }

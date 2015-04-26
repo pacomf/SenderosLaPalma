@@ -3,11 +3,17 @@ package com.jelcaf.pacomf.patealapalma.network;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.location.Location;
 
+import com.jelcaf.pacomf.patealapalma.activity.SenderoDetailWithImageActivity;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Photo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
+import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
+import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
+import com.orhanobut.dialogplus.DialogPlus;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,7 +25,7 @@ import java.util.Date;
  */
 public class Response {
 
-   public static void responseRatingSenderoPOST (Activity activity, String idSendero, String idUser, int rating_user, JSONObject response, ProgressDialog pd){
+   public static void responseRatingSenderoPOST (String idSendero, String idUser, int rating_user, JSONObject response, ProgressDialog pd){
 
       try {
 
@@ -36,7 +42,7 @@ public class Response {
                 sendero.setUserRating(rating_user);
                 sendero.save();
             }
-
+            CustomDialogRating.dismiss();
          }
       } catch (Exception e) {
          pd.dismiss();
@@ -45,7 +51,7 @@ public class Response {
       }
    }
 
-   public static void responseCommentSenderoPOST (Activity activity, String idSendero, String idUser, String nameOwner, String description, Double latitude, Double longitude, JSONObject response, ProgressDialog pd){
+   public static void responseCommentSenderoPOST (CustomPopUpComments popup, String idSendero, String idUser, String nameOwner, String description, Double latitude, Double longitude, JSONObject response, ProgressDialog pd){
 
       try {
 
@@ -65,7 +71,7 @@ public class Response {
             Sendero sendero = Sendero.getByIdServer(idSendero);
             Comment comentario = new Comment(sendero, idUser, nameOwner, description, date, 0, location);
             comentario.save();
-
+            popup.dismiss();
          }
       } catch (Exception e) {
          pd.dismiss();
@@ -83,7 +89,7 @@ public class Response {
             // TODO: ¿Mostrar mensaje de Fallo al usuario?
             return;
          } else {
-            pd.dismiss();
+
              Date date = JSONToModel.dateFromResponse(response);
              Location location = new Location("photo");
              if (latitude != null && longitude != null) {
@@ -94,6 +100,13 @@ public class Response {
              Sendero sendero = Sendero.getByIdServer(idSendero);
              Photo photo = new Photo(sendero, url, idUser, date, 0, location);
              photo.save();
+
+             pd.dismiss();
+
+             Intent detailIntent = new Intent(activity, SenderoDetailWithImageActivity.class);
+             detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, idSendero);
+             activity.startActivity(detailIntent);
+             activity.finish();
          }
       } catch (Exception e) {
          pd.dismiss();
@@ -102,23 +115,21 @@ public class Response {
       }
    }
 
-   public static void responseSenderoGET (Activity activity, String idSendero, String idUser, JSONObject response, ProgressDialog pd){
+   public static void responseSenderoGET (SenderoDetailFragment fragment, String idSendero, String idUser, JSONObject response){
 
       try {
 
          if ((response.optString("res") != null) && (response.optString("res").equals("err"))) {
-            pd.dismiss();
             // TODO: ¿Mostrar mensaje de Fallo al usuario?
             return;
          } else {
-            pd.dismiss();
             System.out.println("Fin: " + response);
             JSONToModel.senderoInfoFromResponse(response, idSendero, idUser);
-
-            // TODO: ¿A dónde redirigir?
+            try {
+                fragment.uploadFragment();
+            } catch(Exception e){}
          }
       } catch (Exception e) {
-         pd.dismiss();
          // TODO: ¿Mostrar mensaje de Fallo al usuario?
          return;
       }

@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Geo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
+import com.jelcaf.pacomf.patealapalma.network.Request;
 import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
 import com.jelcaf.pacomf.patealapalma.views.CustomMapView;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
@@ -67,8 +69,13 @@ public class SenderoDetailFragment extends Fragment {
 
    SimpleDataView mTime;
    SimpleDataView mWater;
+   ListView listView;
+   TextView noComments;
+   Button moreCommentsBTN;
+   CommentAdapter commentAdapter;
+   SenderoDetailFragment fragment;
 
-   public SenderoDetailFragment() {
+    public SenderoDetailFragment() {
     }
 
 
@@ -84,19 +91,20 @@ public class SenderoDetailFragment extends Fragment {
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
 
+      this.fragment = this;
+
       if (getArguments().containsKey(ARG_ITEM_ID)) {
          // Load the dummy content specified by the fragment
          // arguments. In a real-world scenario, use a Loader
          // to load content from a content provider.
           mSendero = Sendero.getByIdServer(getArguments().getString(SenderoDetailFragment.ARG_ITEM_ID));
-
+          Request.senderoGET(getActivity(), this, mSendero.getServerId(), LoginMethods.getIdFacebook(getActivity()));
       }
    }
 
    @Override
    public void onResume() {
       super.onResume();
-
       //Use this code to start the data binding process.
       //  In this case execute the binding between your Model Class and your app UI.
       myModelBinder.bind();
@@ -124,22 +132,20 @@ public class SenderoDetailFragment extends Fragment {
         ImageView l3 = (ImageView) rootView.findViewById(R.id.leaf3);
         ImageView l4 = (ImageView) rootView.findViewById(R.id.leaf4);
         ImageView l5 = (ImageView) rootView.findViewById(R.id.leaf5);
-        Utilities.setRating(getActivity(), mSendero.getUserRating(), l1, l2, l3, l4, l5);
+        Utilities.setRating(getActivity(), mSendero.getRating().intValue(), l1, l2, l3, l4, l5);
 
         LinearLayout ratingLL = (LinearLayout) rootView.findViewById(R.id.ratingLL);
 
         ratingLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomDialogRating.showDialog(getActivity(), mSendero.getServerId(), mSendero.getUserRating());
+                CustomDialogRating.showDialog(getActivity(), fragment, mSendero.getServerId(), mSendero.getUserRating());
             }
         });
 
         map = (CustomMapView) rootView.findViewById(R.id.map);
         View clickMap = rootView.findViewById(R.id.clickMap);
-        // TODO: Coger las Coordenadas del Sendero
         final List<Geo> coordinatesSendero = mSendero.coordinates();
-        // TODO: Coger las coordenadas de los WaterPoints
         final List<Geo> coordinatesWaterPoints = mSendero.waterPoints();
 
         clickMap.setOnClickListener(new View.OnClickListener() {
@@ -158,33 +164,32 @@ public class SenderoDetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 try {
-                    // TODO: Asignar a senderoLocation el valo de mSendero.getGeoStart()
                     Location senderoLocation = new Location("sendero");
-                    senderoLocation.setLatitude(28.712428);
-                    senderoLocation.setLongitude(-17.859723);
+                    senderoLocation.setLatitude(mSendero.geoStart().getLatitud());
+                    senderoLocation.setLongitude(mSendero.geoStart().getLongitud());
                     com.jelcaf.pacomf.patealapalma.network.Utilities.howToGoToSendero(getActivity(), ((SenderoDetailWithImageActivity) getActivity()).getCurrentLocation(), senderoLocation);
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        Button moreCommentsBTN = (Button) rootView.findViewById(R.id.showMoreComments);
+        moreCommentsBTN = (Button) rootView.findViewById(R.id.showMoreComments);
         moreCommentsBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CustomPopUpComments.newInstance(mSendero.getServerId()).show(getActivity().getFragmentManager(), null);
+                CustomPopUpComments.newInstance(fragment, mSendero.getServerId()).show(getActivity().getFragmentManager(), null);
             }
         });
 
-        ListView listView = (ListView)rootView.findViewById(R.id.listViewComments);
-        TextView noComments = (TextView) rootView.findViewById(R.id.no_comments);
-        setList(listView, noComments, moreCommentsBTN);
+        listView = (ListView)rootView.findViewById(R.id.listViewComments);
+        noComments = (TextView) rootView.findViewById(R.id.no_comments);
+        setList();
 
         mWater = (SimpleDataView) rootView.findViewById(R.id.sendero_water_view);
         mWater.setValue(SenderosConstants.WaterFormat.format(SenderosConstants.WATER_BY_KM *
-              mSendero
-              .getLength()) + " litros");
+                mSendero
+                        .getLength()) + " litros");
 
         mTime = (SimpleDataView) rootView.findViewById(R.id.sendero_time);
         mTime.setValue(SenderosConstants.timeConversion(mSendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM));
@@ -222,26 +227,37 @@ public class SenderoDetailFragment extends Fragment {
         mapController.setCenter(startPoint);
     }
 
-    void setList(ListView listView, TextView noComments, Button moreComments){
+    public void setList(){
 
-        List<Comment> commentsList = mSendero.comments();
+        if ((listView == null) || (noComments == null) || (moreCommentsBTN==null))
+            return;
+
+        final List<Comment> commentsList = mSendero.comments();
 
         if (commentsList.isEmpty()){
             listView.setVisibility(View.GONE);
-            moreComments.setVisibility(View.GONE);
+            moreCommentsBTN.setVisibility(View.GONE);
             noComments.setVisibility(View.VISIBLE);
             noComments.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CustomPopUpComments.newInstance(mSendero.getServerId()).show(getActivity().getFragmentManager(), null);
+                    CustomPopUpComments.newInstance(fragment, mSendero.getServerId()).show(getActivity().getFragmentManager(), null);
                 }
             });
         } else {
-            CommentAdapter commentAdapter = new CommentAdapter(getActivity(), commentsList, true);
+            commentAdapter = new CommentAdapter(getActivity(), commentsList, true);
             listView.setAdapter(commentAdapter);
             //setListViewHeightBasedOnChildren(listView);
         }
     }
+
+    public void uploadFragment (){
+        final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        ft.detach(fragment);
+        ft.attach(fragment);
+        ft.commit();
+    }
+
 
     // Para adaptar el tamano de la lista a 3 comentarios (o los que devuelva el getCount()
     /*public static void setListViewHeightBasedOnChildren(ListView listView) {

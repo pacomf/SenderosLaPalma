@@ -9,6 +9,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.binding.parser.ISO8601DateParse;
+import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
+import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
+import com.orhanobut.dialogplus.DialogPlus;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -21,7 +26,7 @@ import java.util.Map;
  */
 public class Request {
 
-   public static void ratingSenderoPOST (final Activity activity, final String idSendero, final String idUser, final int rating, final ProgressDialog pd) {
+   public static void ratingSenderoPOST (final Activity activity, final DialogPlus popup, final String idSendero, final String idUser, final int rating, final ProgressDialog pd) {
 
       final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero+"/rating/"+idUser;
 
@@ -32,7 +37,7 @@ public class Request {
             new Response.Listener<JSONObject>(){
                @Override
                public void onResponse(JSONObject response) {
-                  com.jelcaf.pacomf.patealapalma.network.Response.responseRatingSenderoPOST(activity, idSendero, idUser, rating, response, pd);
+                  com.jelcaf.pacomf.patealapalma.network.Response.responseRatingSenderoPOST(idSendero, idUser, rating, response, pd);
                }
             },
             new Response.ErrorListener() {
@@ -48,9 +53,9 @@ public class Request {
       ConfigWebServices.addToRequestQueue(activity, req);
    }
 
-   public static void commentSenderoPOST (final Activity activity, final String idSendero, final String idUser, final String nameOwner, final Double latitude, final Double longitude, final String description, final ProgressDialog pd) {
+   public static void commentSenderoPOST (final CustomPopUpComments popup, final String idSendero, final String idUser, final String nameOwner, final Double latitude, final Double longitude, final String description, final ProgressDialog pd) {
 
-      final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero+"/comment/"+idUser;
+      final String URL = ConfigWebServices.getURLServer(popup.getActivity())+"/api/senderos/"+idSendero+"/comment/"+idUser;
 
       Map<String, String>  params = new HashMap<String, String>();
       if (latitude != null && longitude != null){
@@ -58,12 +63,13 @@ public class Request {
           params.put("latitude", String.valueOf(latitude));
       }
       params.put("description", description);
+      params.put("nameowner", nameOwner);
 
       JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),
             new Response.Listener<JSONObject>() {
                @Override
                public void onResponse(JSONObject response) {
-                  com.jelcaf.pacomf.patealapalma.network.Response.responseCommentSenderoPOST(activity, idSendero, idUser, nameOwner, description, latitude, longitude, response, pd);
+                  com.jelcaf.pacomf.patealapalma.network.Response.responseCommentSenderoPOST(popup, idSendero, idUser, nameOwner, description, latitude, longitude, response, pd);
                }
             },
             new Response.ErrorListener() {
@@ -76,7 +82,7 @@ public class Request {
       );
 
       // add the request object to the queue to be executed
-      ConfigWebServices.addToRequestQueue(activity, req);
+      ConfigWebServices.addToRequestQueue(popup.getActivity(), req);
    }
 
    public static void photoSenderoPOST (final Activity activity, final String idSendero, final String idUser, final Double latitude, final Double longitude, final String url, final ProgressDialog pd) {
@@ -110,33 +116,30 @@ public class Request {
       ConfigWebServices.addToRequestQueue(activity, req);
    }
 
-   public static void senderoGET (final Activity activity, final String idSendero, final String idUser, final ProgressDialog pd) {
+   public static void senderoGET (final Activity activity, final SenderoDetailFragment fragment, final String idSendero, final String idUser) {
 
-      // TODO: Recuperar de BBDD Local el Sendero (idSendero)
-      //Sendero sendero = null;
+      Sendero sendero = Sendero.getByIdServer(idSendero);
 
-      // TODO: Asignar a dateStr la fecha de ultima actualizacion del sendero (getDateUpdated())
-      String dateStr = "2015-03-24T04:08:15.162Z";
+      // TODO: FUTURO Asignar a dateStr la fecha de ultima actualizacion del sendero (getDateUpdated())
       //String dateStr = ISO8601DateParse.toString(sendero.getDateUpdated());
-      String query = "?date="+dateStr;
+      String query = "?"; // "date="+dateStr;
 
       if (idUser != null)
           query+="&user="+idUser;
 
-      final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero+query;
+      final String URL = ConfigWebServices.getURLServer(activity)+"/api/senderos/"+idSendero;
 
       JsonObjectRequest req = new JsonObjectRequest(URL, null,
 
               new Response.Listener<JSONObject>() {
                  @Override
                  public void onResponse(JSONObject response) {
-                    com.jelcaf.pacomf.patealapalma.network.Response.responseSenderoGET(activity, idSendero, idUser, response, pd);
+                    com.jelcaf.pacomf.patealapalma.network.Response.responseSenderoGET(fragment, idSendero, idUser, response);
                  }
               },
               new Response.ErrorListener() {
                  @Override
                  public void onErrorResponse(VolleyError error) {
-                    pd.dismiss();
                     VolleyLog.e("Error: ", error.getMessage());
                  }
               }
