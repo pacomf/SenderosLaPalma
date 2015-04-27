@@ -104,9 +104,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="Ratio: "
+            android:text="Valoración:"
+            android:paddingRight="6dp"
             android:textStyle="bold"
-            android:textSize="20sp"
             android:gravity="center"/>
 
         <ImageView

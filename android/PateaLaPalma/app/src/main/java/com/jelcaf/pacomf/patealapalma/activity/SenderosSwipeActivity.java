@@ -16,10 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Select;
 import com.astuetz.PagerSlidingTabStrip;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.binding.dao.SenderosBusquedaGrupo;
 import com.jelcaf.pacomf.patealapalma.binding.utilities.LoadData;
 import com.jelcaf.pacomf.patealapalma.fragment.RecommendSenderoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
@@ -186,25 +188,11 @@ public class SenderosSwipeActivity extends LocationBaseActivity
     */
    @Override
    public void onItemSelected(String idserver) {
-      if (mTwoPane) {
-         // In two-pane mode, show the detail view in this activity by
-         // adding or replacing the detail fragment using a
-         // fragment transaction.
-         Bundle arguments = new Bundle();
-         arguments.putString(SenderoDetailFragment.ARG_ITEM_ID, idserver);
-         SenderoDetailFragment fragment = new SenderoDetailFragment();
-         fragment.setArguments(arguments);
-         getSupportFragmentManager().beginTransaction()
-               .replace(R.id.sendero_detail_container, fragment)
-               .commit();
-
-      } else {
-         // In single-pane mode, simply start the detail activity
-         // for the selected item ID.
-         Intent detailIntent = new Intent(this, SenderoDetailWithImageActivity.class);
-         detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, idserver);
-         startActivity(detailIntent);
-      }
+      // In single-pane mode, simply start the detail activity
+      // for the selected item ID.
+      Intent detailIntent = new Intent(this, SenderoDetailWithImageActivity.class);
+      detailIntent.putExtra(SenderoDetailFragment.ARG_ITEM_ID, idserver);
+      startActivity(detailIntent);
    }
 
    private class ViewPagerAdapter extends FragmentStatePagerAdapter {
@@ -217,17 +205,30 @@ public class SenderosSwipeActivity extends LocationBaseActivity
       }
 
       public Fragment getItem(int num) {
+         String recommended = "";
          if (num == 0) {
-            RecommendSenderoFragment recommendSenderoFragment = new RecommendSenderoFragment();
-            return recommendSenderoFragment;
-         }
-         SenderoListFragment senderoListFragment = new SenderoListFragment();
-         if (num == 1) {
-            Bundle args = new Bundle();
-            args.putBoolean(SenderosConstants.Arguments.RECOMMENDED, true);
+            SenderosBusquedaGrupo search = new Select().from(SenderosBusquedaGrupo.class)
+                  .executeSingle();
+            if ((search == null) || search.resultSearch == null || search.resultSearch.isEmpty()) {
+               RecommendSenderoFragment recommendSenderoFragment = new RecommendSenderoFragment();
+               return recommendSenderoFragment;
+            } else {
+               recommended = search.resultSearch;
+            }
 
-            senderoListFragment.setArguments(args);
+
          }
+         Bundle args = new Bundle();
+         SenderoListFragment senderoListFragment = new SenderoListFragment();
+         if (num == 0) {
+            args.putBoolean(SenderosConstants.Arguments.RECOMMENDED_GROUPS, true);
+            args.putString(SenderosConstants.Arguments.RECOMMENDED_GROUPS_STRING, recommended);
+         }
+
+         if (num == 1) {
+            args.putBoolean(SenderosConstants.Arguments.RECOMMENDED, true);
+         }
+         senderoListFragment.setArguments(args);
          return senderoListFragment;
       }
 

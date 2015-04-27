@@ -10,6 +10,8 @@ public class SenderosConstants {
 
    public static class Arguments {
       public static final String RECOMMENDED = "RECOMMENDED_SENDEROS";
+      public static final String RECOMMENDED_GROUPS = "RECOMMENDED_GROUPS";
+      public static final String RECOMMENDED_GROUPS_STRING = "RECOMMENDED_GROUPS_STRING";
 
    }
 
@@ -23,11 +25,12 @@ public class SenderosConstants {
 
    public static final double WATER_BY_KM = 0.057;
 
+   public static final int MINUTES_IN_AN_HOUR = 60;
+   public static final int SECONDS_IN_A_MINUTE = 60;
+   public static final int SECONDS_IN_A_HOUR = 60 * 60;
+
    public static String timeConversion(double secondsD) {
       int seconds = (int)secondsD;
-
-      final int MINUTES_IN_AN_HOUR = 60;
-      final int SECONDS_IN_A_MINUTE = 60;
 
       int minutes = seconds / SECONDS_IN_A_MINUTE;
 

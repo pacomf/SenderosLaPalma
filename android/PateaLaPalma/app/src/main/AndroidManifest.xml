@@ -39,7 +39,8 @@
         <meta-data
             android:name="AA_MODELS"
             android:value="com.jelcaf.pacomf.patealapalma.binding.dao.Sendero, com.jelcaf.pacomf.patealapalma.binding.dao.Geo,
-            com.jelcaf.pacomf.patealapalma.binding.dao.Photo, com.jelcaf.pacomf.patealapalma.binding.dao.Comment" />
+            com.jelcaf.pacomf.patealapalma.binding.dao.Photo, com.jelcaf.pacomf.patealapalma.binding.dao.Comment,
+            com.jelcaf.pacomf.patealapalma.binding.dao.SenderosBusquedaGrupo" />
 
         <activity
             android:name=".activity.SenderosSwipeActivity"

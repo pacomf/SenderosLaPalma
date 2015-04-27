@@ -71,6 +71,8 @@
     <string name="process_title">Procesando</string>
     <string name="load_db">Configurando la Base de Datos por primera vez. Esta operación puede tardar varios minutos. Tenga paciencia, NO requiere conexión a internet.</string>
 
+    <string name="no_hikes_for_you">No existen senderos recomendados para ti aún</string>
+
     <!-- File Names -->
     <string name="initial_file">senderos.json</string>
 

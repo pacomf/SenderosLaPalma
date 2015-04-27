@@ -34,6 +34,10 @@ public class LoginActivity extends FacebookBaseActivity {
 
         ActiveAndroid.initialize(this);
 
+       if (Sendero.isDBEmpty()) {
+          LoadData.loadLocalData(this);
+       }
+
     }
 
 

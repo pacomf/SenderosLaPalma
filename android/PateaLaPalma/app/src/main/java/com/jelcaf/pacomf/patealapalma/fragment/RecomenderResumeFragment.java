@@ -63,16 +63,6 @@ public class RecomenderResumeFragment extends Fragment {
    }
 
    @Override
-   public Object getEnterTransition() {
-      return super.getEnterTransition();
-   }
-
-   @Override
-   public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
-      super.onViewStateRestored(savedInstanceState);
-   }
-
-   @Override
    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       View v = inflater.inflate(R.layout.recomender_resume_fragment, container, false);
 
@@ -103,8 +93,4 @@ public class RecomenderResumeFragment extends Fragment {
       return v;
    }
 
-   @Override
-   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-      super.onViewCreated(view, savedInstanceState);
-   }
 }

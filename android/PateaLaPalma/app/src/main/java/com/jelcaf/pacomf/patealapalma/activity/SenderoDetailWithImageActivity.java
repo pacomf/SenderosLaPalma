@@ -113,6 +113,7 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       mFab = findViewById(R.id.fab);
 
       mFabMargin = getResources().getDimensionPixelSize(R.dimen.margin_standard);
+
       ViewHelper.setScaleX(mFab, 0);
       ViewHelper.setScaleY(mFab, 0);
 
@@ -244,10 +245,10 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       ViewHelper.setTranslationX(mTitleView, 90);
 
       // Translate FAB
-      int maxFabTranslationY = mFlexibleSpaceImageHeight - mFab.getHeight() / 2;
+      int maxFabTranslationY = mFlexibleSpaceImageHeight - mFab.getHeight() / 3;
       float fabTranslationY = ScrollUtils.getFloat(
-            -scrollY + mFlexibleSpaceImageHeight - mFab.getHeight() / 2,
-            mActionBarSize - mFab.getHeight() / 2,
+            -scrollY + mFlexibleSpaceImageHeight - mFab.getHeight() / 3,
+            mActionBarSize - mFab.getHeight() / 3,
             maxFabTranslationY);
       if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
          // On pre-honeycomb, ViewHelper.setTranslationX/Y does not set margin,
@@ -360,7 +361,6 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
       switch (id) {
          case android.R.id.home:
             NavUtils.navigateUpFromSameTask(this);
-//            navigateUpTo(new Intent(this, SenderosSwipeActivity.class));
             return true;
       }
       return super.onOptionsItemSelected(item);

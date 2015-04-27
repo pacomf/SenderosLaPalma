@@ -2,6 +2,7 @@ package com.jelcaf.pacomf.patealapalma.recommender;
 
 import android.os.Parcelable;
 
+import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 
 import java.io.Serializable;
@@ -61,10 +62,30 @@ public class RecommenderForm {
       strQuestion = "¿Tiempo del recorrido del sendero?";
       strResponses.clear();
       strResponses.add("Menos de 1 hora");
-      strResponses.add("Entre 1 y 2 horas");
+      strResponses.add("Menos de 2 horas");
       strResponses.add("Menos de 4 horas");
       strResponses.add("Más de 4 horas");
-      questions.add(createSingleChoiceQuestion(strQuestion, strResponses));
+      final RecommenderSingleChoiceQuestion timeQuestion = createSingleChoiceQuestion(strQuestion, strResponses);
+      timeQuestion.addSenderoFilter(new ISenderoFilter() {
+
+         @Override
+         public boolean filterSendero(Sendero sendero) {
+            if (timeQuestion.getSelectedResponse() == null) {
+               return true;
+            }
+            if (timeQuestion.getSelectedResponse().equals(0)) {
+               return (sendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM) < SenderosConstants.SECONDS_IN_A_HOUR;
+            } else if (timeQuestion.getSelectedResponse().equals(1)) {
+               return (sendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM) < (SenderosConstants.SECONDS_IN_A_HOUR * 2);
+            } else if (timeQuestion.getSelectedResponse().equals(2)) {
+               return (sendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM) < (SenderosConstants.SECONDS_IN_A_HOUR * 4);
+            } else if (timeQuestion.getSelectedResponse().equals(3)) {
+               return (sendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM) > (SenderosConstants.SECONDS_IN_A_HOUR * 4);
+            }
+            return false;
+         }
+      });
+      questions.add(timeQuestion);
 
       strQuestion = "¿Dificultad?";
       strResponses.clear();
@@ -76,8 +97,8 @@ public class RecommenderForm {
       difficultyQuestion.addSenderoFilter(new ISenderoFilter() {
          @Override
          public boolean filterSendero(Sendero sendero) {
-            if (sendero.getDifficulty() == null || sendero.getDifficulty().equals
-                  (difficultyQuestion.getStrResponse())) {
+            if (difficultyQuestion.getSelectedResponse() == null || sendero.getDifficulty() == null
+                  || sendero.getDifficulty().equals(difficultyQuestion.getStrResponse())) {
                return true;
             }
             return false;
@@ -85,22 +106,22 @@ public class RecommenderForm {
       });
       questions.add(difficultyQuestion);
 
-      strQuestion = "¿El sendero es Circular?";
-      strResponses.clear();
-      strResponses.add("Si");
-      strResponses.add("No");
-      questions.add(createSingleChoiceQuestion(strQuestion, strResponses));
+//      strQuestion = "¿El sendero es Circular?";
+//      strResponses.clear();
+//      strResponses.add("Si");
+//      strResponses.add("No");
+//      questions.add(createSingleChoiceQuestion(strQuestion, strResponses));
 
       strQuestion = "¿Fecha en la que se desea realizar el sendero";
       questions.add(createCalendarQuestion(strQuestion));
 
-      strQuestion = "Distancia a la que se encuentra el sendero desde nuestra posición";
-      strResponses.clear();
-      strResponses.add("Menos de 10km");
-      strResponses.add("Menos de 20km");
-      strResponses.add("Menos de 50km");
-      strResponses.add("No importa la distancia");
-      questions.add(createRangeQuestion(strQuestion, 0, 100));
+//      strQuestion = "Distancia a la que se encuentra el sendero desde nuestra posición";
+//      strResponses.clear();
+//      strResponses.add("Menos de 10km");
+//      strResponses.add("Menos de 20km");
+//      strResponses.add("Menos de 50km");
+//      strResponses.add("No importa la distancia");
+//      questions.add(createRangeQuestion(strQuestion, 0, 100));
 
       strQuestion = "¿Tiene puntos de agua potable durante el recorrido";
       strResponses.clear();

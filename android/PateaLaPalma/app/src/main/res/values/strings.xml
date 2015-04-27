@@ -74,6 +74,8 @@
     <string name="process_title">Processing</string>
     <string name="load_db">Configuring the Database for the first time. This may take several minutes. Be patient, NO internet connection required.</string>
 
+    <string name="no_hikes_for_you">No recommended hikes for you</string>
+
     <!-- File Names -->
     <string name="initial_file">senderos.json</string>
 

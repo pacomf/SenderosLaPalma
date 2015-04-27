@@ -1,8 +1,10 @@
 package com.jelcaf.pacomf.patealapalma.fragment;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +14,10 @@ import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
+import com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity;
 import com.jelcaf.pacomf.patealapalma.adapter.SenderoAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.List;
 
@@ -50,8 +54,10 @@ public class SenderoListFragment extends ListFragment {
     * Senderos adapter
     */
    private SenderoAdapter adapter;
-
+   private View v;
    private boolean recommended;
+   private boolean recommendedGroups;
+   private String listGroups;
 
    /**
     * A callback interface that all activities containing this fragment must
@@ -83,12 +89,19 @@ public class SenderoListFragment extends ListFragment {
    }
 
    public List<Sendero> getRecommendedSenderos() {
-      createSenderosIfNotExists();
-
+      // TODO: Senderos recomendados para ti
       if (this.recommended) {
          return new Select()
                .from(Sendero.class)
                .where("server_id < 5")
+               .execute();
+      }
+      if (this.recommendedGroups && !this.listGroups.equals("")) {
+         String[] ids = this.listGroups.split(",");
+
+         return new Select()
+               .from(Sendero.class)
+               .where("server_id in ('" + TextUtils.join("','", ids) + "')")
                .execute();
       }
       return new Select()
@@ -96,28 +109,25 @@ public class SenderoListFragment extends ListFragment {
             .execute();
    }
 
-   private void createSenderosIfNotExists() {
-      List<Sendero> senderos = new Select()
-            .from(Sendero.class)
-            .execute();
-
-      if (senderos.size() != 0) {
-         return;
-      }
-
-      for (int i = 1; i < 10; i++) {
-         Sendero sendero = new Sendero();
-         sendero.setServerId(String.valueOf(i));
-         sendero.setName("Sendero " + i);
-         sendero.save();
-      }
-
-   }
-
    @Override
    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState) {
-      View v = inflater.inflate(R.layout.sendero_list, null);
+      v = inflater.inflate(R.layout.sendero_list, null);
+
+      if (this.recommendedGroups) {
+         ListView listView = (ListView) v.findViewById(android.R.id.list);
+         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+         fab.attachToListView(listView);
+         fab.setVisibility(View.VISIBLE);
+
+         fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent detailIntent = new Intent(getActivity(), RecommenderActivity.class);
+               startActivity(detailIntent);
+            }
+         });
+      }
       return v;
    }
 
@@ -128,6 +138,12 @@ public class SenderoListFragment extends ListFragment {
       Bundle args = getArguments();
       if (args != null && args.getBoolean(SenderosConstants.Arguments.RECOMMENDED, false)) {
          this.recommended = true;
+      }
+
+      if (args != null && args.getBoolean(SenderosConstants.Arguments.RECOMMENDED_GROUPS, false)) {
+         this.recommendedGroups = true;
+         this.listGroups = args.getString(SenderosConstants.Arguments.RECOMMENDED_GROUPS_STRING,
+               "");
       }
 
       adapter = new SenderoAdapter(getActivity(), getRecommendedSenderos());

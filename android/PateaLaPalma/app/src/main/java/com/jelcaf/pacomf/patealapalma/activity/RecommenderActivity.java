@@ -6,9 +6,11 @@ import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
@@ -16,6 +18,7 @@ import com.gc.materialdesign.views.ButtonRectangle;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.adapter.RecomenderQuestionsPagerAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.jelcaf.pacomf.patealapalma.binding.dao.SenderosBusquedaGrupo;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.nispok.snackbar.Snackbar;
 import com.nispok.snackbar.enums.SnackbarType;
@@ -180,14 +183,44 @@ public class RecommenderActivity extends ActionBarActivity {
          listaSenderos = filterList;
       }
 
-      Snackbar.with(getApplicationContext().getApplicationContext()) // context
-            .text(listaSenderos.size() + " de " + total + " senderos han pasado el filtro" )
-            .actionLabel(getString(R.string.close)) // action button label
-            .actionColor(Color.parseColor("#FF8A80"))
-            .type(SnackbarType.MULTI_LINE)
-            .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
-            .show(this); // activity where it is displayed
+      if (listaSenderos.size() == 0) {
 
+         Snackbar.with(getApplicationContext().getApplicationContext()) // context
+               .text("No se han encontrado senderos que cumplan las espectativas")
+               .actionLabel(getString(R.string.close)) // action button label
+               .actionColor(Color.parseColor("#FF8A80"))
+               .type(SnackbarType.MULTI_LINE)
+               .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
+               .show(this); // activity where it is displayed
+         return;
+
+      } else {
+         Toast.makeText(getApplicationContext(), listaSenderos.size() + " encontrados",
+               Toast.LENGTH_LONG).show();
+//         Snackbar.with(getApplicationContext().getApplicationContext()) // context
+//               .text(listaSenderos.size() + " de " + total + " senderos han pasado el filtro" )
+//               .actionLabel("Close") // action button label
+//               .actionColor(Color.parseColor("#FF8A80"))
+//               .type(SnackbarType.MULTI_LINE)
+//               .duration(Snackbar.SnackbarDuration.LENGTH_LONG)
+//               .show(this); // activity where it is displayed
+      }
+      // Guardamos los últimos senderos buscados en la BBDD
+      SenderosBusquedaGrupo ultimaBusqueda = new Select().from(SenderosBusquedaGrupo.class).executeSingle();
+      if (ultimaBusqueda == null) {
+         ultimaBusqueda = new SenderosBusquedaGrupo();
+      }
+
+      List<String> listaIds = new ArrayList<String>();
+      StringBuilder resultSearchBuilder = new StringBuilder();
+      for (Sendero sendero : listaSenderos) {
+         listaIds.add(sendero.getServerId());
+      }
+
+      ultimaBusqueda.resultSearch = TextUtils.join(",", listaIds);
+      ultimaBusqueda.save();
+
+      NavUtils.navigateUpFromSameTask(this);
    }
 
    private List<Sendero> getAllSenderos() {

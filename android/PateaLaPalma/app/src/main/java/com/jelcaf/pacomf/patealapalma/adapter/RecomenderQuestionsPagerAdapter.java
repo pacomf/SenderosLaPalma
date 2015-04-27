@@ -5,7 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.jelcaf.pacomf.patealapalma.factories.QuestionRecommenderFactory;
 import com.jelcaf.pacomf.patealapalma.fragment.QuestionFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.RecomenderInfoFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.RecomenderResumeFragment;
@@ -29,14 +28,10 @@ public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
    public RecomenderQuestionsPagerAdapter(FragmentManager fm) {
       super(fm);
 
-//      QuestionRecommenderFactory.getInstance().initializeQuestionForm();
       form = RecommenderForm.getInstance();
 
       recomenderResume = new RecomenderResumeFragment();
       recomenderInfo = new RecomenderInfoFragment();
-//      fm.beginTransaction()
-//            .replace(R.id.sendero_detail_container, recomenderResume)
-//            .commit();
    }
 
    @Override public Fragment getItem(int i) {
