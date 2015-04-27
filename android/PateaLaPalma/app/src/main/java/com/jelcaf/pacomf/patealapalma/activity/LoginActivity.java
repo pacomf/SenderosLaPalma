@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.view.Menu;
 
 import com.activeandroid.ActiveAndroid;
+import com.activeandroid.query.Select;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.binding.utilities.LoadData;
 import com.jelcaf.pacomf.patealapalma.fragment.LoginFragment;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
+
+import java.util.List;
 
 public class LoginActivity extends FacebookBaseActivity {
 
@@ -31,8 +34,6 @@ public class LoginActivity extends FacebookBaseActivity {
 
         ActiveAndroid.initialize(this);
 
-        if (Sendero.isDBEmpty())
-           LoadData.loadLocalData(this);
     }
 
 
