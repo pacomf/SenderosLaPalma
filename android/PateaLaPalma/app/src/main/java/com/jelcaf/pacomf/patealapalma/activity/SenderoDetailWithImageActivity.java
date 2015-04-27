@@ -195,23 +195,23 @@ public class SenderoDetailWithImageActivity extends BaseActivity implements Obse
          }
       });
 
-      // Qué ropa llevar
-      itemIcon = new ImageView(this);
-      itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_clothes));
-      itemIcon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-      SubActionButton clothesButton = itemBuilder.setContentView(itemIcon).build();
-      clothesButton.setOnClickListener(new View.OnClickListener() {
-         @Override
-         public void onClick(View v) {
-            CustomPopUpWearable.newInstance().show(getFragmentManager(), null);
-         }
-      });
+//      // Qué ropa llevar
+//      itemIcon = new ImageView(this);
+//      itemIcon.setImageDrawable(getResources().getDrawable(R.drawable.sendero_menu_clothes));
+//      itemIcon.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+//      SubActionButton clothesButton = itemBuilder.setContentView(itemIcon).build();
+//      clothesButton.setOnClickListener(new View.OnClickListener() {
+//         @Override
+//         public void onClick(View v) {
+//            CustomPopUpWearable.newInstance().show(getFragmentManager(), null);
+//         }
+//      });
 
       mFloatMenu = new FloatingActionMenu.Builder(this)
             .addSubActionView(addImageButton)
             .addSubActionView(addCommentButton)
             .addSubActionView(addRatingButton)
-            .addSubActionView(clothesButton)
+//            .addSubActionView(clothesButton)
             .attachTo(mFab)
             .build();
    }
