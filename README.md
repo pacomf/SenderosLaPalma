@@ -6,7 +6,7 @@
         <img alt="App" src="https://raw.githubusercontent.com/pacomf/SenderosLaPalma/develop/android/PateaLaPalma/app/src/main/res/drawable-xxhdpi/ic_launcher.png?token=ABGEZrEry1pb6u5I3rrrDKHtw9f9tRK-ks5VRyd-wA%3D%3D" width="210"/>
       
     </a>
-    <a href="https://play.google.com/store/apps/details?id=com.jelcaf.pacomf.patealapalma">
+    <a href="https://play.google.com/store/apps/details?id=com.jelcaf.pacomf.patealapalma" target="_blank">>
         <img alt="Descargar Patea La Palma" src="http://www.eleconomista.es/CanalPDA/files/logo_google_play.jpg" height="200" width="180" />
     </a>
 </p>
