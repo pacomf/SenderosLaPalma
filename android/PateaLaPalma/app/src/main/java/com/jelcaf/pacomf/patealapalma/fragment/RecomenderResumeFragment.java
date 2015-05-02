@@ -34,14 +34,14 @@ public class RecomenderResumeFragment extends Fragment {
    public void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
 
-      form = RecommenderForm.getInstance();
+      form = RecommenderForm.getInstance(getActivity());
    }
 
    @Override
    public void onResume() {
       super.onResume();
 
-      form = RecommenderForm.getInstance();
+      form = RecommenderForm.getInstance(getActivity());
 
       for (int i = form.getQuestions().size() - QUESTIONS_ADD_ON_RESUME; i < form.getQuestions().size(); i++) {
          TextView tv = new TextView(getActivity());

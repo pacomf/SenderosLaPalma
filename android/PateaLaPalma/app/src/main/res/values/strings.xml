@@ -134,6 +134,33 @@
     <string name="prev_resume_recommender">It will generate a summary of selected responses</string>
     <string name="resume_recommender">Summary of the Questionnaire</string>
     <string name="fail_internet">Fail Internet Connection</string>
+    <string name="qPeople">How many people go to the Hike?</string>
+    <string name="qPeopleLess5">Less than 5 people</string>
+    <string name="qPeople5y10">Between 5 and 10 people.</string>
+    <string name="qPeopleMore10">More than 10 people.</string>
+    <string name="qChildren">Attend children to Hike?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="qTime">How much you want to spend the walk?</string>
+    <string name="qTimeLess1">Less than 1 hour</string>
+    <string name="qTimeLess2">Less than 2 hours</string>
+    <string name="qTimeLess4">Less than 4 hours</string>
+    <string name="qTimeMore4">More than 4 hours</string>
+    <string name="qDifficulty">Level of difficulty you want?</string>
+    <string name="qDifficultyLow">Low Level</string>
+    <string name="qDifficultyMedium">Normal Level</string>
+    <string name="qDifficultyHigh">High Level</string>
+    <string name="qDifficultyExtreme">Extreme Level</string>
+    <string name="qDate">What Date did you want to Hike?</string>
+    <string name="qWaterPoints">Do you want the Hike has Water Points?</string>
+    <string name="noRatio">Not Rated</string>
+    <string name="itemWater">Water Needed</string>
+    <string name="itemCircular">Round-Trip</string>
+    <string name="itemDifficulty">Difficulty</string>
+    <string name="itemTime">Time Duration</string>
+    <string name="itemType">Hike Type</string>
+    <string name="itemRate">Rating:</string>
+    <string name="itemDistance">Distance</string>
 
 
 </resources>

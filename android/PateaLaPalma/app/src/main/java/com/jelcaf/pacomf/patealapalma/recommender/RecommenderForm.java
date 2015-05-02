@@ -1,7 +1,9 @@
 package com.jelcaf.pacomf.patealapalma.recommender;
 
+import android.content.Context;
 import android.os.Parcelable;
 
+import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 
@@ -19,11 +21,11 @@ public class RecommenderForm {
    private static RecommenderForm instance;
    private static List<RecommenderBaseQuestion> questions;
 
-   public static RecommenderForm getInstance() {
+   public static RecommenderForm getInstance(Context ctx) {
       if (instance == null) {
          instance = new RecommenderForm();
          questions = new ArrayList<>();
-         initializeQuestionForm();
+         initializeQuestionForm(ctx);
       }
       return instance;
    }
@@ -44,27 +46,27 @@ public class RecommenderForm {
       questions.add(question);
    }
 
-   public static RecommenderForm initializeQuestionForm() {
+   public static RecommenderForm initializeQuestionForm(Context ctx) {
 
-      String strQuestion = "¿Cuántas personas irán al sendero?";
+      String strQuestion = ctx.getString(R.string.qPeople);
       ArrayList<String> strResponses = new ArrayList<String>();
-      strResponses.add("Menos de 5");
-      strResponses.add("Entre 5 y 10");
-      strResponses.add("Más de 10");
+      strResponses.add(ctx.getString(R.string.qPeopleLess5));
+      strResponses.add(ctx.getString(R.string.qPeople5y10));
+      strResponses.add(ctx.getString(R.string.qPeopleMore10));
       questions.add(createSingleChoiceQuestion(strQuestion, strResponses, true));
 
-      strQuestion = "¿Irán niños al sendero?";
+      strQuestion = ctx.getString(R.string.qChildren);
       strResponses.clear();
-      strResponses.add("Si");
-      strResponses.add("No");
+      strResponses.add(ctx.getString(R.string.yes));
+      strResponses.add(ctx.getString(R.string.no));
       questions.add(createSingleChoiceQuestion(strQuestion, strResponses));
 
-      strQuestion = "¿Tiempo del recorrido del sendero?";
+      strQuestion = ctx.getString(R.string.qTime);
       strResponses.clear();
-      strResponses.add("Menos de 1 hora");
-      strResponses.add("Menos de 2 horas");
-      strResponses.add("Menos de 4 horas");
-      strResponses.add("Más de 4 horas");
+      strResponses.add(ctx.getString(R.string.qTimeLess1));
+      strResponses.add(ctx.getString(R.string.qTimeLess2));
+      strResponses.add(ctx.getString(R.string.qTimeLess4));
+      strResponses.add(ctx.getString(R.string.qTimeMore4));
       final RecommenderSingleChoiceQuestion timeQuestion = createSingleChoiceQuestion(strQuestion, strResponses);
       timeQuestion.addSenderoFilter(new ISenderoFilter() {
 
@@ -87,12 +89,12 @@ public class RecommenderForm {
       });
       questions.add(timeQuestion);
 
-      strQuestion = "¿Dificultad?";
+      strQuestion = ctx.getString(R.string.qDifficulty);
       strResponses.clear();
-      strResponses.add("Baja");
-      strResponses.add("Media");
-      strResponses.add("Alta");
-      strResponses.add("Extrema");
+      strResponses.add(ctx.getString(R.string.qDifficultyLow));
+      strResponses.add(ctx.getString(R.string.qDifficultyMedium));
+      strResponses.add(ctx.getString(R.string.qDifficultyHigh));
+      strResponses.add(ctx.getString(R.string.qDifficultyExtreme));
       final RecommenderSingleChoiceQuestion difficultyQuestion = createSingleChoiceQuestion(strQuestion, strResponses);
       difficultyQuestion.addSenderoFilter(new ISenderoFilter() {
          @Override
@@ -112,7 +114,7 @@ public class RecommenderForm {
 //      strResponses.add("No");
 //      questions.add(createSingleChoiceQuestion(strQuestion, strResponses));
 
-      strQuestion = "¿Fecha en la que se desea realizar el sendero";
+      strQuestion = ctx.getString(R.string.qDate);
       questions.add(createCalendarQuestion(strQuestion));
 
 //      strQuestion = "Distancia a la que se encuentra el sendero desde nuestra posición";
@@ -123,13 +125,13 @@ public class RecommenderForm {
 //      strResponses.add("No importa la distancia");
 //      questions.add(createRangeQuestion(strQuestion, 0, 100));
 
-      strQuestion = "¿Tiene puntos de agua potable durante el recorrido";
+      strQuestion = ctx.getString(R.string.qWaterPoints);
       strResponses.clear();
-      strResponses.add("Si");
-      strResponses.add("No");
+      strResponses.add(ctx.getString(R.string.yes));
+      strResponses.add(ctx.getString(R.string.no));
       questions.add(createSingleChoiceQuestion(strQuestion, strResponses));
 
-      return RecommenderForm.getInstance();
+      return RecommenderForm.getInstance(ctx);
    }
 
    private static RecommenderSingleChoiceQuestion createSingleChoiceQuestion(String strQuestion,

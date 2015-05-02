@@ -131,5 +131,32 @@
     <string name="prev_resume_recommender">Se va a generar un resúmen de las respuestas seleccionadas</string>
     <string name="resume_recommender">Resúmen del cuestionario</string>
     <string name="fail_internet">No hay conexión a Internet</string>
+    <string name="qPeople">¿Cuántas personas irán al sendero?</string>
+    <string name="qPeople5y10">Menos de 5</string>
+    <string name="qPeopleLess5">Entre 5 y 10</string>
+    <string name="qPeopleMore10">Más de 10</string>
+    <string name="qChildren">¿Irán niños al Sendero?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="qTime">¿Tiempo del recorrido del sendero?</string>
+    <string name="qTimeLess1">Menos de 1 hora</string>
+    <string name="qTimeLess2">Menos de 2 horas</string>
+    <string name="qTimeLess4">Menos de 4 horas</string>
+    <string name="qTimeMore4">Más de 4 horas</string>
+    <string name="qDifficulty">¿Nivel de dificultad que desea?</string>
+    <string name="qDifficultyExtreme">Dificultad Extrema</string>
+    <string name="qDifficultyHigh">Dificultad Alta</string>
+    <string name="qDifficultyLow">Dificultad Baja</string>
+    <string name="qDifficultyMedium">Dificultad Media</string>
+    <string name="qDate">¿Fecha en la que se desea realizar el Sendero?</string>
+    <string name="qWaterPoints">¿Le gustaría que el sendero tuviese puntos de agua potable?</string>
+    <string name="noRatio">Sin Valoración</string>
+    <string name="itemCircular">Circular</string>
+    <string name="itemDifficulty">Dificultad</string>
+    <string name="itemRate">Valoración:</string>
+    <string name="itemTime">Duración</string>
+    <string name="itemType">Tipo Sendero</string>
+    <string name="itemWater">Agua Recomendada</string>
+    <string name="itemDistance">Distancia</string>
 
 </resources>

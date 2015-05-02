@@ -28,7 +28,7 @@ public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
    public RecomenderQuestionsPagerAdapter(FragmentManager fm) {
       super(fm);
 
-      form = RecommenderForm.getInstance();
+      form = RecommenderForm.getInstance(fm.getFragments().get(0).getActivity());
 
       recomenderResume = new RecomenderResumeFragment();
       recomenderInfo = new RecomenderInfoFragment();
