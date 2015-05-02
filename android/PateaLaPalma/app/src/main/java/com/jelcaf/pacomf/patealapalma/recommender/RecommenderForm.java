@@ -9,7 +9,9 @@ import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Jorge Carballo
@@ -46,7 +48,7 @@ public class RecommenderForm {
       questions.add(question);
    }
 
-   public static RecommenderForm initializeQuestionForm(Context ctx) {
+   public static RecommenderForm initializeQuestionForm(final Context ctx) {
 
       String strQuestion = ctx.getString(R.string.qPeople);
       ArrayList<String> strResponses = new ArrayList<String>();
@@ -99,8 +101,9 @@ public class RecommenderForm {
       difficultyQuestion.addSenderoFilter(new ISenderoFilter() {
          @Override
          public boolean filterSendero(Sendero sendero) {
+            Map<String, String> diffilcultyMap = getMapDifficulty(ctx);
             if (difficultyQuestion.getSelectedResponse() == null || sendero.getDifficulty() == null
-                  || sendero.getDifficulty().equals(difficultyQuestion.getStrResponse())) {
+                  || sendero.getDifficulty().equals(diffilcultyMap.get(difficultyQuestion.getStrResponse()))) {
                return true;
             }
             return false;
@@ -163,5 +166,15 @@ public class RecommenderForm {
    private static RecommenderCalendarQuestion createCalendarQuestion(String strQuestion) {
       RecommenderCalendarQuestion question = new RecommenderCalendarQuestion(strQuestion);
       return question;
+   }
+
+   // Usado para asignar el valor de la varible (en el idioma correspondiente) de la dificultad del sendero al valor que tiene el propio sendero
+   private static Map<String, String> getMapDifficulty (Context ctx){
+      Map <String, String> difficultySendero = new HashMap<>();
+      difficultySendero.put(ctx.getString(R.string.qDifficultyLow), "Baja");
+      difficultySendero.put(ctx.getString(R.string.qDifficultyMedium), "Media");
+      difficultySendero.put(ctx.getString(R.string.qDifficultyHigh), "Alta");
+      difficultySendero.put(ctx.getString(R.string.qDifficultyExtreme), "Extrema");
+      return difficultySendero;
    }
 }
