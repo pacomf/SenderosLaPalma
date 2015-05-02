@@ -75,7 +75,7 @@ public class RecommenderActivity extends ActionBarActivity {
    }
 
    private void setUIVars() {
-      mPagerAdapter = new RecomenderQuestionsPagerAdapter(getSupportFragmentManager());
+      mPagerAdapter = new RecomenderQuestionsPagerAdapter(getSupportFragmentManager(), this);
       mViewPager.setAdapter(mPagerAdapter);
       mIndicator.setViewPager(mViewPager);
       mIndicator.setOnPageChangeListener(new MyChangeListener());

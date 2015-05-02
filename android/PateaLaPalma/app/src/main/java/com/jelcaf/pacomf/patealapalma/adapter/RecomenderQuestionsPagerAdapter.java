@@ -1,5 +1,6 @@
 package com.jelcaf.pacomf.patealapalma.adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,10 +26,10 @@ public class RecomenderQuestionsPagerAdapter extends FragmentPagerAdapter {
    private RecomenderInfoFragment recomenderInfo;
    private RecomenderResumeFragment recomenderResume;
 
-   public RecomenderQuestionsPagerAdapter(FragmentManager fm) {
+   public RecomenderQuestionsPagerAdapter(FragmentManager fm, Context ctx) {
       super(fm);
 
-      form = RecommenderForm.getInstance(fm.getFragments().get(0).getActivity());
+      form = RecommenderForm.getInstance(ctx);
 
       recomenderResume = new RecomenderResumeFragment();
       recomenderInfo = new RecomenderInfoFragment();
