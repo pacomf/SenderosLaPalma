@@ -16,8 +16,10 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxHeight="200dp"
             android:minHeight="100dp"
             android:scaleType="fitXY"
+            android:adjustViewBounds="true"
             android:background="@color/colorPrimaryDark"
             android:id="@+id/sendero_image"/>
 

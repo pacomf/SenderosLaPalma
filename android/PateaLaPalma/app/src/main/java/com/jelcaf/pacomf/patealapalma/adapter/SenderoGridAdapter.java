@@ -15,6 +15,7 @@ import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Photo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
@@ -42,7 +43,15 @@ public class SenderoGridAdapter extends BaseAdapter {
       this.senderos = senderos;
       this.inflater = LayoutInflater.from(activity);
       this.mRandom = new Random();
-      ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).build();
+
+      DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+            .cacheOnDisk(true)
+            .build();
+
+      ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context)
+            .defaultDisplayImageOptions(defaultOptions)
+            .build();
+
       ImageLoader.getInstance().init(config);
    }
 
