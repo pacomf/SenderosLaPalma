@@ -89,8 +89,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|top"
         android:scaleType="centerInside"
-        android:src="@drawable/sendero_menu"
-        app:fab_colorNormal="@color/floatButton"
+        android:src="@drawable/sendero_menu_w"
+        app:fab_colorNormal="@color/primary"
         app:fab_colorPressed="@color/floatButtonPressed" />
 
 </FrameLayout>
