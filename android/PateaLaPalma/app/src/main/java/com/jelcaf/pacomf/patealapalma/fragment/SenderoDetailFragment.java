@@ -192,7 +192,9 @@ public class SenderoDetailFragment extends Fragment {
                         .getLength()) + " litros");
 
         mTime = (SimpleDataView) rootView.findViewById(R.id.sendero_time);
-        mTime.setValue(SenderosConstants.timeConversion(mSendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM));
+        mTime.setValue(SenderosConstants.timeConversion(mSendero.getLength() *
+              SenderosConstants.getSecondsByDifficulty(mSendero.getDifficulty(),
+                    getActivity().getApplicationContext())));
     }
 
     protected void initMap(double latStart, double lonStart, double latEnd, double lonEnd){

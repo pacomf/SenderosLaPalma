@@ -74,17 +74,18 @@ public class RecommenderForm {
 
          @Override
          public boolean filterSendero(Sendero sendero) {
+            double seconds = SenderosConstants.getSecondsByDifficulty(sendero.getDifficulty(), ctx);
             if (timeQuestion.getSelectedResponse() == null) {
                return true;
             }
             if (timeQuestion.getSelectedResponse().equals(0)) {
-               return (sendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM) < SenderosConstants.SECONDS_IN_A_HOUR;
+               return (sendero.getLength() * seconds) < SenderosConstants.SECONDS_IN_A_HOUR;
             } else if (timeQuestion.getSelectedResponse().equals(1)) {
-               return (sendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM) < (SenderosConstants.SECONDS_IN_A_HOUR * 2);
+               return (sendero.getLength() * seconds) < (SenderosConstants.SECONDS_IN_A_HOUR * 2);
             } else if (timeQuestion.getSelectedResponse().equals(2)) {
-               return (sendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM) < (SenderosConstants.SECONDS_IN_A_HOUR * 4);
+               return (sendero.getLength() * seconds) < (SenderosConstants.SECONDS_IN_A_HOUR * 4);
             } else if (timeQuestion.getSelectedResponse().equals(3)) {
-               return (sendero.getLength() * SenderosConstants.SECONDS_IN_KM_MEDIUM) > (SenderosConstants.SECONDS_IN_A_HOUR * 4);
+               return (sendero.getLength() * seconds) > (SenderosConstants.SECONDS_IN_A_HOUR * 4);
             }
             return false;
          }
@@ -101,7 +102,7 @@ public class RecommenderForm {
       difficultyQuestion.addSenderoFilter(new ISenderoFilter() {
          @Override
          public boolean filterSendero(Sendero sendero) {
-            Map<String, String> diffilcultyMap = getMapDifficulty(ctx);
+            Map<String, String> diffilcultyMap = SenderosConstants.getMapDifficulty(ctx);
             if (difficultyQuestion.getSelectedResponse() == null || sendero.getDifficulty() == null
                   || sendero.getDifficulty().equals(diffilcultyMap.get(difficultyQuestion.getStrResponse()))) {
                return true;
@@ -168,13 +169,4 @@ public class RecommenderForm {
       return question;
    }
 
-   // Usado para asignar el valor de la varible (en el idioma correspondiente) de la dificultad del sendero al valor que tiene el propio sendero
-   private static Map<String, String> getMapDifficulty (Context ctx){
-      Map <String, String> difficultySendero = new HashMap<>();
-      difficultySendero.put(ctx.getString(R.string.qDifficultyLow), "Baja");
-      difficultySendero.put(ctx.getString(R.string.qDifficultyMedium), "Media");
-      difficultySendero.put(ctx.getString(R.string.qDifficultyHigh), "Alta");
-      difficultySendero.put(ctx.getString(R.string.qDifficultyExtreme), "Extrema");
-      return difficultySendero;
-   }
 }
