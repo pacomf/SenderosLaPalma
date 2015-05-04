@@ -2,7 +2,6 @@ package com.jelcaf.pacomf.patealapalma.binding.utilities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.location.Location;
 import android.os.AsyncTask;
 
 import com.activeandroid.ActiveAndroid;
@@ -15,17 +14,11 @@ import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.channels.FileChannel;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static com.jelcaf.pacomf.patealapalma.network.JSONToModel.geoFromJSON;
 import static com.jelcaf.pacomf.patealapalma.network.JSONToModel.geoStrFromJSON;
 
 /**

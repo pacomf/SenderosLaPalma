@@ -21,10 +21,8 @@ import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
-import com.jelcaf.pacomf.patealapalma.network.*;
+import com.jelcaf.pacomf.patealapalma.network.Request;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**

@@ -1,15 +1,12 @@
 package com.jelcaf.pacomf.patealapalma.recommender;
 
 import android.content.Context;
-import android.os.Parcelable;
 
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

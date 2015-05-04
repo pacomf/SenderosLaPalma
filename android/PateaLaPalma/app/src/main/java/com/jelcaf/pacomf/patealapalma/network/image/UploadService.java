@@ -3,6 +3,7 @@ package com.jelcaf.pacomf.patealapalma.network.image;
 /**
  * Created by Paco on 26/04/2015.
  */
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -10,7 +11,7 @@ import android.os.AsyncTask;
 import com.jelcaf.pacomf.patealapalma.network.Request;
 
 import java.io.File;
-import java.util.ArrayList;
+
 import retrofit.RestAdapter;
 import retrofit.mime.TypedFile;
 

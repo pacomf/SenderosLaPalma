@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,19 +13,15 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
 import com.etsy.android.grid.StaggeredGridView;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity;
-import com.jelcaf.pacomf.patealapalma.adapter.SampleAdapter;
-import com.jelcaf.pacomf.patealapalma.adapter.SenderoAdapter;
 import com.jelcaf.pacomf.patealapalma.adapter.SenderoGridAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.melnykov.fab.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

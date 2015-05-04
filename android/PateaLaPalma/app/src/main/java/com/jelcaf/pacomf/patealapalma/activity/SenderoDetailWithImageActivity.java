@@ -32,7 +32,6 @@ import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
 import com.jelcaf.pacomf.patealapalma.network.image.DocumentHelper;
 import com.jelcaf.pacomf.patealapalma.views.CustomDialogRating;
 import com.jelcaf.pacomf.patealapalma.views.CustomPopUpComments;
-import com.jelcaf.pacomf.patealapalma.views.CustomPopUpWearable;
 import com.jelcaf.pacomf.patealapalma.views.PhotoSliderView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.view.ViewHelper;

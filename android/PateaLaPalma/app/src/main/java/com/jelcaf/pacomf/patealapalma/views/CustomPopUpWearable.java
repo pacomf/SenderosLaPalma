@@ -8,19 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.facebook.widget.ProfilePictureView;
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.adapter.CommentAdapter;
-import com.jelcaf.pacomf.patealapalma.binding.dao.Comment;
-import com.jelcaf.pacomf.patealapalma.login.LoginMethods;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Paco on 01/04/2015.

@@ -2,8 +2,6 @@ package com.jelcaf.pacomf.patealapalma.recommender;
 
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 
-import java.util.List;
-
 /**
  * @author Jorge Carballo
  *         27/03/15

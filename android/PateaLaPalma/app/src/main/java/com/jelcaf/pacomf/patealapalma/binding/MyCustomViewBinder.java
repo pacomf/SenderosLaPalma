@@ -6,7 +6,6 @@ import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.views.SimpleDataView;
 import com.mobandme.android.bind.Binder;
 import com.mobandme.android.bind.binder.DataBinder;
-import com.mobandme.android.bind.compiler.*;
 import com.mobandme.android.bind.compiler.Compiler;
 
 /**

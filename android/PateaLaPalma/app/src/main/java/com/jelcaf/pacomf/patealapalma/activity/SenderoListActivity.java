@@ -7,10 +7,8 @@ import android.support.v7.widget.Toolbar;
 
 import com.activeandroid.ActiveAndroid;
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoDetailFragment;
 import com.jelcaf.pacomf.patealapalma.fragment.SenderoListFragment;
-import com.jelcaf.pacomf.patealapalma.network.Request;
 
 
 /**

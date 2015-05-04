@@ -1,7 +1,6 @@
 package com.jelcaf.pacomf.patealapalma.adapter;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
-import com.jelcaf.pacomf.patealapalma.colors.RandomColors;
 
 import java.util.List;
 import java.util.Random;

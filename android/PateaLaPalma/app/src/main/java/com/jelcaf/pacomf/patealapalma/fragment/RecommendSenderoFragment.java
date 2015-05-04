@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.gc.materialdesign.views.Button;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity;
-import com.jelcaf.pacomf.patealapalma.binding.utilities.LoadData;
 
 /**
  * A simple {@link Fragment} subclass.

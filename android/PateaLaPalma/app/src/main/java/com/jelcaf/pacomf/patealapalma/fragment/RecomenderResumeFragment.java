@@ -2,7 +2,6 @@ package com.jelcaf.pacomf.patealapalma.fragment;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -12,11 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jelcaf.pacomf.patealapalma.R;
-import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderBaseQuestion;
 import com.jelcaf.pacomf.patealapalma.recommender.RecommenderForm;
-
-import java.util.List;
 
 /**
  * @author Jorge Carballo
