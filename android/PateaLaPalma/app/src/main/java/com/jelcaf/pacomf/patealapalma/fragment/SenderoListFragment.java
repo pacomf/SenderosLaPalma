@@ -3,22 +3,30 @@ package com.jelcaf.pacomf.patealapalma.fragment;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Select;
+import com.etsy.android.grid.StaggeredGridView;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
 import com.jelcaf.pacomf.patealapalma.activity.RecommenderActivity;
+import com.jelcaf.pacomf.patealapalma.adapter.SampleAdapter;
 import com.jelcaf.pacomf.patealapalma.adapter.SenderoAdapter;
+import com.jelcaf.pacomf.patealapalma.adapter.SenderoGridAdapter;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
 import com.melnykov.fab.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,7 +38,7 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class SenderoListFragment extends ListFragment {
+public class SenderoListFragment extends Fragment implements AbsListView.OnScrollListener, AdapterView.OnItemClickListener {
 
    /**
     * The serialization (saved instance state) Bundle key representing the
@@ -53,11 +61,30 @@ public class SenderoListFragment extends ListFragment {
    /**
     * Senderos adapter
     */
-   private SenderoAdapter adapter;
+   private SenderoGridAdapter adapter;
    private View v;
    private boolean recommended;
    private boolean recommendedGroups;
    private String listGroups;
+
+   private StaggeredGridView mGridView;
+
+   @Override
+   public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+   }
+
+   @Override
+   public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+      Log.d("TAG", "onScroll firstVisibleItem:" + firstVisibleItem +
+            " visibleItemCount:" + visibleItemCount +
+            " totalItemCount:" + totalItemCount);
+   }
+
+   @Override
+   public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+      mCallbacks.onItemSelected(((Sendero)adapter.getItem(position)).getServerId());
+   }
 
    /**
     * A callback interface that all activities containing this fragment must
@@ -114,10 +141,11 @@ public class SenderoListFragment extends ListFragment {
                             Bundle savedInstanceState) {
       v = inflater.inflate(R.layout.sendero_list, null);
 
+      mGridView = (StaggeredGridView) v.findViewById(R.id.grid_view);
+
       if (this.recommendedGroups) {
-         ListView listView = (ListView) v.findViewById(android.R.id.list);
          FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
-         fab.attachToListView(listView);
+         fab.attachToListView(mGridView);
          fab.setVisibility(View.VISIBLE);
 
          fab.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +156,23 @@ public class SenderoListFragment extends ListFragment {
             }
          });
       }
+
+      if (adapter == null) {
+         adapter = new SenderoGridAdapter(getActivity(), getRecommendedSenderos(),
+               getActivity().getApplicationContext());
+
+      }
+
+      if (adapter.getCount() < 1) {
+         v.findViewById(android.R.id.empty).setVisibility(View.VISIBLE);
+      } else {
+         v.findViewById(android.R.id.empty).setVisibility(View.INVISIBLE);
+      }
+
+      mGridView.setAdapter(adapter);
+      mGridView.setOnScrollListener(this);
+      mGridView.setOnItemClickListener(this);
+
       return v;
    }
 
@@ -146,20 +191,19 @@ public class SenderoListFragment extends ListFragment {
                "");
       }
 
-      adapter = new SenderoAdapter(getActivity(), getRecommendedSenderos());
-      setListAdapter(adapter);
+
    }
 
-   @Override
-   public void onViewCreated(View view, Bundle savedInstanceState) {
-      super.onViewCreated(view, savedInstanceState);
-
-      // Restore the previously serialized activated item position.
-      if (savedInstanceState != null
-            && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
-         setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
-      }
-   }
+//   @Override
+//   public void onViewCreated(View view, Bundle savedInstanceState) {
+//      super.onViewCreated(view, savedInstanceState);
+//
+//      // Restore the previously serialized activated item position.
+//      if (savedInstanceState != null
+//            && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
+//         setActivatedPosition(savedInstanceState.getInt(STATE_ACTIVATED_POSITION));
+//      }
+//   }
 
    @Override
    public void onAttach(Activity activity) {
@@ -181,12 +225,12 @@ public class SenderoListFragment extends ListFragment {
       mCallbacks = sDummyCallbacks;
    }
 
-   @Override
-   public void onListItemClick(ListView listView, View view, int position, long id) {
-      super.onListItemClick(listView, view, position, id);
-
-      mCallbacks.onItemSelected(((Sendero)getListAdapter().getItem(position)).getServerId());
-   }
+//   @Override
+//   public void onListItemClick(ListView listView, View view, int position, long id) {
+//      super.onListItemClick(listView, view, position, id);
+//
+//      mCallbacks.onItemSelected(((Sendero)getListAdapter().getItem(position)).getServerId());
+//   }
 
    @Override
    public void onSaveInstanceState(Bundle outState) {
@@ -201,21 +245,21 @@ public class SenderoListFragment extends ListFragment {
     * Turns on activate-on-click mode. When this mode is on, list items will be
     * given the 'activated' state when touched.
     */
-   public void setActivateOnItemClick(boolean activateOnItemClick) {
-      // When setting CHOICE_MODE_SINGLE, ListView will automatically
-      // give items the 'activated' state when touched.
-      getListView().setChoiceMode(activateOnItemClick
-            ? ListView.CHOICE_MODE_SINGLE
-            : ListView.CHOICE_MODE_NONE);
-   }
-
-   private void setActivatedPosition(int position) {
-      if (position == ListView.INVALID_POSITION) {
-         getListView().setItemChecked(mActivatedPosition, false);
-      } else {
-         getListView().setItemChecked(position, true);
-      }
-
-      mActivatedPosition = position;
-   }
+//   public void setActivateOnItemClick(boolean activateOnItemClick) {
+//      // When setting CHOICE_MODE_SINGLE, ListView will automatically
+//      // give items the 'activated' state when touched.
+//      getListView().setChoiceMode(activateOnItemClick
+//            ? ListView.CHOICE_MODE_SINGLE
+//            : ListView.CHOICE_MODE_NONE);
+//   }
+//
+//   private void setActivatedPosition(int position) {
+//      if (position == ListView.INVALID_POSITION) {
+//         getListView().setItemChecked(mActivatedPosition, false);
+//      } else {
+//         getListView().setItemChecked(position, true);
+//      }
+//
+//      mActivatedPosition = position;
+//   }
 }

@@ -1,20 +1,23 @@
 package com.jelcaf.pacomf.patealapalma.adapter;
 
 import android.app.Activity;
-import android.graphics.Color;
+import android.content.Context;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.jelcaf.pacomf.patealapalma.R;
 import com.jelcaf.pacomf.patealapalma.SenderosConstants;
+import com.jelcaf.pacomf.patealapalma.binding.dao.Photo;
 import com.jelcaf.pacomf.patealapalma.binding.dao.Sendero;
-import com.jelcaf.pacomf.patealapalma.colors.RandomColors;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.List;
 import java.util.Random;
@@ -23,8 +26,8 @@ import java.util.Random;
  * @author Jorge Carballo
  *         26/02/15
  */
-public class SenderoAdapter extends BaseAdapter {
-   private static final String TAG = SenderoAdapter.class.getCanonicalName();
+public class SenderoGridAdapter extends BaseAdapter {
+   private static final String TAG = SenderoGridAdapter.class.getCanonicalName();
 
    private LayoutInflater inflater = null;
    private List<Sendero> senderos;
@@ -34,12 +37,14 @@ public class SenderoAdapter extends BaseAdapter {
    private final Random mRandom;
 
 
-   public SenderoAdapter(Activity activity, List<Sendero> senderos) {
+   public SenderoGridAdapter(Activity activity, List<Sendero> senderos, Context context) {
       super();
       this.activity = activity;
       this.senderos = senderos;
       this.inflater = LayoutInflater.from(activity);
       this.mRandom = new Random();
+      ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(context).build();
+      ImageLoader.getInstance().init(config);
    }
 
    /**
@@ -74,7 +79,7 @@ public class SenderoAdapter extends BaseAdapter {
       ViewHolder holder;
 
       if (convertView == null) {
-         convertView = inflater.inflate(R.layout.fragment_sendero_list_detail, null);
+         convertView = inflater.inflate(R.layout.fragment_sendero_list_detail_grid, null);
          holder = new ViewHolder();
          holder.name = (TextView) convertView.findViewById(R.id.my_sendero_name);
          holder.imageName = (ImageView) convertView.findViewById(R.id.sendero_image);
@@ -88,6 +93,7 @@ public class SenderoAdapter extends BaseAdapter {
          holder = (ViewHolder)convertView.getTag();
       }
 
+
       Sendero sendero = senderos.get(position);
 
       holder.name.setText(sendero.getName());
@@ -95,7 +101,6 @@ public class SenderoAdapter extends BaseAdapter {
       holder.time.setText(SenderosConstants.timeConversion(sendero.getLength() *
             SenderosConstants
             .SECONDS_IN_KM_MEDIUM));
-      holder.difficulty.setText(sendero.getRegularName());
       holder.ratio.setText(sendero.getRating() == 0 ? activity.getString(R.string.noRatio) : sendero.getRating().toString
             ());
 
@@ -109,11 +114,19 @@ public class SenderoAdapter extends BaseAdapter {
       } else {
          color = this.activity.getResources().getColor(R.color.sendero_extrema);
       }
+      holder.imageName.setBackgroundColor(color);
+      holder.difficulty.setBackgroundColor(color);
+
+      List<Photo> photos = sendero.photos();
+      if (photos.size() > 0) {
+         ImageLoader.getInstance().displayImage(photos.get(0).getUrl(), holder.imageName);
+         //holder.imageName.setImageURI(photos.get(0).getUrl());
+      }
 
       TextDrawable drawable = TextDrawable.builder().buildRound(sendero.getRegularName()
             .substring(0, 2), color);
 
-      holder.imageName.setImageDrawable(drawable);
+//      holder.imageName.setImageDrawable(drawable);
       return convertView;
    }
 

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:id="@+id/background_grid"
+              android:alpha="0.85">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/image_and_name">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="100dp"
+            android:scaleType="fitXY"
+            android:background="@color/colorPrimaryDark"
+            android:id="@+id/sendero_image"/>
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:id="@+id/sendero_difficulty"
+            android:background="@color/primary"/>
+
+
+        <TextView
+            android:id="@+id/my_sendero_name"
+            style="?android:attr/textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/sendero_difficulty"
+            android:text="Nombre"
+            android:textStyle="italic"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            tools:context=".SenderoDetailFragment"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_toRightOf="@id/sendero_difficulty"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/my_sendero_name">
+
+            <TextView
+                android:id="@+id/sendero_distance"
+                style="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:text="Distance"/>
+
+            <TextView
+                android:id="@+id/sendero_time"
+                style="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:layout_marginRight="5dp"
+                android:text="3 h 30 min"/>
+
+            <TextView
+                android:id="@+id/sendero_rating"
+                style="?android:attr/textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="10sp"
+                android:text="4.3"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -111,4 +111,10 @@ dependencies {
 
     // GSon
     compile 'com.google.code.gson:gson:2.3.1'
+
+    // https://github.com/etsy/AndroidStaggeredGrid
+    compile 'com.etsy.android.grid:library:1.0.5'
+
+    // Universal image loader
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 }
