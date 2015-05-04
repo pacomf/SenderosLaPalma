@@ -8,10 +8,9 @@
               android:id="@+id/background_grid"
               android:alpha="0.85">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/image_and_name">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <ImageView
             android:layout_width="match_parent"
@@ -23,7 +22,22 @@
             android:background="@color/colorPrimaryDark"
             android:id="@+id/sendero_image"/>
 
-    </FrameLayout>
+        <TextView
+            android:layout_width="24dp"
+            android:textStyle="italic"
+            android:textSize="10dp"
+            android:layout_height="24dp"
+            android:id="@+id/sendero_rating"
+            android:background="@drawable/heart"
+            android:text="1"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:visibility="visible"
+            android:gravity="center"/>
+
+    </RelativeLayout>
+
 
 
     <RelativeLayout
@@ -81,14 +95,14 @@
                 android:layout_marginRight="5dp"
                 android:text="3 h 30 min"/>
 
-            <TextView
+            <!--TextView
                 android:id="@+id/sendero_rating"
                 style="?android:attr/textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="10sp"
-                android:text="4.3"/>
+                android:text="4.3"/-->
 
         </LinearLayout>
 

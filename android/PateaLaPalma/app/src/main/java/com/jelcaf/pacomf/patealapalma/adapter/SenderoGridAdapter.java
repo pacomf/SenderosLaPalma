@@ -109,8 +109,12 @@ public class SenderoGridAdapter extends BaseAdapter {
       holder.time.setText(SenderosConstants.timeConversion(sendero.getLength() *
             SenderosConstants
             .SECONDS_IN_KM_MEDIUM));
-      holder.ratio.setText(sendero.getRating() == 0 ? activity.getString(R.string.noRatio) : sendero.getRating().toString
-            ());
+      if (sendero.getRating() != null && sendero.getRating() != 0) {
+         holder.ratio.setText(sendero.getRating().toString());
+         holder.ratio.setVisibility(View.VISIBLE);
+      } else {
+         holder.ratio.setVisibility(View.INVISIBLE);
+      }
 
       int color;
       if (sendero.getDifficulty().equals("Alta")) {
@@ -128,13 +132,11 @@ public class SenderoGridAdapter extends BaseAdapter {
       List<Photo> photos = sendero.photos();
       if (photos.size() > 0) {
          ImageLoader.getInstance().displayImage(photos.get(0).getUrl(), holder.imageName);
-         //holder.imageName.setImageURI(photos.get(0).getUrl());
       }
 
       TextDrawable drawable = TextDrawable.builder().buildRound(sendero.getRegularName()
             .substring(0, 2), color);
 
-//      holder.imageName.setImageDrawable(drawable);
       return convertView;
    }
 
