@@ -2,11 +2,11 @@
 
 <p align="center">
     <a href="http://tiny.cc/pateaLaPalma" target="_blank">
-      
+
         <img alt="App" src="https://raw.githubusercontent.com/pacomf/SenderosLaPalma/develop/android/PateaLaPalma/app/src/main/res/drawable-xxhdpi/ic_launcher.png?token=ABGEZrEry1pb6u5I3rrrDKHtw9f9tRK-ks5VRyd-wA%3D%3D" width="210"/>
-      
+
     </a>
-    <a href="https://play.google.com/store/apps/details?id=com.jelcaf.pacomf.patealapalma" target="_blank">>
+    <a href="https://play.google.com/store/apps/details?id=com.jelcaf.pacomf.patealapalma" target="_blank">
         <img alt="Descargar Patea La Palma" src="http://www.eleconomista.es/CanalPDA/files/logo_google_play.jpg" height="200" width="180" />
     </a>
 </p>
@@ -51,4 +51,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
