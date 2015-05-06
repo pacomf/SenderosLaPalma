@@ -19,6 +19,10 @@
     <color name="sendero_media">#FFEB3B</color>
     <color name="sendero_baja">#8BC34A</color>
 
+    <color name="sendero_pr">#F6EF31</color>
+    <color name="sendero_gr">#F44336</color>
+    <color name="sendero_sl">#8BC34A</color>
+
     <color name="floatButton">#FFFFFFFF</color>
     <color name="floatButtonPressed">#CCCCCCCC</color>
 

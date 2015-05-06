@@ -65,6 +65,7 @@ public class SenderoGridAdapter extends BaseAdapter {
       TextView time;
       TextView difficulty;
       TextView ratio;
+      ImageView type;
    }
 
    @Override
@@ -95,6 +96,7 @@ public class SenderoGridAdapter extends BaseAdapter {
          holder.time = (TextView) convertView.findViewById(R.id.sendero_time);
          holder.difficulty = (TextView) convertView.findViewById(R.id.sendero_difficulty);
          holder.ratio = (TextView) convertView.findViewById(R.id.sendero_rating);
+         holder.type = (ImageView) convertView.findViewById(R.id.sendero_type);
 
          convertView.setTag(holder);
       } else {
@@ -135,9 +137,21 @@ public class SenderoGridAdapter extends BaseAdapter {
       }
 
       TextDrawable drawable = TextDrawable.builder().buildRound(sendero.getRegularName()
-            .substring(0, 2), color);
+            .substring(0, 2), getColorFromRegularName(sendero.getRegularName()
+            .substring(0, 2)));
+      holder.type.setImageDrawable(drawable);
 
       return convertView;
+   }
+
+   private int getColorFromRegularName(String typeName) {
+      if (typeName.equals("PR")) {
+         return this.activity.getResources().getColor(R.color.sendero_pr);
+      }
+      if (typeName.equals("SL")) {
+         return this.activity.getResources().getColor(R.color.sendero_sl);
+      }
+      return this.activity.getResources().getColor(R.color.sendero_gr);
    }
 
    private double getPositionRatio(final int position) {

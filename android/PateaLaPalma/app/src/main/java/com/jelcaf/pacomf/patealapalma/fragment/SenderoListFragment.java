@@ -140,7 +140,8 @@ public class SenderoListFragment extends Fragment implements AbsListView.OnScrol
 
       if (this.recommendedGroups) {
          FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
-         fab.attachToListView(mGridView);
+//         fab.attachToListView(mGridView);
+         fab.attachToListView(mGridView, null, this);
          fab.setVisibility(View.VISIBLE);
 
          fab.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +166,6 @@ public class SenderoListFragment extends Fragment implements AbsListView.OnScrol
       }
 
       mGridView.setAdapter(adapter);
-      mGridView.setOnScrollListener(this);
       mGridView.setOnItemClickListener(this);
 
       return v;
