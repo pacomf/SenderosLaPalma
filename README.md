@@ -1,6 +1,7 @@
 # [Patea La Palma](http://tiny.cc/pateaLaPalma)
 
 <p align="center">
+<a href="http://www.opendatalapalma.es/" target="_blank"><img src="https://dl.dropboxusercontent.com/u/23163327/img/primero.png" height="140" width="250"></img></a>
     <a href="http://tiny.cc/pateaLaPalma" target="_blank">
 
         <img alt="App" src="https://raw.githubusercontent.com/pacomf/SenderosLaPalma/develop/android/PateaLaPalma/app/src/main/res/drawable-xxhdpi/ic_launcher.png?token=ABGEZrEry1pb6u5I3rrrDKHtw9f9tRK-ks5VRyd-wA%3D%3D" width="210"/>
@@ -10,6 +11,10 @@
         <img alt="Descargar Patea La Palma" src="http://www.eleconomista.es/CanalPDA/files/logo_google_play.jpg" height="200" width="180" />
     </a>
 </p>
+
+
+
+**PRIMER PREMIO OPEN DATA LA PALMA 2015**
 
 La aplicación es el primer **Recomendador Inteligente de Senderos** de la isla de La Palma. De forma que cualquier turista (app multilenguaje), en la palma de su mano pueda tener una herramienta tan potente como para recomendar el mejor sendero que se adecua a sus gustos y necesidades en cada momento. La aplicación cuenta con un algoritmo inteligente de recomendación de senderos que aprende de los gustos del usuario de forma evolutiva. La inteligencia artificial desarrollada selecciona una serie de senderos acorde a las preferencias descritas por el usuario. De manera que mediante una serie de preguntas fáciles, con una interfaz gráfica sencilla y muy visual, el usuario podrá saber qué Sendero le conviene hacer. Esta recomendación también se aclimata a Grupos de Personas, por lo que en función de una serie de premisas (cuántas personas irán a realizar el sendero, si irán o no niños, etc.) la aplicación buscará y recomendará los mejores senderos bajo estos requisitos.
 
